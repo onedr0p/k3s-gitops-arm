@@ -22,5 +22,8 @@ spec:
     nfs:
       server: "192.168.1.170"
       path: "/share/Kubernetes"
+      mountOptions:
+        - tcp
+        - nfsver=4
     storageClass:
       defaultClass: true
