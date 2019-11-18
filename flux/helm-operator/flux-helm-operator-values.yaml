@@ -6,6 +6,9 @@ image:
   repository: onedr0p/helm-operator
   tag: arm32-latest
   pullPolicy: Always
+tolerations:
+- key: "arm"
+  operator: "Exists"
 chartsSyncInterval: "10m"
 statusUpdateInterval: "10m"
 prometheus:

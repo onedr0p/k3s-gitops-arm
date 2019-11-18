@@ -6,6 +6,9 @@ image:
   repository: onedr0p/flux
   tag: arm32-latest
   pullPolicy: Always
+tolerations:
+- key: "arm"
+  operator: "Exists"
 registry:
   rps: 1
   burst: 1
