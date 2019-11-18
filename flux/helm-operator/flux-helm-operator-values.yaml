@@ -1,0 +1,12 @@
+createCRD: true
+git:
+  ssh:
+    secretName: flux-git-deploy
+image:
+  repository: onedr0p/helm-operator
+  tag: arm32-latest
+  pullPolicy: Always
+chartsSyncInterval: "10m"
+statusUpdateInterval: "10m"
+prometheus:
+  enabled: true
