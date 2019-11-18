@@ -5,6 +5,7 @@ Tutorial on how to get a Kubernete Cluster up and running on your Raspberry Pis
 References:
 - https://medium.com/nycdev/k8s-on-pi-9cc14843d43
 - https://itnext.io/building-a-kubernetes-cluster-on-raspberry-pi-and-low-end-equipment-part-1-a768359fbba3
+- https://medium.com/developingnodes/setting-up-kubernetes-cluster-on-raspberry-pi-15cc44f404b5
 
 ## Improve productivity on your local machine
 
@@ -30,18 +31,12 @@ sudo apt-get install -qy kubeadm
 # Note the `kubeadm join` command in the output, you will need this to add workers to your Cluster
 #
 kubeadm config images pull
-sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.42.0.0/16 --apiserver-advertise-address=192.168.1.181
 mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 # View Kubernetes objects and wait for them to come active
-kubectl get all --all-namespaces
-
-# Use the Flannel CNI
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
-# Check if everything is golden (if not reset and try again)
 kubectl get all --all-namespaces
 
 #
@@ -52,8 +47,18 @@ kubectl get all --all-namespaces
 kubectl get events -w
 
 # Reset
-sudo kubeadm reset
-rm -rf $HOME/.kube/config
+echo 'y' | sudo kubeadm reset ; \
+rm -rf $HOME/.kube/config ; \
+iptables -P INPUT ACCEPT ; \
+iptables -P FORWARD ACCEPT ; \
+iptables -P OUTPUT ACCEPT ; \
+iptables -t nat -F ; \
+iptables -t mangle -F ; \
+iptables -F ; \
+iptables -X ; \
+ip link delete flannel.1 ; \
+ip link delete cni0 ; \
+systemctl restart docker
 ```
 
 ## Join Worker Nodes
@@ -80,6 +85,21 @@ scp devin@192.168.1.181:~/.kube/config ~/.kube/config
 kubectl get pods --all-namespaces
 ```
 
+## Apply Weave CNI
+
+```bash
+# Update to the latest Kernel
+sudo rpi-update
+
+# Reboot
+sudo reboot
+
+# Apply CNI
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+```
+
 ## Taint and label Worker Nodes
 
 ```bash
@@ -90,7 +110,13 @@ kubectl get nodes
 kubectl label node <node-name> node-role.kubernetes.io/worker=worker
 
 # Taint Node
-kubectl taint nodes <node-name> arm=true:NoExecute
+# kubectl taint nodes <node-name> arm=true:NoExecute
+
+# Remove Taint
+# kubectl taint nodes <node-name> arm-
+
+# View all nodes and thier taints
+# kubectl get nodes -o json | jq '.items[].spec.taints'
 ```
 
 ## Tiller
@@ -103,21 +129,23 @@ kubectl create clusterrolebinding tiller-cluster-rule \
     --clusterrole=cluster-admin \
     --serviceaccount=kube-system:tiller
 
-# Install Tiller
-helm init --tiller-image=jessestuart/tiller:v2.14.3-arm --service-account tiller \
-    --override 'spec.template.spec.tolerations[0].key'='arm' \
-    --override 'spec.template.spec.tolerations[0].operator'='Exists'
+helm init --tiller-image=jessestuart/tiller:v2.14.3-arm --service-account tiller
+#     --override 'spec.template.spec.tolerations[0].key'='arm' \
+#     --override 'spec.template.spec.tolerations[0].operator'='Exists'
 
 # Upgrade Tiller
-helm init --upgrade --tiller-image=jessestuart/tiller:v2.15.0-arm --service-account tiller \
-    --override 'spec.template.spec.tolerations[0].key'='arm' \
-    --override 'spec.template.spec.tolerations[0].operator'='Exists'
+helm init --upgrade --tiller-image=jessestuart/tiller:v2.15.0-arm --service-account tiller
+#     --override 'spec.template.spec.tolerations[0].key'='node-role.kubernetes.io/master' \
+#     --override 'spec.template.spec.tolerations[0].effect'='NoSchedule'
 
 # View Tiller logs
-kubectl logs -n kube-system tiller-deploy-([a-z\-]+)
+kubectl -n kube-system describe deployment.apps/tiller-deploy
+kubectl -n kube-system logs tiller-deploy-([a-z\-]+)
+kubectl -n kube-system describe pod/tiller-deploy-([a-z\-]+)
 
 # Delete Tiller Deployment
-kubectl delete deployment tiller-deploy --namespace kube-system
+kubectl -n kube-system delete deployment tiller-deploy ; \
+kubectl -n kube-system delete service tiller-deploy
 ```
 
 ## Flux and Helm Operator
