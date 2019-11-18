@@ -1,0 +1,9 @@
+---
+
+- name: Copy email configuration files in place
+  template:
+    src: "templates/msmtprc.j2"
+    dest: "/root/.msmtprc.j2"
+    owner: root
+    group: root
+    mode: 0644

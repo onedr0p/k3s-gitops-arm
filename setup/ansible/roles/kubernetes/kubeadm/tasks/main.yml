@@ -1,0 +1,14 @@
+---
+
+- name: Add kubeadm key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: Add kubeadm repo
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+
+- name: Install kubeadm
+  apt:
+    name: kubeadm
+    update_cache: yes

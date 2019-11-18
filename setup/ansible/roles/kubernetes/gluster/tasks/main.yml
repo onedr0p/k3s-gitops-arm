@@ -1,0 +1,116 @@
+---
+
+- name: Installing GlusterFS Dependencies
+  apt:
+    name:
+      - libacl1-dev
+      - libssl-dev
+      - uuid-dev
+      - bison
+      - flex
+      - automake
+      - libtool
+      - fuse
+      - sqlite3
+      - libsqlite3-dev
+      - libxml2-dev
+      - llvm
+      - lvm2
+      - liburcu-dev
+      - thin-provisioning-tools
+      - make
+      - autoconf
+      - pkg-config
+      - python-dev
+      - libaio-dev
+      - libibverbs-dev
+      - librdmacm-dev
+      - libreadline-dev
+      - liblvm2-dev
+      - libglib2.0-dev
+      - libcmocka-dev
+      - rpcbind
+      - xfsprogs
+    state: present
+    update_cache: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_install_deps
+  retries: 5
+  until: apt_install_deps is success
+
+- name: Add the dm_snapshot module
+  modprobe:
+    name: dm_snapshot
+    state: present
+
+- name: Add the dm_mirror module
+  modprobe:
+    name: dm_mirror
+    state: present
+
+- name: Add the dm_thin_pool module
+  modprobe:
+    name: dm_thin_pool
+    state: present
+
+# - name: Install public SSH key for Heketi in the Cluster
+#   authorized_key:
+#     user: "{{ ansible_user }}"
+#     state: present
+#     key: "{{ lookup('file', '../ssh.pub') }}"
+
+- name: Downloading GlusterFS sources
+  get_url:
+    url: "https://codeload.github.com/gluster/glusterfs/tar.gz/v{{ gluster_version }}"
+    dest: "/tmp/{{ gluster_version }}.tar.gz"
+    # validate_certs: no
+  register: gluster_source
+
+- name: Unpacking GlusterFS
+  unarchive:
+    copy: no
+    dest: /tmp/
+    src: "{{ gluster_source.dest }}"
+
+- name: Auto generate GlusterFS source
+  command: "./autogen.sh"
+  args:
+    chdir: "/tmp/glusterfs-{{ gluster_version }}"
+
+- name: Configuring GlusterFS source
+  command: "./configure"
+  args:
+    chdir: "/tmp/glusterfs-{{ gluster_version }}"
+
+- name: Compile the GlusterFS source
+  make:
+    chdir: "/tmp/glusterfs-{{ gluster_version }}"
+
+- name: Install GlusterFS
+  make:
+    chdir: "/tmp/glusterfs-{{ gluster_version }}"
+    target: install
+    params:
+      NUM_THREADS: 4
+      BACKEND: lapack
+
+- name: Run ldconfig
+  command: ldconfig
+
+- name: Installing GlusterFS systemd service
+  copy:
+    src: "/tmp/glusterfs-{{ gluster_version }}/extras/systemd/glusterd.service"
+    dest: /etc/systemd/system/glusterd.service
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Starting GlusterFS
+  systemd:
+    name: glusterd
+    state: started
+    enabled: yes
+    daemon_reload: yes

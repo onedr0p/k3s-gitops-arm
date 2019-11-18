@@ -1,0 +1,51 @@
+---
+
+- name: Creating a user named {{ username }}
+  user: 
+    name: "{{ username }}"
+    password: "{{ hashed_password }}"
+    state: present
+    shell: /bin/bash
+    groups: sudo
+    append: yes
+    generate_ssh_key: yes
+    ssh_key_bits: 2048
+    ssh_key_file: .ssh/id_rsa
+
+- name: Add user {{ username }} to sudoers list
+  lineinfile:
+    dest: /etc/sudoers
+    regexp: "{{ username }} ALL"
+    line: "{{ username }}	ALL=(ALL) 	NOPASSWD: ALL"
+    state: present
+
+- name: Quite the login prompt for {{ username }}
+  file:
+    dest: "/home/{{ username }}/.hushlogin"
+    state: touch
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0775
+
+# - name: Create {{ username }} config directory
+#   file:
+#     path: "/home/{{ username }}/.config"
+#     state: directory
+#     recurse: yes
+#     group: "{{ username }}"
+#     owner: "{{ username }}"
+#     mode: 0775
+
+# - name: fetch all public ssh keys
+#   shell: cat ~/.ssh/id_rsa.pub
+#   register: ssh_keys
+
+# - name: check keys
+#   debug: msg="{{ ssh_keys.stdout }}"
+
+# - name: deploy keys on all servers
+#   authorized_key: user=root key="{{ item[0] }}"
+#   delegate_to: "{{ item[1] }}"
+#   with_nested:
+#     - "{{ ssh_keys.stdout }}"
+#     - "{{ groups['all'] }}"

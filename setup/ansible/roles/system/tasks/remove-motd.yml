@@ -1,0 +1,4 @@
+---
+
+- name: Remove motd
+  command: update-rc.d motd remove

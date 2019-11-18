@@ -1,0 +1,7 @@
+Unattended-Upgrade::Automatic-Reboot "true";
+Unattended-Upgrade::Automatic-Reboot-Time "0{{ 8 | random(start=2) }}:00";
+Unattended-Upgrade::Remove-Unused-Dependencies "true";
+Unattended-Upgrade::Allowed-Origins {
+    "${distro_id} ${distro_codename}-security";
+};
+Unattended-Upgrade::Mail "{{ email_to_address }}";

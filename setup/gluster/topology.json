@@ -1,0 +1,56 @@
+{
+  "clusters": [
+    {
+      "nodes": [
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "piglstr01.lan"
+              ],
+              "storage": [
+                "192.168.1.171"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/sda"
+          ]
+        },
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "piglstr02.lan"
+              ],
+              "storage": [
+                "192.168.1.172"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/sda"
+          ]
+        },
+        {
+          "node": {
+            "hostnames": {
+              "manage": [
+                "piglstr03.lan"
+              ],
+              "storage": [
+                "192.168.1.173"
+              ]
+            },
+            "zone": 1
+          },
+          "devices": [
+            "/dev/sda"
+          ]
+        }
+      ]
+    }
+  ]
+}

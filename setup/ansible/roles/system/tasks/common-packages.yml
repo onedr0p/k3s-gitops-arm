@@ -1,0 +1,57 @@
+---
+
+- name: Install Common Packages
+  apt:
+    name:
+      - apt-transport-https
+      - bc
+      - bsd-mailx
+      - build-essential
+      - ca-certificates
+      - curl
+      - dfc
+      - dnsutils
+      - dos2unix
+      - fzf
+      - git
+      - gnupg2
+      - htop
+      - ipcalc
+      - iperf3
+      - iputils-ping
+      - jq
+      - less
+      - libffi-dev
+      - libssl-dev
+      - mc
+      - msmtp
+      - msmtp-mta
+      - mtr
+      - nano
+      - neofetch
+      - net-tools
+      - nfs-common
+      - nmap
+      - openssh-server
+      - p7zip
+      - psmisc
+      - python-dev
+      - python-pip
+      - rsync
+      - software-properties-common
+      - sqlite3
+      - tcpdump
+      - traceroute
+      - tree
+      - unattended-upgrades
+      - unzip
+      - wget
+      - zip
+    install_recommends: no
+    update_cache: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_install_common
+  retries: 5
+  until: apt_install_common is success

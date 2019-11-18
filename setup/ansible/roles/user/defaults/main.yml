@@ -1,0 +1,6 @@
+---
+
+username: bot
+hashed_password: GQXJVApRA9.2.
+# create with:
+# mkpasswd --method=sha-512

@@ -1,0 +1,26 @@
+---
+
+- name: Neofetch - enable on login for {{ username }}
+  copy:
+    content: "neofetch"
+    dest: "/home/{{ username }}/.bash_profile"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0775
+
+- name: Neofetch - create config directory
+  file:
+    path: "/home/{{ username }}/.config/neofetch"
+    state: directory
+    recurse: yes
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0775
+
+- name: Neofetch - add config
+  template:
+    src: "templates/neofetch.conf.j2"
+    dest: "/home/{{ username }}/.config/neofetch/config.conf"
+    group: "{{ username }}"
+    owner: "{{ username }}"
+    mode: 0775
