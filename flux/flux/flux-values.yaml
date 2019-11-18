@@ -13,6 +13,7 @@ registry:
   rps: 1
   burst: 1
 memcached:
+  enabled: true
   # tolerations:
   # - key: "arm"
   #   operator: "Exists"
