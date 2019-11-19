@@ -19,6 +19,9 @@ spec:
     image:
       repository: gcr.io/google_containers/metrics-server-arm
       tag: v0.3.6
+    args:
+      - --kubelet-insecure-tls
+      - --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
     # tolerations:
     #   - key: "arm"
     #     operator: "Equal"
