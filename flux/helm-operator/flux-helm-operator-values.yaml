@@ -11,7 +11,7 @@ image:
 #     operator: "Equal"
 #     value: "arm"
 #     effect: "NoExecute"
-chartsSyncInterval: "10m"
-statusUpdateInterval: "10m"
+chartsSyncInterval: "5m"
+statusUpdateInterval: "5m"
 prometheus:
   enabled: true

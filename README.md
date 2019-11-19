@@ -246,3 +246,13 @@ wipefs -a /dev/sda ; \
 systemctl restart glusterd ; \
 sed -i '$d' /etc/fstab
 ```
+
+## Other Debugging
+
+```bash
+kubectl -n flux logs pod/helm-operator-857544fb55-zprms
+
+# E1020 17:56:52.250466 1 memcache.go:134] couldn't get resource list for metrics.k8s.io/v1beta1: the server is currently unable to handle the request
+
+kubectl delete apiservice v1beta1.metrics.k8s.io
+```

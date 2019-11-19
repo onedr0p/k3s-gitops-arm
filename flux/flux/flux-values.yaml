@@ -21,8 +21,8 @@ memcached:
   #     operator: "Equal"
   #     value: "arm"
   #     effect: "NoExecute"
-additionalArgs:
-  - --connect=ws://fluxcloud
+# additionalArgs:
+#   - --connect=ws://fluxcloud
 prometheus:
   enabled: true
 syncGarbageCollection:
