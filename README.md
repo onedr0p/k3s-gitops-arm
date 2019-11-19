@@ -38,8 +38,6 @@ unzip ~/Downloads/hypriotos-rpi-v1.11.4.img.zip -d ~/Downloads/
 
 ### Configure and Flash
 
-> All these commands are run from your computer, not the RPi.
-
 Update `config.txt` or `user-data-*.yml` as you see fit, add more `user-data-*.yml` files if you have more hosts.
 
 ```bash
@@ -61,11 +59,11 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible-playbook \
 
 ## k3s
 
+> All these commands are run from your computer, not the RPi.
+
 I will be using [k3sup](https://github.com/alexellis/k3sup) in order to provision our k3s cluster
 
 ### k3sup
-
-> All these commands are run from your computer, not the RPi.
 
 ```bash
 # Install k3sup locally
@@ -100,6 +98,8 @@ kubectl get nodes
 ```
 
 ## Kubernetes
+
+> All these commands are run from your computer, not the RPi.
 
 ### Label worker nodes
 
