@@ -43,7 +43,7 @@ Update `config.txt` or `user-data-*.yml` as you see fit, add more `user-data-*.y
 To use WiFi see [this](https://johnwyles.github.io/posts/setting-up-kubernetes-and-openfaas-on-a-raspberry-pi-cluster-using-hypriot/) blog post and adjust the `config.txt` and `user-data-*.yml` accordingly.
 
 ```bash
-# Replace pik3s01 with the file and hostname
+# Replace pik3s01 in the --userdata and --hostname flags
 flash \
     --bootconf setup/hypriotos/config.txt \
     --userdata setup/hypriotos/user-data-pik3s01.yml \
