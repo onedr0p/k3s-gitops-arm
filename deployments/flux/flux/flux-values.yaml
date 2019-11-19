@@ -2,27 +2,17 @@ helmOperator:
   create: false
 git:
   url: "git@github.com:onedr0p/homelab-gitops.git"
+  branch: master
+  path: deployments
 image:
   repository: onedr0p/flux
   tag: arm32-latest
   pullPolicy: Always
-# tolerations:
-#   - key: "arch"
-#     operator: "Equal"
-#     value: "arm"
-#     effect: "NoExecute"
 registry:
   rps: 1
   burst: 1
 memcached:
   enabled: true
-  # tolerations:
-  #   - key: "arch"
-  #     operator: "Equal"
-  #     value: "arm"
-  #     effect: "NoExecute"
-# additionalArgs:
-#   - --connect=ws://fluxcloud
 prometheus:
   enabled: true
 syncGarbageCollection:

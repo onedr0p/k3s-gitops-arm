@@ -1,0 +1,10 @@
+[k3s_master]
+192.168.1.181
+
+[k3s_worker]
+192.168.1.182
+192.168.1.183
+
+[k3s_cluster:children]
+k3s_master
+k3s_worker

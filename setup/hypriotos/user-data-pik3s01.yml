@@ -1,0 +1,50 @@
+#cloud-config
+
+hostname: pik3s01
+apt_preserve_sources_list: true
+manage_etc_hosts: true
+
+resize_rootfs: true
+growpart:
+    mode: auto
+    devices: ["/"]
+    ignore_growroot_disabled: false
+
+locale: "en_US.UTF-8"
+timezone: "America/New_York"
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+packages:
+  - ntp
+  - libnss-mdns
+
+users:
+  - name: devin
+    primary-group: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video
+    ssh_import_id: None
+    ssh_pwauth: no
+    lock_passwd: true
+    ssh_authorized_keys:
+      - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCzsu/AuBZkK5J9hZLya9ood8RuXqnN0Eo4hEeFvibuhQKyUerwLG1COa8d1QDXSJR37c/JjXKRzYX5JE347P48hU7dN+vnoi9uKuhHu7NILaLeo2QrQKTuWKygj23ee4EHj0B/XP562seqv9/zLmbaTZO3J1lXFugTVo0kXGbzCWQnOZyEEY+cUHhHVSu4/ugmkkUvV744CYo7TmcMwBjfrOnvamWVD09dYcX6wq0KLDU59BzVj6GNs8TbwUNR52EAYv0PXDPeKUkrMx5YaEGoc286kFWGiIJYSKMOukuZYPOSkgwONQSGt6Hvzft+eCxvR93J1vNcMIV1PjTfRdZvPa1mvJ1/uzWWWGQfODGKmBaDMZ4e2o4ItLJcopAUWbpr/bQIadCpt4ckKPJJ9km+qhYz+Np0ZfQ1Ay5NOTLZx3IhBuXHIxLIr0PialTig9+MXf1ZCwW2SI7kPrVVB5IwysA8R9Z/p7cnv0uOVNNfFMyIsI8jVnsqeRN4GFMweBY1kJwK4X7dnsKfoYWkjQ9DUaZ62wTk0u4P4zSGxEVx43rk/f2b+nXZbl1IhgA/2SV2b2eHIGHE6aSMSjUHXrZ7ZVJhAwqDFoN18NvBKOHQo6CKHG5jyvII4I8+NbnAGPG320VbvQoAA8nlUO8rsy05KdBU0U9UI3gq7bYWFJaKew== devin.kray@gmail.com"
+
+write_files:
+  - content: |
+      persistent
+      slaac private
+      interface eth0
+      static ip_address=192.168.1.181/24
+      static routers=192.168.1.1
+      static domain_name_servers=192.168.1.15
+    path: /etc/dhcpcd.conf
+
+# runcmd:
+#   - [ systemctl, restart, avahi-daemon ]
+
+power_state:
+  mode: reboot
+  condition: true

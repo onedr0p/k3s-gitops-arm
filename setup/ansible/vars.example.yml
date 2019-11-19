@@ -1,0 +1,7 @@
+---
+
+ansible_user: devin
+systemd_dir: /etc/systemd/system
+
+docker_dns: 
+  - 1.1.1.1

@@ -1,0 +1,5 @@
+---
+
+- include_tasks: common-packages.yml
+- include_tasks: networking.yml
+- include_tasks: docker.yml

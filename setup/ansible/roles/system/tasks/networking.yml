@@ -1,0 +1,27 @@
+---
+
+# See: https://github.com/kubernetes/kubernetes/issues/71305
+- name: Use iptables-legacy instead of nftables.
+  alternatives:
+    name: '{{ item.name }}'
+    path: '{{ item.path }}'
+  with_items:
+    - name: iptables
+      path: /usr/sbin/iptables-legacy
+    - name: ip6tables
+      path: /usr/sbin/ip6tables-legacy
+
+- name: Add the br_netfilter module
+  modprobe:
+    name: br_netfilter
+    state: present
+
+- name: Load br_netfilter module at boot
+  template:
+    src: br_netfilter.conf
+    dest: /etc/modules-load.d/br_netfilter.conf
+
+- name: Configure network bridge
+  sysctl:
+    name: net.bridge.bridge-nf-call-iptables
+    value: "1"

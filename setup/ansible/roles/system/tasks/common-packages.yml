@@ -1,0 +1,35 @@
+---
+
+- name: Install Common Packages
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - dnsutils
+      - gnupg2
+      - htop
+      - iperf3
+      - iputils-ping
+      - jq
+      - less
+      - net-tools
+      - nfs-common
+      - nmap
+      - psmisc
+      - rsync
+      - software-properties-common
+      - sqlite3
+      - tcpdump
+      - traceroute
+      - tree
+      - unzip
+      - wget
+      - zip
+    install_recommends: no
+    update_cache: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_install_common
+  retries: 5
+  until: apt_install_common is success
