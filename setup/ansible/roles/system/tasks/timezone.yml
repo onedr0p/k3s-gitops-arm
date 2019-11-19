@@ -1,4 +1,0 @@
----
-
-- name: Change timezone
-  command: "timedatectl set-timezone {{ timezone }}"

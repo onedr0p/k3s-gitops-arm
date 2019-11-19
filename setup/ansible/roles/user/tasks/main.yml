@@ -1,4 +1,0 @@
----
-
-- include_tasks: create-user.yml
-- include_tasks: neofetch.yml
