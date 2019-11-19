@@ -1,6 +1,16 @@
 # homelab-gitops (ARM Edition)
 
-Directory Structure
+Hardware Requirements for this tutorial:
+
+- 3x RPi4 and supplemental hardware
+- Unifi Security Gateway (for MetalLb w/ BGP)
+
+Software Requirements for this tutorial:
+
+- ansible
+- kubectl
+- hypriot/flash
+- alexellis/k3sup
 
 ```bash
 .
@@ -77,23 +87,23 @@ sudo cp k3sup /usr/local/bin/
 k3sup --help
 
 # Install k3s on master node
-k3sup install --ip 192.168.1.181 \
+k3sup install --ip 192.168.42.29 \
     --k3s-version v1.0.0 \
     --user devin \
     --k3s-extra-args '--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server'
 
 # Make kubeconfig accessable globally
 mkdir ~/.kube
-mv ~/Downloads/kubeconfig ~/.kube/config
+mv ./kubeconfig ~/.kube/config
 
 # Join worker nodes into the cluster
-k3sup join --ip 192.168.1.182 \
-    --server-ip 192.168.1.181 \
+k3sup join --ip 192.168.42.30 \
+    --server-ip 192.168.42.29 \
     --k3s-version v1.0.0 \
     --user devin
 
-k3sup join --ip 192.168.1.183 \
-    --server-ip 192.168.1.181 \
+k3sup join --ip 192.168.42.31 \
+    --server-ip 192.168.42.29 \
     --k3s-version v1.0.0 \
     --user devin
 

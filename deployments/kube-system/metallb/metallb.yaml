@@ -1,0 +1,25 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: metallb
+  namespace: kube-system
+  annotations:
+    fluxcd.io/automated: "true"
+spec:
+  releaseName: metallb
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: metallb
+    version: 0.12.0
+  values:
+    configInline:
+      peers:
+      - peer-address: 192.168.42.1
+        peer-asn: 64512
+        my-asn: 64512
+      address-pools:
+      - name: default
+        protocol: bgp
+        addresses:
+        - 198.168.42.0/24
+        avoid-buggy-ips: true

@@ -37,8 +37,8 @@ write_files:
       persistent
       slaac private
       interface eth0
-      static ip_address=192.168.1.183/24
-      static routers=192.168.1.1
+      static ip_address=192.168.42.31/24
+      static routers=192.168.42.1
       static domain_name_servers=192.168.1.15
     path: /etc/dhcpcd.conf
 
