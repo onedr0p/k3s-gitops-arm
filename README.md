@@ -32,7 +32,7 @@ sudo chmod +x /usr/local/bin/flash
 
 ```bash
 curl -L \
-    "https://github.com/hypriot/image-builder-rpi/releases/download/$HYPRIOT_VERSION/hypriotos-rpi-v1.11.4.img.zip" \
+    "https://github.com/hypriot/image-builder-rpi/releases/download/v1.11.4/hypriotos-rpi-v1.11.4.img.zip" \
     -o ~/Downloads/hypriotos-rpi-v1.11.4.img.zip
 
 unzip ~/Downloads/hypriotos-rpi-v1.11.4.img.zip -d ~/Downloads/
