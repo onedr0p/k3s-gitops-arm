@@ -1,3 +1,17 @@
+# homelab-gitops (ARM Edition)
+
+Directory Structure
+
+```bash
+.
+│   # Flux will only scan and deploy from this directory
+├── ./deployments
+│   # Initial setup of the cluster
+└── ./setup
+    ├── ./ansible
+    └── ./hypriotos
+```
+
 ## HypriotOS
 
 > All these commands are run from your computer, not the RPi.
