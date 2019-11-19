@@ -7,8 +7,10 @@ image:
   tag: arm32-latest
   pullPolicy: Always
 # tolerations:
-# - key: "arm"
-#   operator: "Exists"
+#   - key: "arch"
+#     operator: "Equal"
+#     value: "arm"
+#     effect: "NoExecute"
 chartsSyncInterval: "10m"
 statusUpdateInterval: "10m"
 prometheus:

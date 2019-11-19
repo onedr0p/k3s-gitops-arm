@@ -31,7 +31,7 @@ sudo apt-get install -qy kubeadm
 # Note the `kubeadm join` command in the output, you will need this to add workers to your Cluster
 #
 kubeadm config images pull
-sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.42.0.0/16 --apiserver-advertise-address=192.168.1.181
+sudo kubeadm init --token-ttl=0 --pod-network-cidr=10.42.0.0/16
 mkdir -p $HOME/.kube
 sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
@@ -94,10 +94,19 @@ sudo rpi-update
 # Reboot
 sudo reboot
 
-# Apply CNI
+# Apply Weave CNI
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 
-kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+#
+# Something went wrong?
+#
+
+# Debuging
+kubectl exec -n kube-system weave-net-ptkb8 -c weave -- /home/weave/weave --local status
+kubectl exec -n kube-system pod/weave-net-mgklj -c weave -- /home/weave/weave --local status ipam
+
+## Apply Flannel CNI
+# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
 
 ## Taint and label Worker Nodes
@@ -109,11 +118,11 @@ kubectl get nodes
 # Label Node
 kubectl label node <node-name> node-role.kubernetes.io/worker=worker
 
-# Taint Node
-# kubectl taint nodes <node-name> arm=true:NoExecute
+## Taint Node
+# kubectl taint nodes <node-name> arch=arm:NoExecute
 
-# Remove Taint
-# kubectl taint nodes <node-name> arm-
+## Remove Taint
+# kubectl taint nodes <node-name> arch-
 
 # View all nodes and thier taints
 # kubectl get nodes -o json | jq '.items[].spec.taints'
@@ -130,8 +139,12 @@ kubectl create clusterrolebinding tiller-cluster-rule \
     --serviceaccount=kube-system:tiller
 
 helm init --tiller-image=jessestuart/tiller:v2.14.3-arm --service-account tiller
+    # --override 'spec.template.spec.tolerations[0].key'='node-role.kubernetes.io/master' \
+    # --override 'spec.template.spec.tolerations[0].effect'='NoSchedule'
 #     --override 'spec.template.spec.tolerations[0].key'='arm' \
-#     --override 'spec.template.spec.tolerations[0].operator'='Exists'
+#     --override 'spec.template.spec.tolerations[0].operator'='Equal' \
+#     --override 'spec.template.spec.tolerations[0].value'='true' \
+#     --override 'spec.template.spec.tolerations[0].effect'='NoExecute'
 
 # Upgrade Tiller
 helm init --upgrade --tiller-image=jessestuart/tiller:v2.15.0-arm --service-account tiller
