@@ -139,8 +139,8 @@ kubectl create clusterrolebinding tiller-cluster-rule \
     --serviceaccount=kube-system:tiller
 
 helm init --tiller-image=jessestuart/tiller:v2.14.3-arm --service-account tiller
-    # --override 'spec.template.spec.tolerations[0].key'='node-role.kubernetes.io/master' \
-    # --override 'spec.template.spec.tolerations[0].effect'='NoSchedule'
+#     --override 'spec.template.spec.tolerations[0].key'='node-role.kubernetes.io/master' \
+#     --override 'spec.template.spec.tolerations[0].effect'='NoSchedule'
 #     --override 'spec.template.spec.tolerations[0].key'='arm' \
 #     --override 'spec.template.spec.tolerations[0].operator'='Equal' \
 #     --override 'spec.template.spec.tolerations[0].value'='true' \

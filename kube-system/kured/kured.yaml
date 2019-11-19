@@ -1,0 +1,18 @@
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: kured
+  namespace: kube-system
+  annotations:
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.chart-image: semver:~1
+spec:
+  releaseName: kured
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: kured
+    version: 1.4.0
+  values:
+    image:
+      repository: billimek/kured
+      tag: 1.2.0
