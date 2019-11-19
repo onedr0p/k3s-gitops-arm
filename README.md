@@ -12,6 +12,8 @@ Directory Structure
     └── ./hypriotos
 ```
 
+> Note: My local shell is [Fish](https://fishshell.com/), some of these commands are specific to the Fish Shell
+
 ## HypriotOS
 
 > All these commands are run from your computer, not the RPi.
@@ -20,7 +22,7 @@ Directory Structure
 
 ```bash
 sudo curl -L \
-    https://github.com/hypriot/flash/releases/download/2.3.0/flash \
+    "https://github.com/hypriot/flash/releases/download/2.3.0/flash" \
     -o /usr/local/bin/flash
 
 sudo chmod +x /usr/local/bin/flash
@@ -30,7 +32,7 @@ sudo chmod +x /usr/local/bin/flash
 
 ```bash
 curl -L \
-    https://github.com/hypriot/image-builder-rpi/releases/download/v1.11.4/hypriotos-rpi-v1.11.4.img.zip \
+    "https://github.com/hypriot/image-builder-rpi/releases/download/$HYPRIOT_VERSION/hypriotos-rpi-v1.11.4.img.zip" \
     -o ~/Downloads/hypriotos-rpi-v1.11.4.img.zip
 
 unzip ~/Downloads/hypriotos-rpi-v1.11.4.img.zip -d ~/Downloads/
