@@ -5,7 +5,7 @@ We will need to create a new network for our k3s cluster so MetalLb can have an 
 - Goto Settings > Networks > + Create New Network
 - Fill out Name, Purpose=Corporate, Network Group=LAN, VLAN=42, Gateway/Subnet=192.168.42.1/24, Check Enable IGMP snooping
 
-Now SSH into your USG and run the following commands for your worker nodes
+Now SSH into your USG and run the following commands for your **worker nodes**
 
 ```bash
 # Enable BGP
