@@ -17,6 +17,7 @@
       - net-tools
       - nfs-common
       - nmap
+      - ntp
       - psmisc
       - rsync
       - software-properties-common
