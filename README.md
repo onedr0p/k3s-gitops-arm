@@ -7,10 +7,10 @@ Hardware Requirements for this tutorial:
 
 Software Requirements for this tutorial:
 
-- ansible
-- kubectl
-- hypriot/flash
-- alexellis/k3sup
+- [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
+- [hypriot/flash](https://github.com/hypriot/flash)
+- [alexellis/k3sup](https://github.com/alexellis/k3sup)
 
 ```bash
 .
@@ -38,7 +38,6 @@ set protocols bgp 64512 parameters router-id 192.168.42.1
 set protocols bgp 64512 neighbor 192.168.42.29 remote-as 64512
 set protocols bgp 64512 neighbor 192.168.42.30 remote-as 64512
 set protocols bgp 64512 neighbor 192.168.42.31 remote-as 64512
-set protocols bgp 64512 maximum-paths ibgp 32
 commit
 save
 exit
@@ -46,8 +45,20 @@ exit
 # List the BGP neighbors
 show ip bgp neighbors
 
+# List any services deployed
+show ip route bgp
+show ip bgp
+
+#
 # To delete your rules and start over just change the set to delete and run thru in that order again
+#
+
 ```
+
+Additional Resources on MetalLb and USG:
+
+- [Using MetalLB as Kubernetes load balancer with Ubiquiti EdgeRouter](https://medium.com/@ipuustin/using-metallb-as-kubernetes-load-balancer-with-ubiquiti-edgerouter-7ff680e9dca3)
+- [Using MetalLB with the Unifi USG for in-home Kubernetes LoadBalancer Services](http://blog.cowger.us/2019/02/10/using-metallb-with-the-unifi-usg-for-in-home-kubernetes-loadbalancer-services.html)
 
 > Note: My local shell is [Fish](https://fishshell.com/), some of these commands are specific to the Fish Shell
 
