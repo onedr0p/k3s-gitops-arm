@@ -4,8 +4,8 @@
 
 Hardware Requirements for this tutorial:
 
-- 3x RPi4 and supplemental hardware
-- Unifi Security Gateway (for MetalLb w/ BGP)
+- 3x RPi4 and at least 32GB SD Cards
+- Network switch and ethernet cords
 
 Software Requirements for this tutorial:
 
@@ -24,139 +24,52 @@ Software Requirements for this tutorial:
     └── ./hypriotos
 ```
 
-## UniFi Security Gateway
+## My configuration
 
-We will need to create a new network for our k3s cluster so MetalLb can have an entire network.
+- 192.168.1.1 is my routers IP
+- 192.168.1.15 is my DNS server (dedicated RPi for PiHole)
+- 192.168.42.29 is my k3s masters IP
+- 192.168.42.30 is a k3s workers IP
+- 192.168.42.31 is also a k3s workers IP
+- 192.168.42.32 is also a k3s workers IP
 
-- Goto Settings > Networks > + Create New Network
-- Fill out Name, Purpose=Corporate, Network Group=LAN, VLAN=42, Gateway/Subnet=192.168.42.1/24, Check Enable IGMP snooping
+## 1. UniFi Security Gateway / MetalLB
 
-Now SSH into your USG and run the following commands for your worker nodes
+### MetalLB w/ USG and using BGP load balancing
 
-```bash
-# Enable BGP
-configure
-set protocols bgp 64512 parameters router-id 192.168.42.1
-set protocols bgp 64512 neighbor 192.168.42.30 remote-as 64512
-set protocols bgp 64512 neighbor 192.168.42.31 remote-as 64512
-commit
-save
-exit
+According to [MetalLBs wesite](https://metallb.universe.tf/concepts/bgp/):
 
-# List the BGP neighbors
-show ip bgp neighbors
+> In BGP mode, each node in your cluster establishes a BGP peering session with your network routers, and uses that peering session to advertise the IPs of external cluster services.
 
-# List any services deployed
-show ip route bgp
-show ip bgp
+Moreover:
 
-#
-# Delete your rules
-#
-configure
-delete protocols bgp 64512 parameters router-id 192.168.42.1
-set protocols bgp 64512 neighbor 192.168.42.30
-set protocols bgp 64512 neighbor 192.168.42.31
-commit
-save
-exit
+> Assuming your routers are configured to support multipath, this enables true load-balancing: the routes published by MetalLB are equivalent to each other, except for their nexthop. This means that the routers will use all nexthops together, and load-balance between them.
 
-```
+See [unifi-security-gateway.md](docs/unifi-security-gateway.md)
 
-Next set the ethernet ports your RPis are connected to to use the VLAN 42
+BGP load balancing requires setting up a new network with a VLAN for the k3s cluster and altering the USG via the CLI. Afterwards, make sure you also update `deploments/kube-system/metallb/metallb.yaml` with the IP addresses you choose.
 
-Additional Resources on MetalLb and USG:
+### MetalLB w/o BPG
 
-- [Using MetalLB as Kubernetes load balancer with Ubiquiti EdgeRouter](https://medium.com/@ipuustin/using-metallb-as-kubernetes-load-balancer-with-ubiquiti-edgerouter-7ff680e9dca3)
-- [Using MetalLB with the Unifi USG for in-home Kubernetes LoadBalancer Services](http://blog.cowger.us/2019/02/10/using-metallb-with-the-unifi-usg-for-in-home-kubernetes-loadbalancer-services.html)
+If you want to use MetalLB with an existing network you will need to change `deploments/kube-system/metallb/metallb.yaml`, see comments in that file.
 
+## 2. HypriotOS
 
-## HypriotOS
+See [hypriotos.md](docs/hypriotos.md)
 
-> All these commands are run from your computer, not the RPi.
+This documentation walks thru the steps of flashing a SD Card with HypriotOS
 
-### Downloads the Flash tool
+## 3. Ansible
 
-```bash
-sudo curl -L \
-    "https://github.com/hypriot/flash/releases/download/2.3.0/flash" \
-    -o /usr/local/bin/flash
+See [ansible.md](docs/ansible.md)
 
-sudo chmod +x /usr/local/bin/flash
-```
+This documentation walks you thru the steps of provisioning your k3s cluster with Ansible.
 
-### Download and extract the image
+## 4. Install k3s on your RPis
 
-```bash
-curl -L \
-    "https://github.com/hypriot/image-builder-rpi/releases/download/v1.11.4/hypriotos-rpi-v1.11.4.img.zip" \
-    -o ~/Downloads/hypriotos-rpi-v1.11.4.img.zip
+I will be using [k3sup](https://github.com/alexellis/k3sup) in order to provision our k3s cluster.
 
-unzip ~/Downloads/hypriotos-rpi-v1.11.4.img.zip -d ~/Downloads/
-```
-
-### Configure and Flash
-
-Update `config.txt` or `user-data-*.yml` as you see fit, add more `user-data-*.yml` files if you have more hosts. My `config.txt` disables hdmi, audio, wifi and bluetooth.
-
-To use WiFi see [this](https://johnwyles.github.io/posts/setting-up-kubernetes-and-openfaas-on-a-raspberry-pi-cluster-using-hypriot/) blog post and adjust the `config.txt` and `user-data-*.yml` accordingly.
-
-```bash
-# Replace pik3s01 in the --userdata and --hostname flags
-flash \
-    --bootconf setup/hypriotos/config.txt \
-    --userdata setup/hypriotos/user-data-pik3s01.yml \
-    --hostname pik3s01 \
-    ~/Downloads/hypriotos-rpi-v1.11.4.img
-```
-
-## Ansible
-
-```bash
-env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible-playbook \
-    -i setup/ansible/inventory \
-    setup/ansible/playbook.yml
-```
-
-## k3s
-
-> All these commands are run from your computer, not the RPi.
-
-I will be using [k3sup](https://github.com/alexellis/k3sup) in order to provision our k3s cluster
-
-### k3sup
-
-```bash
-# Install k3sup locally
-cd ~/Downloads
-curl -sLS https://get.k3sup.dev | sh
-sudo cp k3sup /usr/local/bin/
-k3sup --help
-
-# Install k3s on master node
-k3sup install --ip 192.168.42.29 \
-    --k3s-version v1.0.0 \
-    --user devin \
-    --k3s-extra-args '--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server'
-
-# Make kubeconfig accessable globally
-mkdir ~/.kube
-mv ./kubeconfig ~/.kube/config
-
-# Join worker nodes into the cluster
-k3sup join --ip 192.168.42.30 \
-    --server-ip 192.168.42.29 \
-    --k3s-version v1.0.0 \
-    --user devin
-
-k3sup join --ip 192.168.42.31 \
-    --server-ip 192.168.42.29 \
-    --k3s-version v1.0.0 \
-    --user devin
-
-# You should be able to see all your nodes
-kubectl get nodes
-```
+See [k3sup.md](docs/k3sup.md)
 
 ## Kubernetes
 

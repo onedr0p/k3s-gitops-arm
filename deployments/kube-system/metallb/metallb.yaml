@@ -13,6 +13,15 @@ spec:
     version: 0.12.0
   values:
     configInline:
+      ## Without BGP, make sure addresses is outside of your DHCP range 
+      ## and you do not have static IPs already assign to them.
+      ## Comment lines 24-34 if you wish to use this.
+      # address-pools:
+      #   - name: default
+      #     protocol: layer2
+      #     # 11 total IPs
+      #     addresses:
+      #     - 192.168.1.100-192.168.1.110
       peers:
       - peer-address: 192.168.42.1
         peer-asn: 64512
@@ -20,7 +29,7 @@ spec:
       address-pools:
       - name: default
         protocol: bgp
-        # 32 total hosts
+        # 32 total IPs
         addresses:
         - 192.168.42.224/27
         avoid-buggy-ips: true

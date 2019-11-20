@@ -1,0 +1,49 @@
+#cloud-config
+
+hostname: pik3s01
+apt_preserve_sources_list: true
+manage_etc_hosts: true
+
+resize_rootfs: true
+growpart:
+    mode: auto
+    devices: ["/"]
+    ignore_growroot_disabled: false
+
+locale: "en_US.UTF-8"
+timezone: "America/New_York"
+
+package_update: true
+package_upgrade: true
+package_reboot_if_required: true
+# packages:
+#   - ntp
+
+users:
+  - name: pi
+    primary-group: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users,docker,adm,dialout,audio,plugdev,netdev,video
+    ssh_import_id: None
+    ssh_pwauth: no
+    lock_passwd: true
+    ssh_authorized_keys:
+      - "ssh-rsa ..."
+
+write_files:
+  - content: |
+      persistent
+      slaac private
+      interface eth0
+      static ip_address=192.168.42.29/24
+      static routers=192.168.42.1
+      static domain_name_servers=192.168.1.15
+    path: /etc/dhcpcd.conf
+
+# runcmd:
+#   - [ systemctl, restart, avahi-daemon ]
+
+# power_state:
+#   mode: reboot
+#   condition: true
