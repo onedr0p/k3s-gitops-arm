@@ -47,11 +47,11 @@ Moreover:
 
 See [unifi-security-gateway.md](docs/1-unifi-security-gateway.md)
 
-BGP load balancing requires setting up a new network with a VLAN for the k3s cluster and altering the USG via the CLI. Afterwards, make sure you also update `deploments/kube-system/metallb/metallb.yaml` with the IP addresses you choose.
+BGP load balancing requires setting up a new network with a VLAN for the k3s cluster and altering the USG via the CLI. Afterwards, make sure you also update [metallb.yaml](deployments/kube-system/metallb/metallb.yaml) with the IP addresses you choose.
 
 ### MetalLB w/o BPG
 
-If you want to use MetalLB with an existing network you will need to change `deploments/kube-system/metallb/metallb.yaml`, see comments in that file.
+If you want to use MetalLB with an existing network you will need to change [metallb.yaml](deployments/kube-system/metallb/metallb.yaml), see comments in that file.
 
 ## 2. HypriotOS
 
