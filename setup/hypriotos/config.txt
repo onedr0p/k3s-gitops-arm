@@ -1,8 +1,23 @@
+# Disable Serial Port
 enable_uart=0
+
+# Disable audio
 dtparam=audio=off
+
+# Disable LEDs
 dtparam=act_led_trigger=none
 dtparam=act_led_activelow=on
+
+# Disable WiFi and BlueTooth
 dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
+
+# Disable HDMI
 hdmi_blanking=2
+
+# Give more RAM to the CPU
 gpu_mem=16
+
+# Increase CPU clock speed by 250mhz
+over_voltage=2
+arm_freq=1750
