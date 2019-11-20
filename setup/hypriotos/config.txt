@@ -3,3 +3,4 @@ dtparam=audio=off
 dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
 hdmi_blanking=2
+gpu_mem=16
