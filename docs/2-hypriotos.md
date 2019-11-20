@@ -24,15 +24,15 @@ unzip ~/Downloads/hypriotos-rpi-v1.11.4.img.zip -d ~/Downloads/
 
 ## Configure and Flash
 
-Update `config.txt` or `user-data.yml` as you see fit, add more `user-data.yml` files if you have more hosts. My `config.txt` disables hdmi, audio, wifi and bluetooth.
+Update [config.txt](../setup/hypriotos/config.txt) and [user-data.yml](../setup/hypriotos/user-data.yml) as you see fit, add more [user-data.yml](../setup/hypriotos/user-data.yml) files if you have more hosts. My [config.txt](../setup/hypriotos/config.txt) disables hdmi, audio, wifi and bluetooth.
 
-To use WiFi see [this](https://johnwyles.github.io/posts/setting-up-kubernetes-and-openfaas-on-a-raspberry-pi-cluster-using-hypriot/) blog post and adjust the `config.txt` and `user-data.yml` accordingly.
+To use WiFi see [this](https://johnwyles.github.io/posts/setting-up-kubernetes-and-openfaas-on-a-raspberry-pi-cluster-using-hypriot/) blog post and adjust the [config.txt](../setup/hypriotos/config.txt) and [user-data.yml](../setup/hypriotos/user-data.yml) accordingly.
 
 ```bash
-# Replace pik3s01 in the --userdata and --hostname flags
+# Replace my-awesome-hostname in the --hostname flag
 flash \
     --bootconf setup/hypriotos/config.txt \
     --userdata setup/hypriotos/user-data.yml \
-    --hostname pik3s01 \
+    --hostname my-awesome-hostname \
     ~/Downloads/hypriotos-rpi-v1.11.4.img
 ```
