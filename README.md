@@ -1,6 +1,6 @@
 # homelab-gitops (ARM Edition)
 
-> Note: My local shell is [Fish](https://fishshell.com/), some of these commands are specific to the Fish Shell
+> Note: My local shell is [Fish](https://fishshell.com/), some of the commands throughout these docs are specific to the Fish Shell
 
 Hardware Requirements for this tutorial:
 
@@ -45,7 +45,7 @@ Moreover:
 
 > Assuming your routers are configured to support multipath, this enables true load-balancing: the routes published by MetalLB are equivalent to each other, except for their nexthop. This means that the routers will use all nexthops together, and load-balance between them.
 
-See [unifi-security-gateway.md](docs/unifi-security-gateway.md)
+See [unifi-security-gateway.md](docs/1-unifi-security-gateway.md)
 
 BGP load balancing requires setting up a new network with a VLAN for the k3s cluster and altering the USG via the CLI. Afterwards, make sure you also update `deploments/kube-system/metallb/metallb.yaml` with the IP addresses you choose.
 
@@ -55,21 +55,21 @@ If you want to use MetalLB with an existing network you will need to change `dep
 
 ## 2. HypriotOS
 
-See [hypriotos.md](docs/hypriotos.md)
-
 This documentation walks thru the steps of flashing a SD Card with HypriotOS
+
+See [hypriotos.md](docs/2-hypriotos.md)
 
 ## 3. Ansible
 
-See [ansible.md](docs/ansible.md)
+This documentation walks you thru the steps of provisioning your RPis with Ansible.
 
-This documentation walks you thru the steps of provisioning your k3s cluster with Ansible.
+See [ansible.md](docs/3-ansible.md)
 
 ## 4. Install k3s on your RPis
 
 I will be using [k3sup](https://github.com/alexellis/k3sup) in order to provision our k3s cluster.
 
-See [k3sup.md](docs/k3sup.md)
+See [k3sup.md](docs/4-k3sup.md)
 
 ## Kubernetes
 
