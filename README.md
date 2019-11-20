@@ -31,13 +31,12 @@ We will need to create a new network for our k3s cluster so MetalLb can have an 
 - Goto Settings > Networks > + Create New Network
 - Fill out Name, Purpose=Corporate, Network Group=LAN, VLAN=42, Gateway/Subnet=192.168.42.1/24, Check Enable IGMP snooping
 
-Now SSH into your USG and run the following commands
+Now SSH into your USG and run the following commands for your worker nodes
 
 ```bash
 # Enable BGP
 configure
 set protocols bgp 64512 parameters router-id 192.168.42.1
-set protocols bgp 64512 neighbor 192.168.42.29 remote-as 64512
 set protocols bgp 64512 neighbor 192.168.42.30 remote-as 64512
 set protocols bgp 64512 neighbor 192.168.42.31 remote-as 64512
 commit
@@ -52,10 +51,19 @@ show ip route bgp
 show ip bgp
 
 #
-# To delete your rules and start over just change the set to delete and run thru in that order again
+# Delete your rules
 #
+configure
+delete protocols bgp 64512 parameters router-id 192.168.42.1
+set protocols bgp 64512 neighbor 192.168.42.30
+set protocols bgp 64512 neighbor 192.168.42.31
+commit
+save
+exit
 
 ```
+
+Next set the ethernet ports your RPis are connected to to use the VLAN 42
 
 Additional Resources on MetalLb and USG:
 

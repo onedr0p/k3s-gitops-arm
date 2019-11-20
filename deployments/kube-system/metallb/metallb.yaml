@@ -20,6 +20,7 @@ spec:
       address-pools:
       - name: default
         protocol: bgp
+        # 32 total hosts
         addresses:
-        - 198.168.42.0/24
+        - 192.168.42.224/27
         avoid-buggy-ips: true
