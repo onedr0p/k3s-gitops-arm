@@ -3,7 +3,9 @@
 We will need to create a new network for our k3s cluster so MetalLb can have an entire network.
 
 - Goto Settings > Networks > + Create New Network
-- Fill out Name, Purpose=Corporate, Network Group=LAN, VLAN=42, Gateway/Subnet=192.168.42.1/24, Check Enable IGMP snooping
+- Fill out Name, Purpose=`Corporate`, Network Group=`LAN`, VLAN=`42`, Gateway/Subnet=`192.168.42.1/27`, Check Enable IGMP snooping, Save
+
+Take note my BGP CIDR for useable IPs that metalLb will use is `192.168.42.24/29`
 
 Now SSH into your USG and run the following commands for your **worker nodes**
 
@@ -11,9 +13,9 @@ Now SSH into your USG and run the following commands for your **worker nodes**
 # Enable BGP
 configure
 set protocols bgp 64512 parameters router-id 192.168.42.1
-set protocols bgp 64512 neighbor 192.168.42.30 remote-as 64512
-set protocols bgp 64512 neighbor 192.168.42.31 remote-as 64512
-set protocols bgp 64512 neighbor 192.168.42.32 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.16 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.17 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.18 remote-as 64512
 commit
 save
 exit
@@ -30,9 +32,9 @@ show ip bgp
 #
 configure
 delete protocols bgp 64512 parameters router-id 192.168.42.1
-set protocols bgp 64512 neighbor 192.168.42.30
-set protocols bgp 64512 neighbor 192.168.42.31
-set protocols bgp 64512 neighbor 192.168.42.32
+delete protocols bgp 64512 neighbor 192.168.42.16
+delete protocols bgp 64512 neighbor 192.168.42.17
+delete protocols bgp 64512 neighbor 192.168.42.18
 commit
 save
 exit

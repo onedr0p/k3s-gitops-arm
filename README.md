@@ -28,10 +28,12 @@ Software Requirements for this tutorial:
 
 - 192.168.1.1 is my routers IP
 - 192.168.1.15 is my DNS server (dedicated RPi for PiHole)
-- 192.168.42.29 is my k3s masters IP
-- 192.168.42.30 is a k3s workers IP
-- 192.168.42.31 is also a k3s workers IP
-- 192.168.42.32 is also a k3s workers IP
+- 192.168.42.1/27 is my Cluster CIDR
+- 192.168.42.1 is my routers IP for VLAN 42
+- 192.168.42.24 is my k3s masters IP
+- 192.168.42.25 is a k3s workers IP
+- 192.168.42.26 is also a k3s workers IP
+- 192.168.42.27 is also a k3s workers IP
 
 ## 1. UniFi Security Gateway / MetalLB
 
