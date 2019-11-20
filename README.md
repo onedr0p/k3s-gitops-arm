@@ -22,6 +22,33 @@ Software Requirements for this tutorial:
     └── ./hypriotos
 ```
 
+## UniFi Security Gateway
+
+We will need to create a new network for our k3s cluster so MetalLb can have an entire network.
+
+- Goto Settings > Networks > + Create New Network
+- Fill out Name, Purpose=Corporate, Network Group=LAN, VLAN=42, Gateway/Subnet=192.168.42.1/24, Check Enable IGMP snooping
+
+Now SSH into your USG and run the following commands
+
+```bash
+# Enable BGP
+configure
+set protocols bgp 64512 parameters router-id 192.168.42.1
+set protocols bgp 64512 neighbor 192.168.42.29 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.30 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.31 remote-as 64512
+set protocols bgp 64512 maximum-paths ibgp 32
+commit
+save
+exit
+
+# List the BGP neighbors
+show ip bgp neighbors
+
+# To delete your rules and start over just change the set to delete and run thru in that order again
+```
+
 > Note: My local shell is [Fish](https://fishshell.com/), some of these commands are specific to the Fish Shell
 
 ## HypriotOS
