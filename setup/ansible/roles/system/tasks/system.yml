@@ -1,4 +1,4 @@
 ---
 
 - name: Disable HDMI
-  command: /opt/vc/bin/tvservice -o
+  script: /opt/vc/bin/tvservice -o
