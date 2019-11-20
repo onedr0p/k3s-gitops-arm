@@ -1,2 +1,3 @@
 setup/ansible/inventory
 setup/ansible/vars.yml
+setup/hypriotos/user-data-*

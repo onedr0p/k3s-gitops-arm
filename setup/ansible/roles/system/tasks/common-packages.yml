@@ -6,12 +6,14 @@
       - apt-transport-https
       - ca-certificates
       - dnsutils
+      - git
       - gnupg2
       - htop
       - iperf3
       - iputils-ping
       - jq
       - less
+      - libnss-mdns
       - net-tools
       - nfs-common
       - nmap

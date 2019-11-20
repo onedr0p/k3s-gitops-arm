@@ -5,3 +5,6 @@ systemd_dir: /etc/systemd/system
 
 docker_dns: 
   - 1.1.1.1
+
+log2ram_version: v1.4
+log2ram_size: 40M

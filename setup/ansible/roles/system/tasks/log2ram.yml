@@ -1,0 +1,20 @@
+---
+
+- name: Cloning log2ram from GitHub
+  git:
+    repo: https://github.com/azlux/log2ram.git
+    dest: /opt/log2ram
+    version: "{{log2ram_version}}"
+
+- name: Changing perms of "/opt/log2ram/install.sh"
+  file: 
+    dest: /opt/log2ram/install.sh
+    mode: a+x
+
+- name: Install log2ram
+  script: /opt/log2ram/install.sh
+
+- name: Copy log2ram.conf
+  template:
+    src: log2ram.conf.j2
+    dest: /etc/log2ram.conf
