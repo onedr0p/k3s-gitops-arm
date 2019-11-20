@@ -1,5 +1,7 @@
 # homelab-gitops (ARM Edition)
 
+> Note: My local shell is [Fish](https://fishshell.com/), some of these commands are specific to the Fish Shell
+
 Hardware Requirements for this tutorial:
 
 - 3x RPi4 and supplemental hardware
@@ -60,7 +62,6 @@ Additional Resources on MetalLb and USG:
 - [Using MetalLB as Kubernetes load balancer with Ubiquiti EdgeRouter](https://medium.com/@ipuustin/using-metallb-as-kubernetes-load-balancer-with-ubiquiti-edgerouter-7ff680e9dca3)
 - [Using MetalLB with the Unifi USG for in-home Kubernetes LoadBalancer Services](http://blog.cowger.us/2019/02/10/using-metallb-with-the-unifi-usg-for-in-home-kubernetes-loadbalancer-services.html)
 
-> Note: My local shell is [Fish](https://fishshell.com/), some of these commands are specific to the Fish Shell
 
 ## HypriotOS
 
