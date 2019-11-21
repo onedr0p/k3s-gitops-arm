@@ -13,9 +13,9 @@ Now SSH into your USG and run the following commands for your **worker nodes**
 # Enable BGP
 configure
 set protocols bgp 64512 parameters router-id 192.168.42.1
-set protocols bgp 64512 neighbor 192.168.42.16 remote-as 64512
-set protocols bgp 64512 neighbor 192.168.42.17 remote-as 64512
-set protocols bgp 64512 neighbor 192.168.42.18 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.24 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.25 remote-as 64512
+set protocols bgp 64512 neighbor 192.168.42.26 remote-as 64512
 commit
 save
 exit
@@ -32,9 +32,9 @@ show ip bgp
 #
 configure
 delete protocols bgp 64512 parameters router-id 192.168.42.1
-delete protocols bgp 64512 neighbor 192.168.42.16
-delete protocols bgp 64512 neighbor 192.168.42.17
-delete protocols bgp 64512 neighbor 192.168.42.18
+delete protocols bgp 64512 neighbor 192.168.42.24
+delete protocols bgp 64512 neighbor 192.168.42.25
+delete protocols bgp 64512 neighbor 192.168.42.26
 commit
 save
 exit
