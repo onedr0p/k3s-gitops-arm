@@ -88,18 +88,18 @@ installFlux() {
     "${REPO_ROOT}"/setup/add-repo-key.sh "${FLUX_KEY}"
 }
 
-installMaesh() {
-    message "Installing maesh"
-    helm repo add maesh https://containous.github.io/maesh/charts
-    helm repo update
-    helm install --name=maesh --namespace=maesh maesh/maesh
-}
+# installMaesh() {
+#     message "Installing maesh"
+#     helm repo add maesh https://containous.github.io/maesh/charts
+#     helm repo update
+#     helm install --name=maesh --namespace=maesh maesh/maesh
+# }
 
 k3sMasterNode
 ks3WorkerNodes
 installHelm
 installFlux
-installMaesh
+# installMaesh
 
 message "All done!"
 kubectl get nodes -o=wide
