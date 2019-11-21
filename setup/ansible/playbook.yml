@@ -32,8 +32,8 @@
 
   tasks:
     - include_role:
-        name: system
-      tags: ['system']
+        name: main
+      tags: ['main']
 
     - name: Remove unneeded apt stuff
       apt:

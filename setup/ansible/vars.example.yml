@@ -1,6 +1,6 @@
 ---
 
-ansible_user: devin
+ansible_user: pi
 systemd_dir: /etc/systemd/system
 
 docker_dns: 

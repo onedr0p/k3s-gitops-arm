@@ -25,3 +25,21 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible-playbook \
     -i setup/ansible/inventory \
     setup/ansible/playbook.yml
 ```
+
+## Check Temp of all RPis
+
+> Note: This should be below 70.0'C for good performance
+
+```bash
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
+    all -i setup/ansible/inventory -m shell -a "/opt/vc/bin/vcgencmd measure_temp"
+```
+
+## Check overclock value of all RPis
+
+> Note: This should be 175000
+
+```bash
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
+    all -i setup/ansible/inventory -m shell -a "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
+```
