@@ -20,6 +20,8 @@ cp setup/ansible/vars.example.yml setup/ansible/vars.yml
 
 ## Ensure RPis are online
 
+> Note: prefix with watch command to view realtime
+
 ```bash
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
     -i setup/ansible/inventory \

@@ -127,7 +127,9 @@
     mode: a+x
 
 - name: Install log2ram
-  shell: /opt/log2ram/install.sh
+  command: /bin/sh ./install.sh
+  args:
+    chdir: "/opt/log2ram"
 
 - name: Copy log2ram.conf
   template:
