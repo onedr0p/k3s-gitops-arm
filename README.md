@@ -22,8 +22,10 @@ Directory layout:
 ├── ./deployments
 │   # Initial setup of the cluster
 └── ./setup
-    ├── ./ansible
-    └── ./hypriotos
+│   ├── ./ansible
+│   └── ./hypriotos
+│   # flux, helm-operator, and velero ARM Dockerfiles
+└── ./docker-arm
 ```
 
 ## Network configuration
