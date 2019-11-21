@@ -73,8 +73,20 @@ See [ansible.md](docs/3-ansible.md)
 
 I will be using [k3sup](https://github.com/alexellis/k3sup) in order to provision our k3s cluster.
 
+### Manual
+
 See [k3sup.md](docs/4-k3sup.md)
+
+### Automated
+
+See [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
 ## 5. Tiller & Helm
 
+### Manual
+
 See [tiller-helm.md](docs/5-tiller-helm.md)
+
+### Automated
+
+See [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
