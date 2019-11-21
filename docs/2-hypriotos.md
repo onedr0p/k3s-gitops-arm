@@ -24,7 +24,7 @@ unzip ~/Downloads/hypriotos-rpi-v1.11.4.img.zip -d ~/Downloads/
 
 ## Configure
 
-Update [config.txt](../setup/hypriotos/config.txt) and [user-data.yml](../setup/hypriotos/user-data.yml) as you see fit, add more [user-data.yml](../setup/hypriotos/user-data.yml) files if you have more hosts. My [config.txt](../setup/hypriotos/config.txt) disables hdmi, audio, wifi and bluetooth.
+Update [config.txt](../setup/hypriotos/config.txt) and [user-data.yml](../setup/hypriotos/user-data.yml) as you see fit, add more [user-data.yml](../setup/hypriotos/user-data.yml) files if you have more hosts. My [config.txt](../setup/hypriotos/config.txt) disables hdmi, audio, wifi, bluetooth and also overclocks the CPU just a bit.
 
 To use WiFi see [this](https://johnwyles.github.io/posts/setting-up-kubernetes-and-openfaas-on-a-raspberry-pi-cluster-using-hypriot/) blog post and adjust the [config.txt](../setup/hypriotos/config.txt) and [user-data.yml](../setup/hypriotos/user-data.yml) accordingly.
 
