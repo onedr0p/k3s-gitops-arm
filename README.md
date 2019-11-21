@@ -4,7 +4,7 @@
 
 Hardware Requirements for this tutorial:
 
-- 3x RPi4 and at least 32GB SD Cards
+- 3x RPi4 (recommended 4GB RAM) and at least 32GB SD Cards
 - Network switch and ethernet cords
 
 Software Requirements for this tutorial:
@@ -26,16 +26,16 @@ Directory layout:
     └── ./hypriotos
 ```
 
-## My configuration
+## Network configuration
 
-- 192.168.1.1 is my routers IP
-- 192.168.1.15 is my DNS server (dedicated RPi for PiHole)
-- 192.168.42.1/27 is my Cluster CIDR
-- 192.168.42.1 is my routers IP for VLAN 42
-- 192.168.42.23 is the k3s masters IP (pik3s00)
-- 192.168.42.24 is a k3s workers IP (pik3s01)
-- 192.168.42.25 is a k3s workers IP (pik3s02)
-- 192.168.42.26 is a k3s workers IP (pik3s03)
+|IP|Function|
+|---|---|
+|192.168.1.1|Router|
+|192.168.1.15|DNS Server running PiHole|
+|192.168.42.1/27|k3s cluster CIDR, VLAN 42|
+|192.168.42.23|k3s master (pik3s00)|
+|192.168.42.24|k3s worker (pik3s01)|
+|192.168.42.25|k3s worker (pik3s02)|
 
 ## 1. UniFi Security Gateway / MetalLB
 
