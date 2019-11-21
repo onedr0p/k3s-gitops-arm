@@ -9,6 +9,7 @@
     name:
       - apt-transport-https
       - ca-certificates
+      - curl
       - dnsutils
       - git
       - gnupg2
@@ -23,6 +24,8 @@
       - nmap
       - ntp
       - psmisc
+      - python3
+      - python3-pip
       - rsync
       - software-properties-common
       - sqlite3
