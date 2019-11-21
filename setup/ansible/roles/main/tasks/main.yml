@@ -113,6 +113,7 @@
   systemd:
     name: log2ram
     state: stopped
+  ignore_errors: yes
 
 - name: Cloning log2ram from GitHub
   git:

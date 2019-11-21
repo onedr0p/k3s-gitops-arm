@@ -18,6 +18,21 @@ cp setup/ansible/inventory.example setup/ansible/inventory
 cp setup/ansible/vars.example.yml setup/ansible/vars.yml
 ```
 
+## Ensure RPis are online
+
+```bash
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
+    -i setup/ansible/inventory \
+    k3s_cluster -m ping
+```
+
+## Reboot the RPis (DNS might not be available until reboot)
+
+```bash
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
+    all -i setup/ansible/inventory -m shell -a "/sbin/shutdown -r now"
+```
+
 ## Run playbook
 
 ```bash
