@@ -14,6 +14,8 @@ Software Requirements for this tutorial:
 - [hypriot/flash](https://github.com/hypriot/flash)
 - [alexellis/k3sup](https://github.com/alexellis/k3sup)
 
+Directory layout:
+
 ```bash
 .
 │   # Flux will only scan and deploy from this directory
@@ -30,10 +32,10 @@ Software Requirements for this tutorial:
 - 192.168.1.15 is my DNS server (dedicated RPi for PiHole)
 - 192.168.42.1/27 is my Cluster CIDR
 - 192.168.42.1 is my routers IP for VLAN 42
-- 192.168.42.23 is my k3s masters IP
-- 192.168.42.24 is a k3s workers IP
-- 192.168.42.25 is a k3s workers IP
-- 192.168.42.26 is a k3s workers IP
+- 192.168.42.23 is the k3s masters IP (pik3s00)
+- 192.168.42.24 is a k3s workers IP (pik3s01)
+- 192.168.42.25 is a k3s workers IP (pik3s02)
+- 192.168.42.26 is a k3s workers IP (pik3s03)
 
 ## 1. UniFi Security Gateway / MetalLB
 
@@ -73,87 +75,6 @@ I will be using [k3sup](https://github.com/alexellis/k3sup) in order to provisio
 
 See [k3sup.md](docs/4-k3sup.md)
 
-## Kubernetes
+## 5. Tiller & Helm
 
-> All these commands are run from your computer, not the RPi.
-
-### Label worker nodes
-
-```bash
-# List Nodes
-kubectl get nodes
-
-# Label Node
-kubectl label node <node-name> node-role.kubernetes.io/worker=worker
-```
-
-### Tiller
-
-```bash
-# Install Tiller
-kubectl -n kube-system create sa tiller
-
-kubectl create clusterrolebinding tiller-cluster-rule \
-    --clusterrole=cluster-admin \
-    --serviceaccount=kube-system:tiller
-
-helm init --tiller-image=jessestuart/tiller:v2.14.3-arm --service-account tiller
-
-# Upgrade Tiller
-helm init --upgrade --tiller-image=jessestuart/tiller:v2.15.0-arm --service-account tiller
-
-# View Tiller logs
-kubectl -n kube-system describe deployment.apps/tiller-deploy
-kubectl -n kube-system logs tiller-deploy-([a-z\-]+)
-kubectl -n kube-system describe pod/tiller-deploy-([a-z\-]+)
-
-# Delete Tiller Deployment
-kubectl -n kube-system delete deployment tiller-deploy ; \
-kubectl -n kube-system delete service tiller-deploy
-```
-
-### Flux and Helm Operator
-
-```bash
-# Add Flux Charts
-helm repo add fluxcd https://charts.fluxcd.io
-
-# Install Flux
-helm upgrade --install flux \
-    --values deployments/flux/flux/flux-values.yaml \
-    --namespace flux \
-    fluxcd/flux
-
-# Get your SSH Key and add to your GitHub Profile
-kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2
-
-# Install Helm Operator
-helm upgrade --install helm-operator \
-    --values deployments/flux/helm-operator/flux-helm-operator-values.yaml \
-    --namespace flux \
-    fluxcd/helm-operator
-
-#
-# Something went wrong?
-#
-
-# Debugging
-kubectl -n flux logs deployment.apps/flux
-kubectl -n flux logs deployment.apps/helm-operator
-
-# Delete Flux and Helm Operator (Run twice)
-helm delete --purge helm-operator ; \
-helm delete --purge flux ; \
-kubectl delete crd helmreleases.flux.weave.works ; \
-kubectl delete crd helmreleases.helm.fluxcd.io
-```
-
-### Other Debugging
-
-```bash
-kubectl -n flux logs pod/helm-operator-857544fb55-zprms
-
-# E1020 17:56:52.250466 1 memcache.go:134] couldn't get resource list for metrics.k8s.io/v1beta1: the server is currently unable to handle the request
-
-kubectl delete apiservice v1beta1.metrics.k8s.io
-```
+See [tiller-helm.md](docs/5-tiller-helm.md)
