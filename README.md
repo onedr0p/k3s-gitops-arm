@@ -1,6 +1,6 @@
 # homelab-gitops (ARM Edition)
 
-Build a Kubernetes (k3s) cluster with RPis and utilize GitOps for managing cluster state.
+Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state.
 
 ## Hardware and software
 
@@ -15,7 +15,7 @@ Software requirements for this tutorial:
 - [hypriot/flash](https://github.com/hypriot/flash)
 - [alexellis/k3sup](https://github.com/alexellis/k3sup)
 
-## Directory layout
+## Directory layout description
 
 ```bash
 .
@@ -29,7 +29,7 @@ Software requirements for this tutorial:
 └── ./docker-arm
 ```
 
-## Network configuration
+## My network configuration
 
 |IP|Function|
 |---|---|
@@ -39,6 +39,7 @@ Software requirements for this tutorial:
 |192.168.42.23|k3s master (pik3s00)|
 |192.168.42.24|k3s worker (pik3s01)|
 |192.168.42.25|k3s worker (pik3s02)|
+|192.168.42.26|k3s worker (pik3s03)|
 
 ## 1. UniFi Security Gateway / MetalLB
 
