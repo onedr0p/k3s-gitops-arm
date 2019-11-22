@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: kube-system
+  name: traefik
+spec:
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      name: web
+      port: 8000
+      targetPort: web
+      nodePort: 30150
+    - protocol: TCP
+      name: admin
+      port: 8080
+      targetPort: admin
+      nodePort: 30250
+  selector:
+    app: traefik
+
+# ---
+
+# apiVersion: traefik.containo.us/v1alpha1
+# kind: IngressRoute
+# metadata:
+#   namespace: kube-system
+#   name: traefik-admin
+# spec:
+#   entryPoints:
+#     - web
+#   routes:
+#   - match: Host(`admin.stepanvrany.cz`) && PathPrefix(`/`)
+#     kind: Rule
+#     priority: 1
+#     services:
+#     - name: traefik-admin
+#       port: 8080

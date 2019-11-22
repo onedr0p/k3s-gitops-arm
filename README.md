@@ -95,7 +95,7 @@ See [tiller-helm.md](docs/5-tiller-helm.md)
 
 See [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
-## Opinionated RPi related hardware
+## Opinionated RPi hardware
 
 - [Samsung 128GB EVO Plus Class 10 Micro SDXC](https://smile.amazon.com/gp/product/B06XFHQGB9/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
 - [AUKEY Quick Charge 3.0 6-Port USB Wall Charger](https://smile.amazon.com/gp/product/B01F20J4PE/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1)
