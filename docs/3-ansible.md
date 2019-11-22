@@ -62,3 +62,10 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
     all -i setup/ansible/inventory -m shell -a "/sbin/shutdown -r now"
 ```
+
+## Shutdown the RPis
+
+```bash
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
+    all -i setup/ansible/inventory -m shell -a "/sbin/shutdown -h now"
+```
