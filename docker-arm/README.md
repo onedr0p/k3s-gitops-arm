@@ -1,5 +1,7 @@
 # ARM Docker Images
 
+> Note: I'll be using an extra RPi to do the builds. It is possible to build ARM Docker images from your x86 machine, but it is not covered here. [Check this out](https://engineering.docker.com/2019/06/getting-started-with-docker-for-arm-on-linux/) if you want to build ARM Docker images on your x86 machine.
+
 ## Flux
 
 ```bash

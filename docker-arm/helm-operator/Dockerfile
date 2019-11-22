@@ -8,7 +8,7 @@ ARG ALPINE_BUILD_IMAGE
 ARG ALPINE_IMAGE
 
 # hadolint ignore=DL3006
-FROM ${ALPINE_BUILD_IMAGE}
+FROM ${ALPINE_BUILD_IMAGE} as build
 
 ARG ARCH
 ARG ARCH_VERSION
@@ -63,13 +63,13 @@ RUN mkdir -p /var/fluxd/helm/repository/cache/
 COPY ./helm-repositories.yaml /var/fluxd/helm/repository/repositories.yaml
 
 # hadolint ignore=DL3022
-COPY --from=0 /go/src/github.com/fluxcd/helm-operator/helm-operator /usr/local/bin/helm-operator
+COPY --from=build /go/src/github.com/fluxcd/helm-operator/helm-operator /usr/local/bin/helm-operator
 RUN chmod +x /usr/local/bin/helm-operator
 # hadolint ignore=DL3022
-COPY --from=0 /usr/local/bin/helm /usr/local/bin/helm
+COPY --from=build /usr/local/bin/helm /usr/local/bin/helm
 RUN chmod +x /usr/local/bin/helm
 # hadolint ignore=DL3022
-COPY --from=0 /usr/local/bin/kubectl /usr/local/bin/kubectl
+COPY --from=build /usr/local/bin/kubectl /usr/local/bin/kubectl
 RUN chmod +x /usr/local/bin/kubectl
 
 ENTRYPOINT ["/sbin/tini", "--", "helm-operator"]

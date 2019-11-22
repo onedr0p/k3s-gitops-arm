@@ -2,12 +2,12 @@
 
 > Note: My local shell is [Fish](https://fishshell.com/), some of the commands throughout these docs are specific to the Fish Shell
 
-Hardware Requirements for this tutorial:
+Hardware requirements for this tutorial:
 
 - 3x RPi4 (recommended 4GB RAM) and at least 32GB SD Cards
 - Network switch and ethernet cords
 
-Software Requirements for this tutorial:
+Uncommon software requirements for this tutorial:
 
 - [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
@@ -51,9 +51,9 @@ Moreover:
 
 > Assuming your routers are configured to support multipath, this enables true load-balancing: the routes published by MetalLB are equivalent to each other, except for their nexthop. This means that the routers will use all nexthops together, and load-balance between them.
 
-See [unifi-security-gateway.md](docs/1-unifi-security-gateway.md)
-
 BGP load balancing requires setting up a new network with a VLAN for the k3s cluster and altering the USG via the CLI. Afterwards, make sure you also update [metallb.yaml](deployments/kube-system/metallb/metallb.yaml) with the IP addresses you choose.
+
+See [unifi-security-gateway.md](docs/1-unifi-security-gateway.md)
 
 ### MetalLB w/o BPG
 
