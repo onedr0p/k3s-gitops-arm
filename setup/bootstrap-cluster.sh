@@ -36,8 +36,9 @@ k3sMasterNode() {
         --k3s-version "${K3S_VERSION}" \
         --user "${USER}" \
         --k3s-extra-args '--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server'
-    mkdir ~/.kube
+    mkdir -p ~/.kube
     mv ./kubeconfig ~/.kube/config
+    sleep 30
 }
 
 ks3WorkerNodes() {
@@ -47,7 +48,8 @@ ks3WorkerNodes() {
             --server-ip "${K3S_MASTER}" \
             --k3s-version "${K3S_VERSION}" \
             --user "${USER}" \
-            --k3s-extra-args '--node-label node-role.kubernetes.io/worker=worker'
+            --k3s-extra-args "--node-label node-role.kubernetes.io/worker=worker"
+        sleep 10
     done
 }
 
@@ -64,6 +66,7 @@ installHelm() {
         echo "Helm init failed - no bueno!"
         exit 1
     fi
+    sleep 5
 }
 
 installFlux() {
@@ -86,20 +89,13 @@ installFlux() {
 
     message "Adding the key to github automatically"
     "${REPO_ROOT}"/setup/add-repo-key.sh "${FLUX_KEY}"
+    sleep 5
 }
-
-# installMaesh() {
-#     message "Installing maesh"
-#     helm repo add maesh https://containous.github.io/maesh/charts
-#     helm repo update
-#     helm install --name=maesh --namespace=maesh maesh/maesh
-# }
 
 k3sMasterNode
 ks3WorkerNodes
 installHelm
 installFlux
-# installMaesh
 
 message "All done!"
 kubectl get nodes -o=wide

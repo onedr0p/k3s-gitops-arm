@@ -4,10 +4,6 @@ enable_uart=0
 # Disable audio
 dtparam=audio=off
 
-# Disable LEDs
-dtparam=act_led_trigger=none
-dtparam=act_led_activelow=on
-
 # Disable WiFi and BlueTooth
 dtoverlay=pi3-disable-wifi
 dtoverlay=pi3-disable-bt
