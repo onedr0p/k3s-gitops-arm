@@ -22,6 +22,9 @@ ENV GO111MODULE=on \
 
 WORKDIR /go/src/github.com/ricoberger/vault-secrets-operator
 
+# hadolint ignore=DL3018
+RUN apk add --no-cache openssh-client mercurial git ca-certificates
+
 RUN git clone https://github.com/ricoberger/vault-secrets-operator .
 RUN git checkout ${VAULT_SECRETS_OPERATOR_VERSION}
 RUN go mod download
