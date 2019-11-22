@@ -2,6 +2,11 @@
 
 # Modified with credit to: billimek@github
 
+#
+# Running this script is dependent on your Ansible inventory file
+# Ensure you have the right IPs and hostnames in the right section
+#
+
 USER="devin"
 K3S_VERSION="v1.0.0"
 TILLER_VERSION="v2.14.3-arm"

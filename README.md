@@ -5,9 +5,24 @@
 Hardware requirements for this tutorial:
 
 - 3x RPi4 (recommended 4GB RAM) and at least 32GB SD Cards
-- Network switch and ethernet cords
 
-Uncommon software requirements for this tutorial:
+Shops that carry the RPi4:
+
+- [canakit](https://www.canakit.com/raspberry-pi-4-4gb.html?cid=usd&src=raspberrypi)
+- [vilros](https://vilros.com/collections/raspberry-pi-4/products/raspberry-pi-4-4gb-ram)
+- [micro center](https://www.microcenter.com/product/609038/raspberry-pi-4-model-b---4gb-ddr4)
+- [pimoroni](https://shop.pimoroni.com/products/raspberry-pi-4?variant=29157087445075)
+
+My recommended hardware:
+
+- [Samsung 128GB EVO Plus Class 10 Micro SDXC](https://smile.amazon.com/gp/product/B06XFHQGB9/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
+- [AUKEY Quick Charge 3.0 6-Port USB Wall Charger](https://smile.amazon.com/gp/product/B01F20J4PE/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1)
+- [AUKEY USB C Cable Short](https://smile.amazon.com/gp/product/B0746C244X/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1)
+- [Cablecc Mini Size 5Gbps Super Speed USB 3.0 to Micro SD SDXC TF Card Reader Adapter](https://smile.amazon.com/gp/product/B01787LD3K/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1)
+- [Samsung MUF-256AB/AM FIT Plus 256GB - 300MB/s USB 3.1 Flash Drive](https://smile.amazon.com/gp/product/B07D7Q41PM/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
+- [Vilros Raspberry Pi 4 Heavy Duty Aluminum Alloy Pi Cooling Case](https://smile.amazon.com/gp/product/B07XVPH79R/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1) or [Flirc Raspberry Pi 4 Case](https://smile.amazon.com/Flirc-Raspberry-Pi-Case-Silver/dp/B07WG4DW52/ref=sr_1_3)
+
+Software requirements for this tutorial:
 
 - [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
