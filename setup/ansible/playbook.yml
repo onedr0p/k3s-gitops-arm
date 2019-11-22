@@ -9,6 +9,10 @@
 
   pre_tasks:
 
+    # # Enable this if you run into issues updating
+    # - name: Reset dpkg
+    #   command: dpkg --configure -a
+
     - name: Upgrade system
       apt:
         upgrade: dist
@@ -29,6 +33,10 @@
       register: apt_update
       retries: 5
       until: apt_update is success
+
+    # Upgrades screw up DNS, reboot and wait for the RPis to come back
+    - name: Reboot the server and wait for it to come back up.
+      reboot:
 
   tasks:
     - include_role:

@@ -47,66 +47,71 @@
 # Networking
 #
 
-# See: https://github.com/kubernetes/kubernetes/issues/71305
-- name: Use iptables-legacy instead of nftables.
-  alternatives:
-    name: '{{ item.name }}'
-    path: '{{ item.path }}'
-  with_items:
-    - name: iptables
-      path: /usr/sbin/iptables-legacy
-    - name: ip6tables
-      path: /usr/sbin/ip6tables-legacy
+# # See: https://github.com/kubernetes/kubernetes/issues/71305
+# - name: Use iptables-legacy instead of nftables.
+#   alternatives:
+#     name: '{{ item.name }}'
+#     path: '{{ item.path }}'
+#   with_items:
+#     - name: iptables
+#       path: /usr/sbin/iptables-legacy
+#     - name: ip6tables
+#       path: /usr/sbin/ip6tables-legacy
 
-- name: Add the br_netfilter module
-  modprobe:
-    name: br_netfilter
-    state: present
+# - name: Add the br_netfilter module
+#   modprobe:
+#     name: br_netfilter
+#     state: present
 
-- name: Load br_netfilter module at boot
-  template:
-    src: br_netfilter.conf
-    dest: /etc/modules-load.d/br_netfilter.conf
+# - name: Load br_netfilter module at boot
+#   template:
+#     src: br_netfilter.conf
+#     dest: /etc/modules-load.d/br_netfilter.conf
 
-- name: Configure network bridge
-  sysctl:
-    name: net.bridge.bridge-nf-call-iptables
-    value: 1
-    state: present
+# - name: Configure network bridge
+#   sysctl:
+#     name: net.bridge.bridge-nf-call-iptables
+#     value: "1"
+#     state: absent
 
-- name: Disable IPv6 at boot
-  lineinfile:
-    path: /boot/cmdline.txt
-    backrefs: True
-    regexp: '(^.+rootwait(\s+(?!cgroup_enable=cpuset cgroup_enable=memory)[\w=/\-\.]+)*)\s*$'
-    line: '\1 ipv6.disable=1'
-    state: present
+# - name: Disable IPv6 at boot
+#   lineinfile:
+#     path: /boot/cmdline.txt
+#     backrefs: True
+#     regexp: '(^.+rootwait(\s+(?!cgroup_enable=cpuset cgroup_enable=memory)[\w=/\-\.]+)*)\s*$'
+#     line: '\1 ipv6.disable=1'
+#     state: present
 
-- name: Disable IPv6 with sysctl
-  sysctl: 
-    name: "{{ item }}"
-    value: 1
-    state: present
-  with_items:
-    - net.ipv6.conf.all.disable_ipv6
-    - net.ipv6.conf.default.disable_ipv6
-    - net.ipv6.conf.lo.disable_ipv6
-  
+# - name: Disable IPv6 with sysctl
+#   sysctl: 
+#     name: "{{ item }}"
+#     value: "1"
+#     state: present
+#   with_items:
+#     - net.ipv6.conf.all.disable_ipv6
+#     - net.ipv6.conf.default.disable_ipv6
+#     - net.ipv6.conf.lo.disable_ipv6
 
 #
 # Docker
 #
 
-- name: Add Docker configuration file
-  template:
-    src: daemon.json.j2
-    dest: /etc/docker/daemon.json
+# k3s uses containerd
+- name: Disable Docker
+  systemd:
+    name: docker
+    enabled: no
 
-- name: Replace single quotes with double quotes in daemon.json
-  replace:
-    path: /etc/docker/daemon.json
-    regexp: "'"
-    replace: "\""
+# - name: Add Docker configuration file
+#   template:
+#     src: daemon.json.j2
+#     dest: /etc/docker/daemon.json
+
+# - name: Replace single quotes with double quotes in daemon.json
+#   replace:
+#     path: /etc/docker/daemon.json
+#     regexp: "'"
+#     replace: "\""
 
 #
 # unattended-upgrades

@@ -28,16 +28,7 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
     k3s_cluster -m ping
 ```
 
-## 2. (Optional) Reboot the RPis
-
-> Note: DNS might not be available until reboot
-
-```bash
-env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
-    all -i setup/ansible/inventory -m shell -a "/sbin/shutdown -r now"
-```
-
-## 3. Run playbook
+## 2. Run playbook
 
 > Note: Run this when all RPis are online
 
@@ -63,4 +54,11 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
 ```bash
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
     all -i setup/ansible/inventory -m shell -a "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_max_freq"
+```
+
+## Reboot the RPis
+
+```bash
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
+    all -i setup/ansible/inventory -m shell -a "/sbin/shutdown -r now"
 ```
