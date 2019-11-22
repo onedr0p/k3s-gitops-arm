@@ -4,7 +4,17 @@
 
 ```bash
 cd flux
-docker build -f Dockerfile -t onedr0p/flux:latest-arm32
+
+docker build --no-cache -f Dockerfile \
+    --build-arg ALPINE_BUILD_IMAGE="arm32v7/golang:1.12-alpine" \
+    --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
+    --build-arg ARCH="arm" \
+    --build-arg ARCH_VERSION="7" \
+    --build-arg FLUX_VERSION="1.15.0" \
+    --build-arg KUBECTL_VERSION="v1.14.7" \
+    --build-arg KUSTOMIZE_VERSION="v3.2.0" \
+    -t onedr0p/flux:latest-arm32 .
+
 docker push onedr0p/flux:latest-arm32
 ```
 
