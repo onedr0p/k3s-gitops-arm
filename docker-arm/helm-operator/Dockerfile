@@ -35,8 +35,7 @@ RUN curl -k -sSfL -o /tmp/helm-v2.14.3-linux-${ARCH}.tar.gz https://get.helm.sh/
     && chmod +x /usr/local/bin/helm \
     && rm -rf /tmp/*
 
-RUN git -c http.sslVerify=false clone https://github.com/fluxcd/helm-operator .
-RUN git config http.sslVerify false
+RUN git clone https://github.com/fluxcd/helm-operator .
 RUN git checkout ${HELM_OPERATOR_VERSION}
 RUN go build -o helm-operator ./cmd/helm-operator
 

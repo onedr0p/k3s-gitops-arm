@@ -35,10 +35,10 @@ k3sMasterNode() {
     k3sup install --ip "${K3S_MASTER}" \
         --k3s-version "${K3S_VERSION}" \
         --user "${USER}" \
-        --k3s-extra-args '--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server'
+        --k3s-extra-args "--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server"
     mkdir -p ~/.kube
     mv ./kubeconfig ~/.kube/config
-    sleep 30
+    sleep 10
 }
 
 ks3WorkerNodes() {
@@ -47,8 +47,10 @@ ks3WorkerNodes() {
         k3sup join --ip "${worker}" \
             --server-ip "${K3S_MASTER}" \
             --k3s-version "${K3S_VERSION}" \
-            --user "${USER}" \
-            --k3s-extra-args "--node-label node-role.kubernetes.io/worker=worker"
+            --user "${USER}"
+            ## Does not work :(
+            #--k3s-extra-args "--node-label role.node.kubernetes.io/worker=worker"
+        # kubectl label node <node-name> node-role.kubernetes.io/worker=worker
         sleep 10
     done
 }
