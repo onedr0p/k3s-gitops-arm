@@ -81,8 +81,10 @@ cd vault-secrets-operator
 
 # arm
 docker build --no-cache -f Dockerfile \
+    --build-arg ALPINE_BUILD_IMAGE="arm32v7/golang:1.12-alpine" \
     --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
     --build-arg ARCH="arm" \
+    --build-arg ARCH_VERSION="7" \
     --build-arg VAULT_SECRETS_OPERATOR_VERSION="1.4.0" \
     -t onedr0p/vault-secrets-operator:latest-arm32 .
 
@@ -90,8 +92,10 @@ docker push onedr0p/vault-secrets-operator:latest-arm32
 
 # arm64
 docker build --no-cache -f Dockerfile \
+    --build-arg ALPINE_BUILD_IMAGE="arm64v8/golang:1.12-alpine" \
     --build-arg ALPINE_IMAGE="arm64v8/alpine:3.10" \
     --build-arg ARCH="arm64" \
+    --build-arg ARCH_VERSION="" \
     --build-arg VAULT_SECRETS_OPERATOR_VERSION="1.4.0" \
     -t onedr0p/vault-secrets-operator:latest-arm64 .
 
