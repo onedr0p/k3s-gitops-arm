@@ -1,6 +1,8 @@
 # homelab-gitops (ARM Edition)
 
-> Note: My local shell is [Fish](https://fishshell.com/), some of the commands throughout these docs are specific to the Fish Shell
+Build a Kubernetes (k3s) cluster with RPis and utilize GitOps for managing cluster state.
+
+## Hardware and software
 
 Hardware requirements for this tutorial:
 
@@ -29,7 +31,7 @@ Software requirements for this tutorial:
 - [hypriot/flash](https://github.com/hypriot/flash)
 - [alexellis/k3sup](https://github.com/alexellis/k3sup)
 
-Directory layout:
+## Directory layout
 
 ```bash
 .
