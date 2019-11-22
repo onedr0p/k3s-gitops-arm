@@ -8,7 +8,7 @@ ARG ALPINE_BUILD_IMAGE
 ARG ALPINE_IMAGE
 
 # hadolint ignore=DL3006
-FROM ${ALPINE_BUILD_IMAGE}
+FROM ${ALPINE_BUILD_IMAGE} as build
 
 ARG ARCH
 ARG ARCH_VERSION
@@ -22,11 +22,9 @@ ENV GO111MODULE=on \
 
 WORKDIR /go/src/github.com/ricoberger/vault-secrets-operator
 
-# hadolint ignore=DL3018
-RUN apk add --no-cache openssh-client 'git>=2.12.0' 'gnutls>=3.6.7' gnupg gawk socat build-base gcc wget bash curl ca-certificates
-
 RUN git clone https://github.com/ricoberger/vault-secrets-operator .
 RUN git checkout ${VAULT_SECRETS_OPERATOR_VERSION}
+RUN go mod download
 RUN go build -o vault-secrets-operator ./cmd/manager
 
 #
@@ -40,7 +38,7 @@ FROM ${ALPINE_IMAGE}
 RUN apk add --no-cache ca-certificates tini
 
 # hadolint ignore=DL3022
-COPY --from=0 /go/src/github.com/ricoberger/vault-secrets-operator/vault-secrets-operator /usr/local/bin/vault-secrets-operator
+COPY --from=build /go/src/github.com/ricoberger/vault-secrets-operator/vault-secrets-operator /usr/local/bin/vault-secrets-operator
 RUN chmod +x /usr/local/bin/vault-secrets-operator
 
 ENTRYPOINT ["/sbin/tini", "--", "vault-secrets-operator"]
