@@ -50,8 +50,11 @@ ks3WorkerNodes() {
             --user "${USER}"
             ## Does not work :(
             #--k3s-extra-args "--node-label role.node.kubernetes.io/worker=worker"
-        # kubectl label node <node-name> node-role.kubernetes.io/worker=worker
-        sleep 10
+
+        message "Labeling ${worker} as node-role.kubernetes.io/worker=worker"
+        hostname=$(ansible-inventory -i ${ANSIBLE_INVENTORY} --list | jq -r --arg k3s_worker "$worker" '._meta[] | .[$k3s_worker].hostname')
+        kubectl label node ${hostname} node-role.kubernetes.io/worker=worker
+        sleep 5
     done
 }
 
