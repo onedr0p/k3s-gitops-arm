@@ -32,6 +32,6 @@ kubectl create secret generic cloudflare-ddns \
   --from-literal=zones="$CF_ZONES" \
   --from-literal=hosts="$CF_HOSTS" \
   --from-literal=record-types="$CF_RECORDTYPES" \
-  --namespace kube-system --dry-run -o json \
+  --namespace default --dry-run -o json \
   | kubeseal --format=yaml --cert="$REPO_ROOT"/sealed-secret-pub-cert.pem \
     > "$REPO_ROOT"/deployments/secrets/cloudflare-ddns.yaml
