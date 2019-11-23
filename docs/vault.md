@@ -40,14 +40,17 @@ docker run -d --name vault \
     -v /vault/data:/vault/data \
     vault server
 
+# Set global Vault Address
+set -gx VAULT_ADDR http://127.0.0.1:8200
+
 # Initialize Vault
-env VAULT_ADDR=http://127.0.0.1:8200 vault operator init -n 1 -t 1
+vault operator init -n 1 -t 1
 
 # Note:
 # Notice the Root Token and Unseal Key from the output above, use it below
 
 # Unseal the Vault server
-env VAULT_ADDR=http://127.0.0.1:8200 vault operator unseal <Unseal Key>
+vault operator unseal <Unseal Key>
 ```
 
 ## 2. Configure dedicated vault server to act as a transit server
@@ -55,14 +58,17 @@ env VAULT_ADDR=http://127.0.0.1:8200 vault operator unseal <Unseal Key>
 > Note: Save the wrapping_token
 
 ```bash
+# Set global Vault Address
+set -gx VAULT_ADDR http://127.0.0.1:8200
+
 # Login to the Vault server
-env VAULT_ADDR=http://127.0.0.1:8200 vault login <Root Token>
+vault login <Root Token>
 
 # Enable the transit secrets engine
-env VAULT_ADDR=http://127.0.0.1:8200 vault secrets enable transit
+vault secrets enable transit
 
 # Create a key named 'autounseal'
-env VAULT_ADDR=http://127.0.0.1:8200 vault write -f transit/keys/autounseal
+vault write -f transit/keys/autounseal
 
 # Create a policy file
 tee /vault/config/autounseal.hcl <<EOF
@@ -76,16 +82,17 @@ path "transit/decrypt/autounseal" {
 EOF
 
 # Create an 'autounseal' policy
-env VAULT_ADDR=http://127.0.0.1:8200 vault policy write autounseal /vault/config/autounseal.hcl
+vault policy write autounseal /vault/config/autounseal.hcl
 
 # Create a client token with autounseal policy attached and response wrap it with TTL of 600 seconds.
-env VAULT_ADDR=http://127.0.0.1:8200 vault token create -policy="autounseal" -wrap-ttl=600
+vault token create -policy="autounseal" -wrap-ttl=600
 
 # Note:
 # Notice the "wrapping_token" from the output above, use it below
 
 # Unwrap the autounseal token and capture the client token
-env VAULT_ADDR=http://127.0.0.1:8200 VAULT_TOKEN=<wrapping_token> vault unwrap
+env VAULT_TOKEN=<wrapping_token> \
+  vault unwrap
 
 # Note:
 # Notice the "token" from the output above, use it below
@@ -103,12 +110,77 @@ kubectl --namespace kube-system create secret generic vault --from-literal=vault
 # Proxy Vault to our local machine
 kubectl -n kube-system port-forward svc/vault 8200:8200
 
+# Set global Vault Address
+set -gx VAULT_ADDR http://127.0.0.1:8200
+
 # Engage
-env VAULT_ADDR='http://127.0.0.1:8200' vault operator init -recovery-shares=1 -recovery-threshold=1
+vault operator init -recovery-shares=1 -recovery-threshold=1
 
 # Note:
 # Notice the Unseal Key and Root Token from the output above and keep in a very safe place, use it below
 
-env VAULT_ADDR='http://127.0.0.1:8200' vault operator unseal <Unseal Key>
-env VAULT_ADDR='http://127.0.0.1:8200' vault login <Root Token>
+vault operator unseal <Unseal Key>
+
+vault login <Root Token>
+```
+
+## 4. Vault Secrets Operator
+
+```bash
+# Proxy Vault to our local machine
+kubectl -n kube-system port-forward svc/vault 8200:8200
+
+# Set global Vault Address
+set -gx VAULT_ADDR http://127.0.0.1:8200
+
+# Log into Vault
+vault login <Root Token>
+
+# Enable K/V secrets type
+vault secrets enable -path=secrets -version=1 kv
+
+# Create read-only policy for kubernetes
+printf "
+path \"secrets/*\" {
+  capabilities = [\"read\"]
+}
+" | vault policy write vault-secrets-operator -
+
+# Set Envars
+set -gx VAULT_SECRETS_OPERATOR_NAMESPACE (kubectl -n kube-system get sa vault-secrets-operator -o jsonpath="{.metadata.namespace}"); \
+set -gx VAULT_SECRET_NAME (kubectl -n kube-system get sa vault-secrets-operator -o jsonpath="{.secrets[*]['name']}"); \
+set -gx SA_JWT_TOKEN (kubectl -n kube-system get secret $VAULT_SECRET_NAME -o jsonpath="{.data.token}" | base64 -d; echo); \
+set -gx K8S_HOST (kubectl -n kube-system config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+
+# Verify Envars
+env | grep -E 'VAULT_SECRETS_OPERATOR_NAMESPACE|VAULT_SECRET_NAME|SA_JWT_TOKEN|K8S_HOST'
+
+# Write the certificate to a file (Fish doesn't work as a Envar)
+kubectl -n kube-system get secret $VAULT_SECRET_NAME -o jsonpath="{.data['ca\.crt']}" | base64 -d > ~/.kube/k3s.crt
+
+# Enable auth
+vault auth enable kubernetes
+
+# Tell Vault how to communicate with the Kubernetes cluster
+vault write auth/kubernetes/config \
+  token_reviewer_jwt="$SA_JWT_TOKEN" \
+  kubernetes_host="$K8S_HOST" \
+  kubernetes_ca_cert=@~/.kube/k3s.crt
+
+# Check that the config was successfully saved
+vault read auth/kubernetes/config
+
+# Create a role named, 'vault-secrets-operator' to map Kubernetes Service Account to Vault policies and default token TTL
+vault write auth/kubernetes/role/vault-secrets-operator \
+  bound_service_account_names="vault-secrets-operator" \
+  bound_service_account_namespaces="$VAULT_SECRETS_OPERATOR_NAMESPACE" \
+  policies=vault-secrets-operator \
+  ttl=24h
+
+# Check that the config was successfully saved
+vault read auth/kubernetes/role/vault-secrets-operator
+
+# Delete Pod to have it rescheduled
+kubectl get pods -n kube-system --no-headers=true | awk '/vault-secrets-operator/{print $1}'| xargs kubectl delete -n kube-system pod
+
 ```
