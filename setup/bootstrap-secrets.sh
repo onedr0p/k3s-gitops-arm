@@ -18,49 +18,20 @@ message() {
   echo "######################################################################"
 }
 
-kvault() {
-  name="secrets/$(dirname "$@")/$(basename -s .txt "$@")"
-  echo "Writing $name to vault"
-  if output=$(envsubst < "$REPO_ROOT/deployments/$*"); then
-    printf '%s' "$output" | vault kv put "$name" values.yaml=-
-  fi
+kseal() {
+    name=$(basename -s .txt "$@")
+    if [[ -z "$NS" ]]; then
+      NS=default
+    fi
+    envsubst < "$@" > values.yaml | kubectl -n "$NS" create secret generic "$name" --from-file=values.yaml --dry-run -o json | kubeseal --format=yaml --cert="$REPO_ROOT"/setup/pub-cert.pem && rm values.yaml
 }
 
-loginVault() {
-  message "logging into vault"
-  kubectl -n kube-system port-forward svc/vault 8200:8200 >/dev/null 2>&1 &
-  VAULT_FWD_PID=$!
-  sleep 5
-
-  export VAULT_ADDR='http://127.0.0.1:8200'
-
-  if [ -z "$VAULT_ROOT_TOKEN" ]; then
-    echo "VAULT_ROOT_TOKEN is not set! Check $REPO_ROOT/setup/.env"
-    exit 1
-  fi
-
-  vault login -no-print "$VAULT_ROOT_TOKEN" || exit 1
-
-  vault auth list >/dev/null 2>&1
-  if [[ "$?" -ne 0 ]]; then
-    echo "not logged into vault!"
-    echo "1. port-forward the vault service (e.g. 'kubectl -n kube-system port-forward svc/vault 8200:8200 &')"
-    echo "2. set VAULT_ADDR (e.g. 'export VAULT_ADDR=http://localhost:8200')"
-    echo "3. login: (e.g. 'vault login <some token>')"
-    exit 1
-  fi
-}
-
-loadSecretsToVault() {
-    message "Writing secrets to vault"
-    vault kv put secrets/default/cloudflare-ddns user="$CF_USER"
-    vault kv put secrets/default/cloudflare-ddns api-key="$CF_APIKEY"
-    vault kv put secrets/default/cloudflare-ddns zones="$CF_ZONES"
-    vault kv put secrets/default/cloudflare-ddns hosts="$CF_HOSTS"
-    vault kv put secrets/default/cloudflare-ddns record-types="$CF_RECORDTYPES"
-}
-
-loginVault
-loadSecretsToVault
-
-kill $VAULT_FWD_PID
+kubectl create secret generic cloudflare-ddns \
+  --from-literal=api-key="$CF_APIKEY" \
+  --from-literal=user="$CF_USER" \
+  --from-literal=zones="$CF_ZONES" \
+  --from-literal=hosts="$CF_HOSTS" \
+  --from-literal=record-types="$CF_RECORDTYPES" \
+  --namespace kube-system --dry-run -o json \
+  | kubeseal --format=yaml --cert="$REPO_ROOT"/sealed-secret-pub-cert.pem \
+    > "$REPO_ROOT"/deployments/secrets/cloudflare-ddns.yaml
