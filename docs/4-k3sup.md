@@ -37,4 +37,7 @@ k3sup join --ip 192.168.42.26 \
 
 # You should be able to see all your nodes
 kubectl get nodes
+
+# View config for the Cluster
+kubectl get configmap coredns -n kube-system -o yaml
 ```
