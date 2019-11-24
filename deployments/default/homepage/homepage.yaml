@@ -20,8 +20,6 @@ spec:
       containers:
         - name: homepage
           image: onedr0p/homepage:latest-arm32
-          ports:
-            - containerPort: 80
           resources:
             requests:
               cpu: 100m
