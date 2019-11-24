@@ -25,9 +25,11 @@ spec:
       config:
         ssl-redirect: false
       service:
-        type: LoadBalancer
         externalTrafficPolicy: Local
         enableHttps: false
+        targetPorts:
+          http: http
+          https: http
         ports:
           http: 30150
       metrics:
