@@ -8,6 +8,7 @@ metadata:
     fluxcd.io/ignore: false
     fluxcd.io/automated: "false"
     fluxcd.io/tag.chart-image: semver:~0.
+    # metallb.universe.tf/allow-shared-ip: ingress-nginx
 spec:
   releaseName: nginx-ingress
   rollback:
@@ -20,25 +21,19 @@ spec:
     controller:
       image:
         repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller-arm
-        tag: "0.26.1"
+        tag: 0.26.1
+        imagePullPolicy: Always
       replicaCount: 2
       config:
         ssl-redirect: false
       service:
+        loadBalancerIP: 192.168.42.24
         externalTrafficPolicy: Local
         enableHttps: false
         targetPorts:
-          http: http
-          https: http
+          http: 80
         ports:
-          http: 30150
-      metrics:
-        enabled: true
-        serviceMonitor:
-          enabled: true
-          namespace: kube-system
-        prometheusRule:
-          enabled: false          
+          http: 30150         
       resources:
         requests:
           memory: 500Mi
