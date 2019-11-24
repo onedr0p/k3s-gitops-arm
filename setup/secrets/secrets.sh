@@ -18,6 +18,8 @@ message() {
   echo "######################################################################"
 }
 
+SEALED_SECRETS_PUB_CERT="$REPO_ROOT"/setup/secrets/pub-cert.pem
+
 kseal() {
     name=$(basename -s .txt "$@")
     if [[ -z "$NS" ]]; then
@@ -26,6 +28,10 @@ kseal() {
     envsubst < "$@" > values.yaml | kubectl -n "$NS" create secret generic "$name" --from-file=values.yaml --dry-run -o json | kubeseal --format=yaml --cert="$REPO_ROOT"/setup/pub-cert.pem && rm values.yaml
 }
 
+#
+# Secrets
+#
+
 kubectl create secret generic cloudflare-ddns \
   --from-literal=api-key="$CF_APIKEY" \
   --from-literal=user="$CF_USER" \
@@ -33,5 +39,6 @@ kubectl create secret generic cloudflare-ddns \
   --from-literal=hosts="$CF_HOSTS" \
   --from-literal=record-types="$CF_RECORDTYPES" \
   --namespace default --dry-run -o json \
-  | kubeseal --format=yaml --cert="$REPO_ROOT"/sealed-secret-pub-cert.pem \
+  | \
+kubeseal --format=yaml --cert="$SEALED_SECRETS_PUB_CERT" \
     > "$REPO_ROOT"/deployments/secrets/cloudflare-ddns.yaml

@@ -41,6 +41,10 @@ Software requirements for this tutorial:
 |192.168.42.25|k3s worker (pik3s02)|
 |192.168.42.26|k3s worker (pik3s03)|
 
+## My network diagram
+
+![image](assets/_k3s.png)
+
 ## 1. UniFi Security Gateway / MetalLB
 
 ### MetalLB w/ USG and using BGP load balancing
