@@ -21,14 +21,22 @@ spec:
       image:
         repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller-arm
         tag: "0.26.1"
-      replicaCount: 3
+      replicaCount: 2
       config:
         ssl-redirect: false
       service:
-        type: ClusterIP
+        type: LoadBalancer
+        externalTrafficPolicy: Local
         enableHttps: false
         ports:
           http: 30150
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+          namespace: kube-system
+        prometheusRule:
+          enabled: false          
       resources:
         requests:
           memory: 500Mi
