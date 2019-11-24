@@ -1,0 +1,32 @@
+---
+
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  namespace: default
+  name: homepage
+  labels:
+    app: homepage
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: homepage
+  template:
+    metadata:
+      labels:
+        app: homepage
+    spec:
+      containers:
+        - name: homepage
+          image: onedr0p/homepage:latest-arm32
+          ports:
+            - containerPort: 80
+          resources:
+            requests:
+              cpu: 100m
+              memory: 64Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi
+         

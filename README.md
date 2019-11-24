@@ -29,21 +29,19 @@ Software requirements for this tutorial:
 └── ./docker-arm
 ```
 
-## My network configuration
+## Network topology
+
+![image](assets/_k3s.png)
 
 |IP|Function|
 |---|---|
-|192.168.1.1|Router|
+|192.168.1.1|Router (USG)|
 |192.168.1.15|DNS Server running PiHole|
 |192.168.42.1/27|k3s cluster CIDR, VLAN 42|
 |192.168.42.23|k3s master (pik3s00)|
 |192.168.42.24|k3s worker (pik3s01)|
 |192.168.42.25|k3s worker (pik3s02)|
 |192.168.42.26|k3s worker (pik3s03)|
-
-## My network diagram
-
-![image](assets/_k3s.png)
 
 ## 1. UniFi Security Gateway / MetalLB
 

@@ -1,6 +1,6 @@
 # Sealed Secrets
 
-## Install kubeseal
+## Install kubeseal locally
 
 ```bash
 wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.9.5/kubeseal-linux-amd64 -O kubeseal
@@ -13,3 +13,5 @@ rm -rf kubeseal
 ```bash
 kubeseal --controller-name sealed-secrets --fetch-cert > ./setup/secrets/pub-cert.pem
 ```
+
+Start adding secrets and deploying your apps

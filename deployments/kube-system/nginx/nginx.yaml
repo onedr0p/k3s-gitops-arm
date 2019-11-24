@@ -1,0 +1,37 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: nginx-ingress
+  namespace: kube-system
+  annotations:
+    fluxcd.io/ignore: false
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: semver:~0.
+spec:
+  releaseName: nginx-ingress
+  rollback:
+    enable: true
+  chart:
+    repository: https://kubernetes-charts.storage.googleapis.com/
+    name: nginx-ingress
+    version: 1.25.0
+  values:
+    controller:
+      image:
+        repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller-arm
+        tag: "0.26.1"
+      replicaCount: 3
+      config:
+        ssl-redirect: false
+      service:
+        type: ClusterIP
+        enableHttps: false
+        ports:
+          http: 30150
+      resources:
+        requests:
+          memory: 500Mi
+          cpu: 25m
+        limits:
+          memory: 600Mi

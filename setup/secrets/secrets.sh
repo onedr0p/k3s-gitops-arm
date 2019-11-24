@@ -6,11 +6,11 @@ need() {
     which "$1" &>/dev/null || die "Binary '$1' is missing but required"
 }
 
-need "vault"
+need "kubeseal"
 need "kubectl"
 need "sed"
 
-. "$REPO_ROOT"/setup/.env
+. "$REPO_ROOT"/setup/secrets/.env
 
 message() {
   echo -e "\n######################################################################"
@@ -18,7 +18,7 @@ message() {
   echo "######################################################################"
 }
 
-SEALED_SECRETS_PUB_CERT="$REPO_ROOT"/setup/secrets/pub-cert.pem
+PUB_CERT="$REPO_ROOT"/setup/secrets/pub-cert.pem
 
 kseal() {
     name=$(basename -s .txt "$@")
@@ -40,5 +40,12 @@ kubectl create secret generic cloudflare-ddns \
   --from-literal=record-types="$CF_RECORDTYPES" \
   --namespace default --dry-run -o json \
   | \
-kubeseal --format=yaml --cert="$SEALED_SECRETS_PUB_CERT" \
+kubeseal --format=yaml --cert="$PUB_CERT" \
     > "$REPO_ROOT"/deployments/secrets/cloudflare-ddns.yaml
+
+# kubectl create secret generic traefik-basic-auth-devin \
+#   --from-literal=auth="$DEVIN_AUTH" \
+#   --namespace traefik --dry-run -o json \
+#   | \
+# kubeseal --format=yaml --cert="$PUB_CERT" \
+#     > "$REPO_ROOT"/deployments/secrets/traefik-basic-auth.yaml
