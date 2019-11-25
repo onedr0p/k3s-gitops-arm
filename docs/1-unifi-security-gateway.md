@@ -1,5 +1,11 @@
 # UniFi Security Gateway
 
+## Firewall to only allow Cloudflare IP Addresses
+
+If using Cloudflare it is wise to only allow their IP addresses into port 80 and 443 of your network. An example of doing this can be found in the assets folder.
+
+## BPG
+
 We will need to create a new network for our k3s cluster so MetalLb can have an entire network.
 
 - Goto Settings > Networks > + Create New Network
