@@ -29,8 +29,8 @@ spec:
       address-pools:
       - name: default
         protocol: bgp
-        # 8 total IPs can exist in the BGP
-        # 192.168.42.24 - 192.168.42.31
+        # 7 total IPs can exist in the BGP
+        # 192.168.42.24 - 192.168.42.30
         addresses:
         - 192.168.42.24/29
         avoid-buggy-ips: true
