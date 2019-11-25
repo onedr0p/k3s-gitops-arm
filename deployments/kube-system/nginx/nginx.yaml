@@ -24,16 +24,16 @@ spec:
         tag: 0.26.1
         imagePullPolicy: Always
       service:
-        type: LoadBalancer
+        # type: LoadBalancer
         loadBalancerIP: 192.168.42.24
         externalTrafficPolicy: Local
-        enableHttp: true
-        enableHttps: false
-        targetPorts:
-          http: 80
-          https: 80
-        ports:
-          http: 30150         
+        # enableHttp: true
+        # enableHttps: false
+        # targetPorts:
+        #   http: 80
+        #   https: 80
+        # ports:
+        #   http: 30150         
       resources:
         requests:
           memory: 500Mi
