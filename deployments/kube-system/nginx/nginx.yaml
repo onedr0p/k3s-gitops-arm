@@ -41,7 +41,7 @@ spec:
         limits:
           memory: 600Mi
     defaultBackend:
-      enabled: true
+      enabled: false
       image:
         repository: quay.io/kubernetes-ingress-controller/custom-error-pages-arm
         tag: 0.3
