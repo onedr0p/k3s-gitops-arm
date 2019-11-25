@@ -33,7 +33,7 @@ spec:
         #   http: 80
         #   https: 80
         # ports:
-        #   http: 30150         
+        #   http: 30150
       resources:
         requests:
           memory: 500Mi

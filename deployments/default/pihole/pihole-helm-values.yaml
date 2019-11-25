@@ -1,16 +1,15 @@
-apiVersion: bitnami.com/v1alpha1
-kind: SealedSecret
-metadata:
-  creationTimestamp: null
-  name: pihole-helm-values
-  namespace: default
-spec:
-  encryptedData:
-    values.yaml: AgAplTtKpaMBvZTmtjsrK1hmpGOm3vacKJ/j4TIhMdvnwlmvfMDb7ZYZifFak1ZwWFoUzF2R0C6kGvMghDNBjtQUm4qfE+SKkKgu5JZ3+/P5DjDwkArDyqVlGUZ9gwj1NRT7MKGj+wpw4vG1m7CKqitlDQGeXew0Xe3bH03LHpPaiT6U0k6yaXknwfh4O3DjlMaj8wIyoTXWjj91KzvSm4qHckFe/X3MXfsER4qwlD0VK8Rlkghf5FE64tusMe+H4nincNrufHaZQbBPpjGDsXlSXagkGn/JxuYQWlZR2n9PsvGiCsqUfhJb4zvw3fdoP99wb9tToN9E3zalBlKBQXlFJ+hEyniy86nP7nWgEvF2ElDeNq2PQIdg6T+V4tiWtkRYXQpnp/uhVZWt4yoEZsnw9fi/4fufukvkJjnb0jpxxDEqm6fJPIqpkCkGx3FHM5p8bLeIJrCCtiNp1c7/f45OdoLwMQqCWbPfq3TWF8vi4xy7tN6tWgKezQ+H2Y77GenRqeO1/JAuhHQibACzroqYwcGOiSXuh/bsLCh1Ve5mjUsl6xGQRWLJD+eODAo92KpOC9D9a5JWIK/PPsu1TnyTJglqnFc8RhR27iLZc3mw3Qeq4spoS0qsIJN8+b3PfLYTKJHrn9z0NBhjYT7SaITBLinpCDmyyouAY6z5m1RFB41F4ResV8S80T0KNNV+zUNc/JJxMEZGx7yy0m6tIniBLBsVKf9C0a9ZiSV132GDGMHyuamjzHe4ONcyYZC82pOhNdv9jW2MMkAQUwMe25PCqpIWdTCSN9/2C3dps6QEToYTYsBTIHD4Ya1Kr1hMjOvQAu+Q2njVHfaCDXCH6C/rqceOtUs+0qsRdZO4W0LH0u6IV8NEGvtiejvvJf1g7VxuWNzZsuIHzdHqLzyDJIRhNKVAmOBGd5sLYXNJ1OcNdKN+bsAmCoCGdD4vBlAuSDoPr6muDoQ7nPielJIipAEePlk6jMw+UkBe50hVMdK2tjPpDe7Fp7Qb3lvgQ8kJ3azMu3TAcPEVhWlz
-  template:
-    metadata:
-      creationTimestamp: null
-      name: pihole-helm-values
-      namespace: default
-status: {}
-
+# apiVersion: bitnami.com/v1alpha1
+# kind: SealedSecret
+# metadata:
+#   creationTimestamp: null
+#   name: pihole-helm-values
+#   namespace: default
+# spec:
+#   encryptedData:
+#     values.yaml: AgAplTtKpaMBvZTmtjsrK1hmpGOm3vacKJ/j4TIhMdvnwlmvfMDb7ZYZifFak1ZwWFoUzF2R0C6kGvMghDNBjtQUm4qfE+SKkKgu5JZ3+/P5DjDwkArDyqVlGUZ9gwj1NRT7MKGj+wpw4vG1m7CKqitlDQGeXew0Xe3bH03LHpPaiT6U0k6yaXknwfh4O3DjlMaj8wIyoTXWjj91KzvSm4qHckFe/X3MXfsER4qwlD0VK8Rlkghf5FE64tusMe+H4nincNrufHaZQbBPpjGDsXlSXagkGn/JxuYQWlZR2n9PsvGiCsqUfhJb4zvw3fdoP99wb9tToN9E3zalBlKBQXlFJ+hEyniy86nP7nWgEvF2ElDeNq2PQIdg6T+V4tiWtkRYXQpnp/uhVZWt4yoEZsnw9fi/4fufukvkJjnb0jpxxDEqm6fJPIqpkCkGx3FHM5p8bLeIJrCCtiNp1c7/f45OdoLwMQqCWbPfq3TWF8vi4xy7tN6tWgKezQ+H2Y77GenRqeO1/JAuhHQibACzroqYwcGOiSXuh/bsLCh1Ve5mjUsl6xGQRWLJD+eODAo92KpOC9D9a5JWIK/PPsu1TnyTJglqnFc8RhR27iLZc3mw3Qeq4spoS0qsIJN8+b3PfLYTKJHrn9z0NBhjYT7SaITBLinpCDmyyouAY6z5m1RFB41F4ResV8S80T0KNNV+zUNc/JJxMEZGx7yy0m6tIniBLBsVKf9C0a9ZiSV132GDGMHyuamjzHe4ONcyYZC82pOhNdv9jW2MMkAQUwMe25PCqpIWdTCSN9/2C3dps6QEToYTYsBTIHD4Ya1Kr1hMjOvQAu+Q2njVHfaCDXCH6C/rqceOtUs+0qsRdZO4W0LH0u6IV8NEGvtiejvvJf1g7VxuWNzZsuIHzdHqLzyDJIRhNKVAmOBGd5sLYXNJ1OcNdKN+bsAmCoCGdD4vBlAuSDoPr6muDoQ7nPielJIipAEePlk6jMw+UkBe50hVMdK2tjPpDe7Fp7Qb3lvgQ8kJ3azMu3TAcPEVhWlz
+#   template:
+#     metadata:
+#       creationTimestamp: null
+#       name: pihole-helm-values
+#       namespace: default
+# status: {}

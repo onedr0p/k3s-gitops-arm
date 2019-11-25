@@ -48,7 +48,7 @@ kseal() {
 # Helm Secrets
 #
 
-kseal "${REPO_ROOT}/deployments/default/pihole/pihole-helm-values.txt"
+# kseal "${REPO_ROOT}/deployments/default/pihole/pihole-helm-values.txt"
 
 #
 # Generic Secrets
