@@ -19,12 +19,15 @@ kseal() {
   # Get the path and basename of the txt file
   # e.g. "deployments/default/pihole/pihole-helm-values"
   secret="$(dirname "$@")/$(basename -s .txt "$@")"
+  echo "Secret: ${secret}"
   # Get the filename without extension
   # e.g. "pihole-helm-values"
   secret_name=$(basename "${secret}")
+  echo "Secret Name: ${secret_name}"
   # Extract the Kubernetes namespace from the secret path
   # e.g. default
-  namespace="$(echo "${secret}" | awk -F / '{ print $2; }')"
+  namespace="$(echo "${secret}" | awk -F /deployments/ '{ print $2; }' | awk -F / '{ print $1; }')"
+  echo "Namespace: ${namespace}"
   # Create secret and put it in the applications deployment folder
   # e.g. "deployments/default/pihole/pihole-helm-values.yaml"
   envsubst < "$@" > values.yaml \
@@ -37,6 +40,8 @@ kseal() {
       "${secret}.yaml"
   # Clean up temp file
   rm values.yaml
+
+  echo "Done"
 }
 
 #
