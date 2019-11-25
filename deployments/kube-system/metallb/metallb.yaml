@@ -19,9 +19,8 @@ spec:
       address-pools:
         - name: default
           protocol: layer2
-          # 11 total IPs
           addresses:
-          - 192.168.42.24-192.168.42.30
+          - 192.168.42.100-192.168.42.250
       ## BPG
       # peers:
       # - peer-address: 192.168.42.1
