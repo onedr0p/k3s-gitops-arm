@@ -5,7 +5,7 @@ metadata:
   name: pihole
   namespace: default
   annotations:
-    fluxcd.io/ignore: false
+    fluxcd.io/ignore: true
     fluxcd.io/automated: "true"
     fluxcd.io/tag.chart-image: 'regexp:^(4\.[0-9]+\.[0-9]+(-[0-9]+)?)$'
 spec:
@@ -26,14 +26,14 @@ spec:
     serviceTCP:
       type: LoadBalancer
       externalTrafficPolicy: Local
-      loadBalancerIP: 192.168.42.5
+      loadBalancerIP: 192.168.42.30
       annotations:
         metallb.universe.tf/address-pool: network-services
         metallb.universe.tf/allow-shared-ip: pihole-svc
     serviceUDP:
       type: LoadBalancer
       externalTrafficPolicy: Local
-      loadBalancerIP: 192.168.42.5
+      loadBalancerIP: 192.168.42.30
       annotations:
         metallb.universe.tf/address-pool: network-services
         metallb.universe.tf/allow-shared-ip: pihole-svc
