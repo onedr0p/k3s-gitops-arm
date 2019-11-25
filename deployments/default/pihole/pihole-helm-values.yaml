@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: pihole-helm-values
+  namespace: home
+spec:
+  encryptedData:
+    values.yaml: AgAbT/kOc9QcNAxy2L/dAG4iCvtlsTk5cvR5B49zXcaHLCWFcJMokkrpHCH0Hjz/dpGnIEWa5dB0JETRHq1dCzmj8WYK/Oiaad+PN66Tw6rFasAcWnPDCA1Yi+1mcDPVa49KSv3tqAZecWUn2AM6hM32vCL6kWsgvnYOt3c+r6HsH72Bcf2CHohKJunybWIwyPmZ90mv4ze3Srk6F9cfV4pMLe+1SUx87y0ehenwRz538yy+Jaz+j5QxswpvRZzGr7Z3drrdL7UEJTVq7qMLlWRJjmulQIBLlQkLtRfgfSW38M3Vb6aEgAZIiHwbBXhgEhmLHQwXgRodok5kBCKdfCr2B94MLlL9aq93KvRiUXYQAkFo+rBoZ8zerfU+b+IgBwUKOWP6O72YeiISwXf87XkX+NNtXPyxPBKj5S+lOTaEVzzb8inkyteKDdFPNEDC3ha4pAkX8/zp3nnVZsT18ksNZ1aKgXUHDMc5QpD6s4oGZR15NiZcaezeW8nDfDKnWE9dvpk5xcEDterqyOYUCbmgZ2LLV+Vw5MUBSKOOlGjw31DLvzXER/D8cePXZkycgbqeMhaFPvDGbYXYF2Dlhhft0MfAkmilO9BlWOaZbF3tV8FjJ/xs8lfnOIxdN/StO05wi5kW8sT7vFWxZAjuImADgRcQs2NPprt37MV4H2X4kDxYju1wGNF0mRVUSSDWKEr+DYZxb+Ein18iaoQhMdn75CGySGRmdnToqWN+8WeBvxdKFCOtyMNn7cOnaGcOmNZGX+FDZftwLTIdjyAuhU1UPs4eMmaxlCtTKCiYWz8ZwJskzpgjZyOLj9HnV/biIro4LEh980RLrUifHoBjQTHQhBUfiMFmJpJtwKWOCvektuD7f/mxTSCz12T4lXoIqn/AT8aRoZkxo8bpZmgFxtk3ofhPyxmKY/OK48ur1cAunbFyRgYGaT9FuoRR1Vfh/QvxrXBzNnn0zwdqx4xyqM43ABWAq2qwZbH3khkOnP+xC5kUuXho32DvgIsYDiu4PcJBVfi9sdS2ztUV
+  template:
+    metadata:
+      creationTimestamp: null
+      name: pihole-helm-values
+      namespace: home
+status: {}
+

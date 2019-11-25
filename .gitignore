@@ -3,3 +3,4 @@ setup/ansible/vars.yml
 setup/hypriotos/user-data-*
 setup/secrets/.env
 test/*
+custom-error-pages/*

@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: nginx-basic-auth-devin
+  namespace: default
+spec:
+  encryptedData:
+    auth: AgBkep4/sR2pAhNPpU0yvJXTl53YXWF3IEcqLNG7tFs7tk4qTshzhxwbqBTeMAia3mv15WImbQFBxQ9wTGISWjdpviEs51ITE+Dt746yKR0qmdQnzsECL+PUZzjPoljrAzAfFCYS/Sx8RiD0MyDJ856liz7ADO+3oEgrgDjWlIa6K8cuFwk+Ffbv7SrtrlENtrzS9xa4wprYaxyw03TwjzIgy9AjAKpVPr35xdDiGu23nxfZ3oDGwuySyNi2qI/+E0Dla9lFqHbHP3uJnPkIlRLpGJ9XHOJelD05Q9evjkUYp3LBFVWH2NlcQ9oO57GMi9L/4UVUsZ18syJFPul00wwhWmUGqLjnTmfX8txazgmH9/bk64ZTmhGj3fPRqDyWczl8f6tUHUeLE2WfSX5veRyL91MNpzsBw8DRTejpFhEilR9vQCvGvrmkKkmD0doHdQXNv0+EC+KyxvFrHCsX37g1FLqxoyq7arHMhXI0/oMv8CaBgMGx+lxRE5meg9jzFZXlZF2jGmkSAxFLjCddzKF7rQquYyiREP2w0YVd1iY58UxvkC84uE3zkFJPuG+ftRZg+FAjli+ipTdoCV9beaL8PfUF6MB/8Dr3PwkBedEFY8bGC0ZEG9vQKzzFpXg/6fii3kuOfHgLw76Rj/nKmeFz/zePaXDbf4Hj9nO3XHNjN4wEg3jUhijUdla+JL0ISSal1vNoLA7k+Lxr3qh+lrjRvQQa
+  template:
+    metadata:
+      creationTimestamp: null
+      name: nginx-basic-auth-devin
+      namespace: default
+status: {}
+

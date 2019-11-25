@@ -10,28 +10,46 @@ need "kubeseal"
 need "kubectl"
 need "sed"
 
-. "$REPO_ROOT"/setup/secrets/.env
+. "${REPO_ROOT}/setup/secrets/.env"
 
-message() {
-  echo -e "\n######################################################################"
-  echo "# $1"
-  echo "######################################################################"
-}
+PUB_CERT="${REPO_ROOT}/setup/secrets/pub-cert.pem"
 
-PUB_CERT="$REPO_ROOT"/setup/secrets/pub-cert.pem
-
+# Helper function to generate secrets
 kseal() {
-    name=$(basename -s .txt "$@")
-    if [[ -z "$NS" ]]; then
-      NS=default
-    fi
-    envsubst < "$@" > values.yaml | kubectl -n "$NS" create secret generic "$name" --from-file=values.yaml --dry-run -o json | kubeseal --format=yaml --cert="$REPO_ROOT"/setup/pub-cert.pem && rm values.yaml
+  # Get the path and basename of the txt file
+  # e.g. "deployments/default/pihole/pihole-helm-values"
+  secret="$(dirname "$@")/$(basename -s .txt "$@")"
+  # Get the filename without extension
+  # e.g. "pihole-helm-values"
+  secret_name=$(basename "${secret}")
+  # Extract the Kubernetes namespace from the secret path
+  # e.g. default
+  namespace="$(echo "${secret}" | awk -F / '{ print $2; }')"
+  # Create secret and put it in the applications deployment folder
+  # e.g. "deployments/default/pihole/pihole-helm-values.yaml"
+  envsubst < "$@" > values.yaml \
+    | \
+  kubectl -n "${namespace}" create secret generic "${secret_name}" \
+    --from-file=values.yaml --dry-run -o json \
+    | \
+  kubeseal --format=yaml --cert="$PUB_CERT" \
+    > \
+      "${secret}.yaml"
+  # Clean up temp file
+  rm values.yaml
 }
 
 #
-# Secrets
+# Helm Secrets
 #
 
+kseal "${REPO_ROOT}/deployments/default/pihole/pihole-helm-values.txt"
+
+#
+# Generic Secrets
+#
+
+# Cloudflare DDNS
 kubectl create secret generic cloudflare-ddns \
   --from-literal=api-key="$CF_APIKEY" \
   --from-literal=user="$CF_USER" \
@@ -41,11 +59,24 @@ kubectl create secret generic cloudflare-ddns \
   --namespace default --dry-run -o json \
   | \
 kubeseal --format=yaml --cert="$PUB_CERT" \
-    > "$REPO_ROOT"/deployments/secrets/cloudflare-ddns.yaml
+    > "$REPO_ROOT"/deployments/default/cloudflare-ddns/cloudflare-ddns-secret.yaml
 
-# kubectl create secret generic traefik-basic-auth-devin \
-#   --from-literal=auth="$DEVIN_AUTH" \
-#   --namespace traefik --dry-run -o json \
-#   | \
-# kubeseal --format=yaml --cert="$PUB_CERT" \
-#     > "$REPO_ROOT"/deployments/secrets/traefik-basic-auth.yaml
+# NginX Basic Auth - default Namespace
+kubectl create secret generic nginx-basic-auth-devin \
+  --from-literal=auth="$DEVIN_AUTH" \
+  --namespace default --dry-run -o json \
+  | \
+kubeseal --format=yaml --cert="$PUB_CERT" \
+    > "$REPO_ROOT"/deployments/kube-system/nginx/nginx-basic-auth-devin-default.yaml
+
+# NginX Basic Auth - kube-system Namespace
+kubectl create secret generic nginx-basic-auth-devin \
+  --from-literal=auth="$DEVIN_AUTH" \
+  --namespace kube-system --dry-run -o json \
+  | \
+kubeseal --format=yaml --cert="$PUB_CERT" \
+    > "$REPO_ROOT"/deployments/kube-system/nginx/nginx-basic-auth-devin-kube-system.yaml
+
+
+
+
