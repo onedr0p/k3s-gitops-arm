@@ -29,14 +29,18 @@ spec:
       loadBalancerIP: 192.168.42.25
       annotations:
         metallb.universe.tf/address-pool: default
-        #metallb.universe.tf/allow-shared-ip: pihole-svc
+        metallb.universe.tf/allow-shared-ip: pihole-svc
     serviceUDP:
       type: LoadBalancer
       externalTrafficPolicy: Local
       loadBalancerIP: 192.168.42.25
       annotations:
         metallb.universe.tf/address-pool: default
-        #metallb.universe.tf/allow-shared-ip: pihole-svc
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+    doh: 
+      enabled: true
+    adlists:
+      - https://raw.githubusercontent.com/ookangzheng/dbl-oisd-nl/master/dbl.txt
     persistentVolumeClaim:
       enabled: true
       storageClass: "nfs-client"
