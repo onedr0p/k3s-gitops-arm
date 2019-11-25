@@ -4,13 +4,8 @@ git:
     secretName: flux-git-deploy
 image:
   repository: onedr0p/helm-operator
-  tag: arm32-latest
+  tag: latest-arm32
   pullPolicy: Always
-# tolerations:
-#   - key: "arch"
-#     operator: "Equal"
-#     value: "arm"
-#     effect: "NoExecute"
 chartsSyncInterval: "5m"
 statusUpdateInterval: "5m"
 prometheus:
