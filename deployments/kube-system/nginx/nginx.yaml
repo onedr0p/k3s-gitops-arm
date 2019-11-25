@@ -42,14 +42,14 @@ spec:
           memory: 600Mi
     defaultBackend:
       enabled: false
-      image:
-        repository: quay.io/kubernetes-ingress-controller/custom-error-pages-arm
-        tag: 0.3
-      resources:
-        requests:
-          memory: 250Mi
-          cpu: 25m
-        limits:
-          memory: 350Mi
+      # image:
+      #   repository: quay.io/kubernetes-ingress-controller/custom-error-pages-arm
+      #   tag: 0.3
+      # resources:
+      #   requests:
+      #     memory: 250Mi
+      #     cpu: 25m
+      #   limits:
+      #     memory: 350Mi
 
           
