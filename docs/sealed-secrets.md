@@ -11,7 +11,13 @@ rm -rf kubeseal
 ## Create sealed-secrets public certificate
 
 ```bash
-kubeseal --controller-name sealed-secrets --fetch-cert > ./setup/secrets/pub-cert.pem
+cd setup
+kubeseal --controller-name sealed-secrets --fetch-cert > ./pub-cert.pem
 ```
 
-Start adding secrets and deploying your apps
+## Start adding secrets and deploying your apps
+
+```bash
+cd setup
+./bootstrap-secrets.sh
+```

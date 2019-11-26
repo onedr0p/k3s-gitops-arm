@@ -1,6 +1,6 @@
 setup/ansible/inventory
 setup/ansible/vars.yml
 setup/hypriotos/user-data-*
-setup/secrets/.env
+setup/.env
 test/*
 custom-error-pages/*

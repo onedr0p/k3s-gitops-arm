@@ -1,7 +1,6 @@
 ---
 
 ansible_user: pi
-systemd_dir: /etc/systemd/system
 
 log2ram_version: v1.4
 log2ram_size: 128M

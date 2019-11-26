@@ -10,9 +10,9 @@ need "kubeseal"
 need "kubectl"
 need "sed"
 
-. "${REPO_ROOT}/setup/secrets/.env"
+. "${REPO_ROOT}/setup/.env"
 
-PUB_CERT="${REPO_ROOT}/setup/secrets/pub-cert.pem"
+PUB_CERT="${REPO_ROOT}/setup/pub-cert.pem"
 
 # Helper function to generate secrets
 kseal() {
