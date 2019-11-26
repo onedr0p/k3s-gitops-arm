@@ -1,3 +1,5 @@
+---
+
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -13,24 +15,8 @@ spec:
     version: 0.12.0
   values:
     configInline:
-      # Without BGP, make sure addresses is outside of your DHCP range 
-      # and you do not have static IPs already assign to them.
-      # Comment lines 24-34 if you wish to use this.
       address-pools:
         - name: default
           protocol: layer2
           addresses:
           - 192.168.42.100-192.168.42.250
-      ## BPG
-      # peers:
-      # - peer-address: 192.168.42.1
-      #   peer-asn: 64512
-      #   my-asn: 64512
-      # address-pools:
-      # - name: default
-      #   protocol: bgp
-      #   # 7 total IPs can exist in the BGP
-      #   # 192.168.42.24 - 192.168.42.30
-      #   addresses:
-      #   - 192.168.42.24/29
-      #   avoid-buggy-ips: true

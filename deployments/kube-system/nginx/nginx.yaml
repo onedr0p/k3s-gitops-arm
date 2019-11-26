@@ -1,4 +1,5 @@
 ---
+
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
@@ -24,16 +25,8 @@ spec:
         tag: 0.26.1
         imagePullPolicy: Always
       service:
-        # type: LoadBalancer
         loadBalancerIP: 192.168.42.100
         externalTrafficPolicy: Local
-        # enableHttp: true
-        # enableHttps: false
-        # targetPorts:
-        #   http: 80
-        #   https: 80
-        # ports:
-        #   http: 30150
       resources:
         requests:
           memory: 500Mi
@@ -42,14 +35,3 @@ spec:
           memory: 600Mi
     defaultBackend:
       enabled: false
-      # image:
-      #   repository: quay.io/kubernetes-ingress-controller/custom-error-pages-arm
-      #   tag: 0.3
-      # resources:
-      #   requests:
-      #     memory: 250Mi
-      #     cpu: 25m
-      #   limits:
-      #     memory: 350Mi
-
-          
