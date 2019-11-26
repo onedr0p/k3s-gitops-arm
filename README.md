@@ -22,11 +22,14 @@ Software requirements for this tutorial:
 │   # Flux will only scan and deploy from this directory
 ├── ./deployments
 │   # Initial setup of the cluster
-└── ./setup
+├── ./setup
 │   ├── ./ansible
-│   └── ./hypriotos
-│   # flux, helm-operator, and velero ARM Dockerfiles
-└── ./docker-arm
+│   ├── ./hypriotos
+│   └── ./secrets
+│   # Build flux, helm-operator, and velero for arm devices
+├── ./docker-arm
+│   # Documentation
+└── ./docs
 ```
 
 ## My network topology
