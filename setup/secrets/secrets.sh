@@ -64,23 +64,23 @@ kubectl create secret generic cloudflare-ddns \
   --namespace default --dry-run -o json \
   | \
 kubeseal --format=yaml --cert="$PUB_CERT" \
-    > "$REPO_ROOT"/deployments/default/cloudflare-ddns/cloudflare-ddns-secret.yaml
+    > "$REPO_ROOT"/deployments/default/cloudflare-ddns/sealed.yaml
 
-# NginX Basic Auth - default Namespace
-kubectl create secret generic nginx-basic-auth-devin \
-  --from-literal=auth="$DEVIN_AUTH" \
-  --namespace default --dry-run -o json \
-  | \
-kubeseal --format=yaml --cert="$PUB_CERT" \
-    > "$REPO_ROOT"/deployments/kube-system/nginx/nginx-basic-auth-devin-default.yaml
+# # NginX Basic Auth - default Namespace
+# kubectl create secret generic nginx-basic-auth-devin \
+#   --from-literal=auth="$DEVIN_AUTH" \
+#   --namespace default --dry-run -o json \
+#   | \
+# kubeseal --format=yaml --cert="$PUB_CERT" \
+#     > "$REPO_ROOT"/deployments/kube-system/nginx/sealed-basic-auth-devin.yaml
 
-# NginX Basic Auth - kube-system Namespace
-kubectl create secret generic nginx-basic-auth-devin \
-  --from-literal=auth="$DEVIN_AUTH" \
-  --namespace kube-system --dry-run -o json \
-  | \
-kubeseal --format=yaml --cert="$PUB_CERT" \
-    > "$REPO_ROOT"/deployments/kube-system/nginx/nginx-basic-auth-devin-kube-system.yaml
+# # NginX Basic Auth - kube-system Namespace
+# kubectl create secret generic nginx-basic-auth-devin \
+#   --from-literal=auth="$DEVIN_AUTH" \
+#   --namespace kube-system --dry-run -o json \
+#   | \
+# kubeseal --format=yaml --cert="$PUB_CERT" \
+#     > "$REPO_ROOT"/deployments/kube-system/nginx/sealed-basic-auth-kube-system.yaml
 
 
 
