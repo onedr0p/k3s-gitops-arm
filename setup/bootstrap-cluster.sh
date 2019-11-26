@@ -40,7 +40,7 @@ k3sMasterNode() {
     k3sup install --ip "${K3S_MASTER}" \
         --k3s-version "${K3S_VERSION}" \
         --user "${USER}" \
-        --k3s-extra-args "--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server"
+        --k3s-extra-args "--no-deploy servicelb --no-deploy traefik"
     mkdir -p ~/.kube
     mv ./kubeconfig ~/.kube/config
     sleep 10
@@ -53,13 +53,15 @@ ks3WorkerNodes() {
             --server-ip "${K3S_MASTER}" \
             --k3s-version "${K3S_VERSION}" \
             --user "${USER}"
+            # --k3s-extra-args "--docker"
             ## Does not work :(
             #--k3s-extra-args "--node-label role.node.kubernetes.io/worker=worker"
+
+        sleep 10
 
         message "Labeling ${worker} as node-role.kubernetes.io/worker=worker"
         hostname=$(ansible-inventory -i ${ANSIBLE_INVENTORY} --list | jq -r --arg k3s_worker "$worker" '._meta[] | .[$k3s_worker].hostname')
         kubectl label node ${hostname} node-role.kubernetes.io/worker=worker
-        sleep 5
     done
 }
 
@@ -107,5 +109,6 @@ ks3WorkerNodes
 installHelm
 installFlux
 
+sleep 5
 message "All done!"
 kubectl get nodes -o=wide

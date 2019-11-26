@@ -44,59 +44,47 @@
   until: apt_install_common is success
 
 #
-# Networking
+# Filesystem
 #
 
-# # See: https://github.com/kubernetes/kubernetes/issues/71305
-# - name: Use iptables-legacy instead of nftables.
-#   alternatives:
-#     name: '{{ item.name }}'
-#     path: '{{ item.path }}'
-#   with_items:
-#     - name: iptables
-#       path: /usr/sbin/iptables-legacy
-#     - name: ip6tables
-#       path: /usr/sbin/ip6tables-legacy
+# - name: Create a ext4 filesystem on /dev/sda
+#   filesystem:
+#     fstype: ext4
+#     dev: /dev/sda
 
-# - name: Add the br_netfilter module
-#   modprobe:
-#     name: br_netfilter
+# - name: Create Data Directory
+#   file:
+#     path: /data
+#     state: directory
+
+# - name: Create Docker Data Directory
+#   file:
+#     path: /data/docker
+#     state: directory
+
+# - name: Create k3s Data Directory
+#   file:
+#     path: /data/k3s
+#     state: directory
+
+# - name: Create Local Volume Data Directory
+#   file:
+#     path: /data/app
+#     state: directory
+
+# - name: Mount Data Directory
+#   mount:
+#     path: /data
+#     src: /dev/sda
+#     fstype: ext4
+#     opts: rw,defaults
 #     state: present
-
-# - name: Load br_netfilter module at boot
-#   template:
-#     src: br_netfilter.conf
-#     dest: /etc/modules-load.d/br_netfilter.conf
-
-# - name: Configure network bridge
-#   sysctl:
-#     name: net.bridge.bridge-nf-call-iptables
-#     value: "1"
-#     state: absent
-
-# - name: Disable IPv6 at boot
-#   lineinfile:
-#     path: /boot/cmdline.txt
-#     backrefs: True
-#     regexp: '(^.+rootwait(\s+(?!cgroup_enable=cpuset cgroup_enable=memory)[\w=/\-\.]+)*)\s*$'
-#     line: '\1 ipv6.disable=1'
-#     state: present
-
-# - name: Disable IPv6 with sysctl
-#   sysctl: 
-#     name: "{{ item }}"
-#     value: "1"
-#     state: present
-#   with_items:
-#     - net.ipv6.conf.all.disable_ipv6
-#     - net.ipv6.conf.default.disable_ipv6
-#     - net.ipv6.conf.lo.disable_ipv6
 
 #
 # Docker
 #
 
-# k3s uses containerd
+# k3s uses Containerd
 - name: Disable Docker
   systemd:
     name: docker

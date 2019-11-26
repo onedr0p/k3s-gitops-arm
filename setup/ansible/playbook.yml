@@ -35,7 +35,7 @@
       until: apt_update is success
 
     # Upgrades screw up DNS, reboot and wait for the RPis to come back
-    - name: Reboot the server and wait for it to come back up.
+    - name: Reboot the servers and wait for them to come back up
       reboot:
 
   tasks:

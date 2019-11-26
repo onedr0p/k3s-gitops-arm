@@ -25,10 +25,15 @@ users:
     primary-group: users
     shell: /bin/bash
     sudo: ALL=(ALL) NOPASSWD:ALL
-    groups: users,docker,video
+    groups: users,docker
     ssh_import_id: None
-    ssh_pwauth: no
+    ## To enable SSH password log in
+    ## mkpasswd --method=SHA-512 --rounds=4096
+    # passwd: ""
+    # lock_passwd: false
+    # ssh_pwauth: yes
     lock_passwd: true
+    ssh_pwauth: no
     ssh_authorized_keys:
       - "ssh-rsa ..."
 
