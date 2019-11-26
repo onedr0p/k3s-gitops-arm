@@ -74,7 +74,7 @@ Software requirements for this tutorial:
 
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
-> See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup/secrets](setup/secrets) folder.
+> See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup](setup) folder.
 
 ## Opinionated RPi hardware
 
