@@ -36,66 +36,42 @@ Software requirements for this tutorial:
 |IP|Function|
 |---|---|
 |192.168.1.1|Router (USG)|
-|192.168.1.15|DNS Server running PiHole|
-|192.168.42.1/27|k3s cluster CIDR, VLAN 42|
+|192.168.1.15|Dedicated RPi running PiHole|
+|192.168.42.1/24|k3s cluster CIDR, VLAN 42|
 |192.168.42.23|k3s master (pik3s00)|
 |192.168.42.24|k3s worker (pik3s01)|
 |192.168.42.25|k3s worker (pik3s02)|
 |192.168.42.26|k3s worker (pik3s03)|
 
-## 1. UniFi Security Gateway / MetalLB
+## 1. Flash SDCard with HypriotOS
 
-### MetalLB w/ USG and using BGP load balancing
+[HypriotOS](https://blog.hypriot.com/) is a small Operating System for the RPi, and with the help of [cloud-config](https://cloudinit.readthedocs.io/en/latest/topics/examples.html) it really makes getting your RPis online quickly and securely.
 
-According to [MetalLBs wesite](https://metallb.universe.tf/concepts/bgp/):
+See [hypriotos.md](docs/hypriotos.md) and review the files in the [setup/hypriotos](setup/hypriotos) folder.
 
-> In BGP mode, each node in your cluster establishes a BGP peering session with your network routers, and uses that peering session to advertise the IPs of external cluster services.
+## 2. Provision RPis with Ansible
 
-Moreover:
+[Ansible](https://www.ansible.com) is a great automation tool and here I am using it to provision the RPis.
 
-> Assuming your routers are configured to support multipath, this enables true load-balancing: the routes published by MetalLB are equivalent to each other, except for their nexthop. This means that the routers will use all nexthops together, and load-balance between them.
+See [ansible.md](docs/ansible.md) and review the files in the [setup/ansible](setup/ansible) folder.
 
-BGP load balancing requires setting up a new network with a VLAN for the k3s cluster and altering the USG via the CLI. Afterwards, make sure you also update [metallb.yaml](deployments/kube-system/metallb/metallb.yaml) with the IP addresses you choose.
+## 3. Install k3s on your RPis using k3sup
 
-See [unifi-security-gateway.md](docs/1-unifi-security-gateway.md)
+[k3sup](https://k3sup.dev) is a neat tool provided by [@alexellis](https://github.com/alexellis) that helps get your k3s cluster up and running quick.
 
-### MetalLB w/o BPG
+For manual deployment see [k3sup.md](docs/k3sup.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
-If you want to use MetalLB with an existing network you will need to change [metallb.yaml](deployments/kube-system/metallb/metallb.yaml), see comments in that file.
+## 4. Tiller, Helm and Flux
 
-## 2. HypriotOS
+[Helm](https://v2.helm.sh/) is a package manager for Kubernetes and Tiller is the service that actually communicates with the Kubernetes API that manage our Helm packages. [Flux](https://docs.fluxcd.io/en/stable/) is the [GitOps](https://www.weave.works/technologies/gitops/) tool I've choosen to have this Git Repository manage my clusters state.
 
-This documentation walks thru the steps of flashing a SD Card with HypriotOS
+For manual deployment see [tiller-helm-flux.md](docs/tiller-helm-flux.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
-See [hypriotos.md](docs/2-hypriotos.md)
+## 5. Sealed Secrets
 
-## 3. Ansible
+[Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
-This documentation walks you thru the steps of provisioning your RPis with Ansible.
-
-See [ansible.md](docs/3-ansible.md)
-
-## 4. Install k3s on your RPis
-
-I will be using [k3sup](https://github.com/alexellis/k3sup) in order to provision our k3s cluster.
-
-### Manual
-
-See [k3sup.md](docs/4-k3sup.md)
-
-### Automated
-
-See [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
-
-## 5. Tiller & Helm
-
-### Manual
-
-See [tiller-helm.md](docs/5-tiller-helm.md)
-
-### Automated
-
-See [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
+See [ansible.md](docs/sealed-secrets.md) and review the files in the [setup/secrets](setup/secrets) folder.
 
 ## Opinionated RPi hardware
 
