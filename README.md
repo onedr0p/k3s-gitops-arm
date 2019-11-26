@@ -47,31 +47,31 @@ Software requirements for this tutorial:
 
 [HypriotOS](https://blog.hypriot.com/) is a small Operating System for the RPi, and with the help of [cloud-config](https://cloudinit.readthedocs.io/en/latest/topics/examples.html) it really makes getting your RPis online quickly and securely.
 
-See [hypriotos.md](docs/hypriotos.md) and review the files in the [setup/hypriotos](setup/hypriotos) folder.
+> See [hypriotos.md](docs/hypriotos.md) and review the files in the [setup/hypriotos](setup/hypriotos) folder.
 
 ## 2. Provision RPis with Ansible
 
 [Ansible](https://www.ansible.com) is a great automation tool and here I am using it to provision the RPis.
 
-See [ansible.md](docs/ansible.md) and review the files in the [setup/ansible](setup/ansible) folder.
+> See [ansible.md](docs/ansible.md) and review the files in the [setup/ansible](setup/ansible) folder.
 
 ## 3. Install k3s on your RPis using k3sup
 
 [k3sup](https://k3sup.dev) is a neat tool provided by [@alexellis](https://github.com/alexellis) that helps get your k3s cluster up and running quick.
 
-For manual deployment see [k3sup.md](docs/k3sup.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
+> For manual deployment see [k3sup.md](docs/k3sup.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
 ## 4. Tiller, Helm and Flux
 
 [Helm](https://v2.helm.sh/) is a package manager for Kubernetes and Tiller is the service that actually communicates with the Kubernetes API that manage our Helm packages. [Flux](https://docs.fluxcd.io/en/stable/) is the [GitOps](https://www.weave.works/technologies/gitops/) tool I've choosen to have this Git Repository manage my clusters state.
 
-For manual deployment see [tiller-helm-flux.md](docs/tiller-helm-flux.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
+> For manual deployment see [tiller-helm-flux.md](docs/tiller-helm-flux.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
 ## 5. Sealed Secrets
 
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
-See [ansible.md](docs/sealed-secrets.md) and review the files in the [setup/secrets](setup/secrets) folder.
+> See [ansible.md](docs/sealed-secrets.md) and review the files in the [setup/secrets](setup/secrets) folder.
 
 ## Opinionated RPi hardware
 
