@@ -29,7 +29,7 @@ Software requirements for this tutorial:
 └── ./docker-arm
 ```
 
-## Network topology
+## My network topology
 
 ![image](assets/_k3s.png)
 
@@ -71,7 +71,7 @@ Software requirements for this tutorial:
 
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
-> See [ansible.md](docs/sealed-secrets.md) and review the files in the [setup/secrets](setup/secrets) folder.
+> See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup/secrets](setup/secrets) folder.
 
 ## Opinionated RPi hardware
 
@@ -80,4 +80,4 @@ Software requirements for this tutorial:
 - [AUKEY USB C Cable Short](https://smile.amazon.com/gp/product/B0746C244X/ref=ppx_yo_dt_b_asin_title_o06_s00?ie=UTF8&psc=1)
 - [Cablecc Mini Size 5Gbps Super Speed USB 3.0 to Micro SD SDXC TF Card Reader Adapter](https://smile.amazon.com/gp/product/B01787LD3K/ref=ppx_yo_dt_b_asin_title_o08_s00?ie=UTF8&psc=1)
 - [Samsung MUF-256AB/AM FIT Plus 256GB - 300MB/s USB 3.1 Flash Drive](https://smile.amazon.com/gp/product/B07D7Q41PM/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
-- [Vilros Raspberry Pi 4 Heavy Duty Aluminum Alloy Pi Cooling Case](https://smile.amazon.com/gp/product/B07XVPH79R/ref=ppx_yo_dt_b_asin_title_o00_s01?ie=UTF8&psc=1) or [Flirc Raspberry Pi 4 Case](https://smile.amazon.com/Flirc-Raspberry-Pi-Case-Silver/dp/B07WG4DW52/ref=sr_1_3)
+- [Argon NEO Raspberry Pi 4 Case](https://www.argon40.com/argon-neo-raspberry-pi-4-case.html) and/or [iUniker Raspberry Pi 4 Cluster Case,](https://smile.amazon.com/gp/product/B07CTG5N3V/ref=ppx_yo_dt_b_asin_title_o03_s00?ie=UTF8&psc=1)
