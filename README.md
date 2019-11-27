@@ -10,6 +10,8 @@ Hardware requirements for this tutorial:
 
 Software requirements for this tutorial:
 
+> Note: I use the fish shell for a lot of my commands. Some will work in Bash but others will not, see [here](docs/fish-shell.md) for more information.
+
 - [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [hypriot/flash](https://github.com/hypriot/flash)
