@@ -30,7 +30,7 @@ Software requirements for this tutorial:
 │   │   # Flash the SDCard with HypriotOS
 │   └─ ./hypriotos
 │   # Build flux, helm-operator, and velero for arm devices
-├── ./docker-arm
+├── ./docker
 │   # Documentation
 └── ./docs
 ```
