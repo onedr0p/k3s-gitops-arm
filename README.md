@@ -25,9 +25,10 @@ Software requirements for this tutorial:
 ├── ./deployments
 │   # Initial setup of the cluster
 ├── ./setup
+│   │   # Ansible playbook to run after the RPis have been flashed
 │   ├── ./ansible
-│   ├── ./hypriotos
-│   └── ./secrets
+│   │   # Flash the SDCard with HypriotOS
+│   └─ ./hypriotos
 │   # Build flux, helm-operator, and velero for arm devices
 ├── ./docker-arm
 │   # Documentation
