@@ -19,7 +19,7 @@ spec:
     version: 1.25.0
   values:
     controller:
-      replicaCount: 3
+      replicaCount: 2
       image:
         repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller-arm
         tag: 0.26.1
