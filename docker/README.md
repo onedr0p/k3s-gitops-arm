@@ -34,10 +34,10 @@ docker build -f Dockerfile \
     --build-arg ARCH_VERSION="7" \
     --build-arg KUBECTL_VERSION="v1.14.7" \
     --build-arg HELM_OPERATOR_VERSION="v1.0.0-rc4" \
-    -t onedr0p/helm-operator:1.0.0-rc4 \
+    -t onedr0p/helm-operator:1.0.0-rc4-arm \
     -t onedr0p/helm-operator:latest-arm .
 
-docker push onedr0p/helm-operator:1.0.0-rc4
+docker push onedr0p/helm-operator:1.0.0-rc4-arm
 docker push onedr0p/helm-operator:latest-arm
 ```
 
@@ -46,7 +46,7 @@ docker push onedr0p/helm-operator:latest-arm
 ```bash
 cd velero
 
-docker build --no-cache -f Dockerfile \
+docker build -f Dockerfile \
     --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
     --build-arg ARCH="arm" \
     --build-arg RESTIC_VERSION="0.9.5" \

@@ -4,7 +4,7 @@ git:
     secretName: flux-git-deploy
 image:
   repository: onedr0p/helm-operator
-  tag: latest-arm32
+  tag: 1.0.0-rc4-arm
   pullPolicy: Always
 chartsSyncInterval: "5m"
 statusUpdateInterval: "5m"

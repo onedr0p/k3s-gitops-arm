@@ -6,7 +6,7 @@ git:
   path: deployments
 image:
   repository: onedr0p/flux
-  tag: latest-arm32
+  tag: 1.16.0-arm
   pullPolicy: Always
 registry:
   rps: 1
