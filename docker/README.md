@@ -12,12 +12,14 @@ docker build --no-cache -f Dockerfile \
     --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
     --build-arg ARCH="arm" \
     --build-arg ARCH_VERSION="7" \
-    --build-arg FLUX_VERSION="1.15.0" \
+    --build-arg FLUX_VERSION="1.16.0" \
     --build-arg KUBECTL_VERSION="v1.14.7" \
     --build-arg KUSTOMIZE_VERSION="v3.2.0" \
-    -t onedr0p/flux:latest-arm32 .
+    -t onedr0p/flux:1.16.0-arm \
+    -t onedr0p/flux:latest-arm .
 
-docker push onedr0p/flux:latest-arm32
+docker push onedr0p/flux:1.16.0-arm
+docker push onedr0p/flux:latest-arm
 ```
 
 ## Helm Operator
@@ -25,29 +27,18 @@ docker push onedr0p/flux:latest-arm32
 ```bash
 cd helm-operator
 
-# arm
 docker build --no-cache -f Dockerfile \
     --build-arg ALPINE_BUILD_IMAGE="arm32v7/golang:1.12-alpine" \
     --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
     --build-arg ARCH="arm" \
     --build-arg ARCH_VERSION="7" \
     --build-arg KUBECTL_VERSION="v1.14.7" \
-    --build-arg HELM_OPERATOR_VERSION="v1.0.0-rc3" \
-    -t onedr0p/helm-operator:latest-arm32 .
+    --build-arg HELM_OPERATOR_VERSION="v1.0.0-rc4" \
+    -t onedr0p/helm-operator:1.0.0-rc4 \
+    -t onedr0p/helm-operator:latest-arm .
 
-docker push onedr0p/helm-operator:latest-arm32
-
-# arm64
-docker build --no-cache -f Dockerfile \
-    --build-arg ALPINE_BUILD_IMAGE="arm64v8/golang:1.12-alpine" \
-    --build-arg ALPINE_IMAGE="arm64v8/alpine:3.10" \
-    --build-arg ARCH="arm64" \
-    --build-arg ARCH_VERSION="" \
-    --build-arg KUBECTL_VERSION="v1.14.7" \
-    --build-arg HELM_OPERATOR_VERSION="v1.0.0-rc3" \
-    -t onedr0p/helm-operator:latest-arm64 .
-
-docker push onedr0p/helm-operator:latest-arm64
+docker push onedr0p/helm-operator:1.0.0-rc4
+docker push onedr0p/helm-operator:latest-arm
 ```
 
 ## Velero
@@ -55,7 +46,6 @@ docker push onedr0p/helm-operator:latest-arm64
 ```bash
 cd velero
 
-# arm
 docker build --no-cache -f Dockerfile \
     --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
     --build-arg ARCH="arm" \
@@ -64,14 +54,4 @@ docker build --no-cache -f Dockerfile \
     -t onedr0p/velero:latest-arm32 .
 
 docker push onedr0p/velero:latest-arm32
-
-# arm64
-docker build --no-cache -f Dockerfile \
-    --build-arg ALPINE_IMAGE="arm64v8/alpine:3.10" \
-    --build-arg ARCH="arm64" \
-    --build-arg RESTIC_VERSION="0.9.5" \
-    --build-arg VELERO_VERSION="v1.2.0" \
-    -t onedr0p/velero:latest-arm64 .
-
-docker push onedr0p/velero:latest-arm64
 ```

@@ -29,7 +29,7 @@ RUN apk add --no-cache openssh-client 'git>=2.12.0' 'gnutls>=3.6.7' gnupg gawk s
 
 RUN curl -k -sSfL -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/${ARCH}/kubectl
 
-RUN curl -k -sSfL -o /tmp/helm-v2.14.3-linux-${ARCH}.tar.gz https://get.helm.sh/helm-v2.14.3-linux-${ARCH}.tar.gz \
+RUN curl -k -sSfL -o /tmp/helm-v2.14.3-linux-${ARCH}.tar.gz https://get.helm.sh/helm-v2.16.1-linux-${ARCH}.tar.gz \
     && tar -xvf /tmp/helm-v2.14.3-linux-${ARCH}.tar.gz -C /tmp \
     && mv /tmp/linux-${ARCH}/helm /usr/local/bin/helm \
     && chmod +x /usr/local/bin/helm \
