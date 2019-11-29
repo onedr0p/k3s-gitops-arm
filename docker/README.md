@@ -7,7 +7,7 @@
 ```bash
 cd flux
 
-docker build --no-cache -f Dockerfile \
+docker build -f Dockerfile \
     --build-arg ALPINE_BUILD_IMAGE="arm32v7/golang:1.12-alpine" \
     --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
     --build-arg ARCH="arm" \
@@ -27,7 +27,7 @@ docker push onedr0p/flux:latest-arm
 ```bash
 cd helm-operator
 
-docker build --no-cache -f Dockerfile \
+docker build -f Dockerfile \
     --build-arg ALPINE_BUILD_IMAGE="arm32v7/golang:1.12-alpine" \
     --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
     --build-arg ARCH="arm" \
@@ -51,7 +51,9 @@ docker build --no-cache -f Dockerfile \
     --build-arg ARCH="arm" \
     --build-arg RESTIC_VERSION="0.9.5" \
     --build-arg VELERO_VERSION="v1.2.0" \
-    -t onedr0p/velero:latest-arm32 .
+    -t onedr0p/velero:1.2.0-arm \
+    -t onedr0p/velero:latest-arm .
 
-docker push onedr0p/velero:latest-arm32
+docker push onedr0p/velero:1.2.0-arm
+docker push onedr0p/velero:latest-arm
 ```
