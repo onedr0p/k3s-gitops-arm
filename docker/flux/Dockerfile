@@ -32,11 +32,11 @@ RUN apk add --no-cache openssh-client 'git>=2.12.0' 'gnutls>=3.6.7' gnupg gawk s
     && apk add --no-cache -X http://dl-cdn.alpinelinux.org/alpine/edge/testing git-secret
 
 RUN curl -L -o /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/${ARCH}/kubectl
+RUN curl -L -o /usr/local/bin/fluxctl https://github.com/fluxcd/flux/releases/download/${FLUX_VERSION}/fluxctl_linux_${ARCH}
 
 RUN git clone https://github.com/fluxcd/flux.git .
 RUN git checkout ${FLUX_VERSION}
 RUN go build -o fluxd ./cmd/fluxd
-RUN go build -o fluxctl ./cmd/fluxctl
 
 # build kustomize
 WORKDIR /go/src/github.com/kubernetes-sigs/kustomize
@@ -71,7 +71,7 @@ COPY ./ssh_config /etc/ssh/ssh_config
 COPY --from=build /go/src/github.com/fluxcd/flux/fluxd /usr/local/bin/fluxd
 RUN chmod +x /usr/local/bin/fluxd
 # hadolint ignore=DL3022
-COPY --from=build /go/src/github.com/fluxcd/flux/fluxctl /usr/local/bin/fluxctl
+COPY --from=build /usr/local/bin/fluxctl /usr/local/bin/fluxctl
 RUN chmod +x /usr/local/bin/fluxctl
 # hadolint ignore=DL3022
 COPY --from=build /go/src/github.com/kubernetes-sigs/kustomize /usr/local/bin/kustomize
