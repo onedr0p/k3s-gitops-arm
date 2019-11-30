@@ -36,3 +36,4 @@ spec:
         memory: 500Mi
   valueFileSecrets:
   - name: "minio-helm-values"
+  forceUpgrade: true
