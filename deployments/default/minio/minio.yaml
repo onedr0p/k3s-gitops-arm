@@ -10,9 +10,6 @@ metadata:
     fluxcd.io/tag.chart-image: glob:RELEASE.*
 spec:
   releaseName: minio
-  rollback:
-    enable: true
-    force: true
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: minio
@@ -36,4 +33,3 @@ spec:
         memory: 500Mi
   valueFileSecrets:
   - name: "minio-helm-values"
-  forceUpgrade: true
