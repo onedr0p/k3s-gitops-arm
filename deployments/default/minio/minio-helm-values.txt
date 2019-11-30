@@ -2,6 +2,3 @@ accessKey: "$MINIO_ACCESS_KEY"
 secretKey: "$MINIO_SECRET_KEY"
 ingress:
   hosts: [minio.$DOMAIN]
-  tls:
-  - hosts:
-    - minio.$DOMAIN
