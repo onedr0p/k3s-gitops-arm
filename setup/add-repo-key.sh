@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Credit: billimek@github
 # https://github.com/billimek/k8s-gitops/blob/master/setup/add-repo-key.sh

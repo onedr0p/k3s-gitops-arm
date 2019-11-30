@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export REPO_ROOT=$(git rev-parse --show-toplevel)
 
@@ -9,13 +9,21 @@ need() {
 need "kubeseal"
 need "kubectl"
 need "sed"
+need "envsubst"
 
+if [ "$(uname)" == "Darwin" ]; then
+  set -a
+fi
 . "${REPO_ROOT}/setup/.env"
+if [ "$(uname)" == "Darwin" ]; then
+  set +a
+fi
 
 PUB_CERT="${REPO_ROOT}/setup/pub-cert.pem"
 
 # Helper function to generate secrets
 kseal() {
+  echo "------------------------------------"
   # Get the path and basename of the txt file
   # e.g. "deployments/default/pihole/pihole-helm-values"
   secret="$(dirname "$@")/$(basename -s .txt "$@")"
@@ -30,18 +38,15 @@ kseal() {
   echo "Namespace: ${namespace}"
   # Create secret and put it in the applications deployment folder
   # e.g. "deployments/default/pihole/pihole-helm-values.yaml"
-  envsubst < "$@" > values.yaml \
+  envsubst < "$@" | tee values.yaml \
     | \
   kubectl -n "${namespace}" create secret generic "${secret_name}" \
     --from-file=values.yaml --dry-run -o json \
     | \
   kubeseal --format=yaml --cert="$PUB_CERT" \
-    > \
-      "${secret}.yaml"
+    > "${secret}.yaml"
   # Clean up temp file
   rm values.yaml
-
-  echo "Done"
 }
 
 #
