@@ -12,6 +12,7 @@ spec:
   releaseName: minio
   rollback:
     enable: true
+    force: true
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: minio
