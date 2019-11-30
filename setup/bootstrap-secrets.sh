@@ -49,6 +49,7 @@ kseal() {
 #
 
 # kseal "${REPO_ROOT}/deployments/default/pihole/pihole-helm-values.txt"
+kseal "${REPO_ROOT}/deployments/default/minio/minio-helm-values.txt"
 
 #
 # Generic Secrets

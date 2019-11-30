@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: minio-helm-values
+  namespace: default
+spec:
+  encryptedData:
+    values.yaml: AgB2GQG/r/WM8xmMROGHrPPPGcE1nYnJxOdtjbVVtnZpUndFh7+3VpUqJvKUxPBM7TNR7WRewG0IwXi9FTDH54wdjxXbnMFEFw0dxYYNrz45gd7q9JflDSePHzqexgSViCyJkbTURCwinreDQA8tEPj5bBCTQnB7EVqvwlUsvSo8DA4jguzA8hY7DM6H9CjPKCVqPUG/fSFOTWzD6sw02O2Mr0SVXVneR5rwxO51vhWmAxk8t5xNdf903GL7ZG3E3JE8YjEwqeiYNh1cqWD+lBGWyfAaT0GRKm0AP5XAiQ2MVvf2zsJ8DgZX1B1wrySND+uscoDbpQ3ZyeGo3Q9DL56VJj2YxCiZryGwUmN4Iy/lZJpMa5fR+ZgEfx8Xxh3Pgz1l/NGcRk2tzlQ7rrOVwQk7QE7ACwsnbmdg2CiOfEnVtoKRfnESQhPM34w9TVMfoQDW2jBKiKd+el89UfvMjjhNzBLsdsLJIODp14fQ7Y9eojoOKBqqxDsRnI9VMtOjLJqa2eaj7l4cvUihgvL/wEFQ7IpmzxH8uLP+av1ehGO0A8NnNPKbMZFKSf/Rkp70FDcVamdwrjsb5af1XIX2TwRn6k0dnO86UHFCTmlUlUz7TTw2N8DfwbR/CQFmeFKAZBJ8lx6sEDpBrxeVjkK/x3MOARkBAUumzJFIjycMLkoxuCX3JIilQtroHhYBb6gcK/Y=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: minio-helm-values
+      namespace: default
+status: {}
+
