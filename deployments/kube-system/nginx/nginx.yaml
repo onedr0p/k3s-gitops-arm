@@ -29,6 +29,13 @@ spec:
       service:
         loadBalancerIP: 192.168.42.100
         externalTrafficPolicy: Local
+      metrics:
+        enabled: true
+        serviceMonitor:
+          enabled: true
+          namespace: kube-system
+        prometheusRule:
+          enabled: false
       resources:
         requests:
           memory: 500Mi

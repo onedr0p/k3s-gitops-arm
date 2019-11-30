@@ -13,10 +13,10 @@ need "envsubst"
 
 if [ "$(uname)" == "Darwin" ]; then
   set -a
-fi
-. "${REPO_ROOT}/setup/.env"
-if [ "$(uname)" == "Darwin" ]; then
+  . "${REPO_ROOT}/setup/.env"
   set +a
+else
+  . "${REPO_ROOT}/setup/.env"
 fi
 
 PUB_CERT="${REPO_ROOT}/setup/pub-cert.pem"
