@@ -55,7 +55,7 @@ kseal() {
 
 # kseal "${REPO_ROOT}/deployments/default/pihole/pihole-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/default/minio/minio-helm-values.txt"
-kseal "${REPO_ROOT}/deployments/velero/velero-helm-values.txt"
+kseal "${REPO_ROOT}/deployments/velero/velero/velero-helm-values.txt"
 
 #
 # Generic Secrets

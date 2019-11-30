@@ -7,6 +7,7 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 Hardware requirements for this tutorial:
 
 - 3x RPi4 (recommended 4GB RAM) and at least 32GB SD Cards
+- A NFS server for storing persistent data
 
 Software requirements for this tutorial:
 
@@ -43,6 +44,7 @@ Software requirements for this tutorial:
 |---|---|
 |192.168.1.1|Router (USG)|
 |192.168.1.15|Dedicated RPi running PiHole|
+|192.168.1.170|NFS Server|
 |192.168.42.1/24|k3s cluster CIDR, VLAN 42|
 |192.168.42.23|k3s master (pik3s00)|
 |192.168.42.24|k3s worker (pik3s01)|
