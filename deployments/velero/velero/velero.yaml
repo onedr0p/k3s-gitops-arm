@@ -18,7 +18,6 @@ spec:
     image:
       repository: onedr0p/velero
       tag: 1.2.0-arm
-      pullPolicy: Always
     resources:
       requests:
         memory: 300Mi
