@@ -23,7 +23,7 @@ ENV GO111MODULE=on \
 WORKDIR /go/src/github.com/vmware-tanzu/velero-plugin-for-aws
 
 # hadolint ignore=DL3018
-RUN apk add --no-cache url ca-certificates
+RUN apk add --no-cache curl ca-certificates
 RUN git clone https://github.com/vmware-tanzu/velero-plugin-for-aws.git .
 RUN git checkout ${VELERO_AWS_PLUGIN_VERSION}
 RUN go build -o velero-plugin-for-aws ./velero-plugin-for-aws
