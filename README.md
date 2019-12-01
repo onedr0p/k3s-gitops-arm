@@ -1,10 +1,8 @@
 # k3s-gitops-arm
 
-Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state.
+Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state. I would like to give a shout-out to [k8s-gitops](https://github.com/billimek/k8s-gitops) the big brother of this repo created by [@billimek](https://github.com/billimek).
 
 > Note: A lot of files in this project have **@CHANGEME** comments, these are things that are specific to my set up that you may need to change.
-
-I would like to give a shout-out to [k8s-gitops](https://github.com/billimek/k8s-gitops) the big brother of this repo created by [@billimek](https://github.com/billimek).
 
 * * *
 
