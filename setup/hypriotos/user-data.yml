@@ -1,5 +1,8 @@
 #cloud-config
 
+#
+# @CHANGEME - Update hostname
+#
 hostname: pik3s01
 apt_preserve_sources_list: true
 manage_etc_hosts: true
@@ -10,6 +13,9 @@ growpart:
     devices: ["/"]
     ignore_growroot_disabled: false
 
+#
+# @CHANGEME - Update locale and timezome
+#
 locale: "en_US.UTF-8"
 timezone: "America/New_York"
 
@@ -20,6 +26,9 @@ packages:
   - ntp
   - libnss-mdns
 
+#
+# @CHANGEME - Update user and ssh_authorized_keys
+#
 users:
   - name: pi
     primary-group: users
@@ -37,6 +46,9 @@ users:
     ssh_authorized_keys:
       - "ssh-rsa ..."
 
+#
+# @CHANGEME - Update ip_address, routers and domain_name_servers
+#
 write_files:
   - content: |
       persistent
