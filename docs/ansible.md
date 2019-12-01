@@ -4,8 +4,7 @@ Current tasks of Ansible:
 
 - Upgrade all packages
 - Install some common packages (e.g. htop, jq, dnsutils)
-- Update minor networking configuration
-- Add Docker `daemon.json` with some few custom changes
+- Install neofetch and add some customizations
 - Install [azlux/log2ram](https://github.com/azlux/log2ram)
 - And finally reboots the RPis
 
@@ -14,7 +13,9 @@ Current tasks of Ansible:
 ## Copy and update inventory and vars.yml
 
 ```bash
+# Update inventory with your RPi IP addresses and hostnames
 cp setup/ansible/inventory.example setup/ansible/inventory
+# Update ansible_user to the user you used when you flashed HypriotOS
 cp setup/ansible/vars.example.yml setup/ansible/vars.yml
 ```
 

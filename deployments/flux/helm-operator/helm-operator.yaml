@@ -10,6 +10,9 @@ spec:
     repository: https://charts.fluxcd.io/
     name: helm-operator
     version: 0.2.1
+  #
+  # @CHANGEME - Update url to the path to flux-helm-operator-values.yaml in your repository
+  #
   valuesFrom:
   - externalSourceRef:
       url: https://raw.githubusercontent.com/onedr0p/homelab-gitops/master/deployments/flux/helm-operator/flux-helm-operator-values.yaml

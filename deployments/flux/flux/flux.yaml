@@ -13,6 +13,9 @@ spec:
     repository: https://charts.fluxcd.io/
     name: flux
     version: 0.15.0
+  #
+  # @CHANGEME - Update url to the path to flux-values.yaml in your repository
+  #
   valuesFrom:
   - externalSourceRef:
       url: https://raw.githubusercontent.com/onedr0p/homelab-gitops/master/deployments/flux/flux/flux-values.yaml

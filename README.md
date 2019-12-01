@@ -1,6 +1,8 @@
-# homelab-gitops (ARM Edition)
+# k3s-gitops-arm
 
 Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state.
+
+> Note: A lot of files in this project have **@CHANGEME** comments, these are things that are specific to my set up that you may need to change.
 
 ## Hardware and software
 
@@ -80,6 +82,16 @@ Software requirements for this tutorial:
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
 > See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup](setup) folder.
+
+## 6. Minio and Velero
+
+[MinIO](https://min.io/) is pioneering high performance object storage, think of this as self-hosted AWS S3.
+
+[Velero](https://velero.io/) is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes.
+
+> For manual deployment see [minio-velero.md](docs/minio-velero.md)
+
+* * *
 
 ## Opinionated RPi hardware
 

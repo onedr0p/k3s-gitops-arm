@@ -13,6 +13,9 @@ spec:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: metallb
     version: 0.12.0
+  #
+  # @CHANGEME - Update addresses to the IP range you want MetalLb to utilize
+  #
   values:
     configInline:
       address-pools:
