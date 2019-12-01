@@ -4,6 +4,8 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 > Note: A lot of files in this project have **@CHANGEME** comments, these are things that are specific to my set up that you may need to change.
 
+I would like to give a shout-out to [k8s-gitops](https://github.com/billimek/k8s-gitops) the big brother of this repo created by [@billimek](https://github.com/billimek).
+
 ## Hardware and software
 
 Hardware requirements for this tutorial:
@@ -83,7 +85,13 @@ Software requirements for this tutorial:
 
 > See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup](setup) folder.
 
-## 6. Minio and Velero
+## 6. NginX
+
+I opted to let a HAProxy server which lives outside of my cluster handle SSL and domain routing since I have multiple domains pointing to my Homes IP address. Since every domain doesn't exactly point to my k3s cluster I found this the easy way to have any number of domains I own point to different servers in my house. See [assets/_k3s.png](assets/_k3s.png) for my network topology. This setup is documented in [docs/haproxy-cloudflare.md](docs/haproxy-cloudflare.md) if anyone is interested.
+
+The path I have chosen above doesn't exactly fit everyones use-case so if you would like SSL terminated at NginX I would take a look at [this repo](https://github.com/billimek/k8s-gitops) and see how it's made possible with [cert-manager](https://cert-manager.io/docs/).
+
+## 7. Minio and Velero
 
 [MinIO](https://min.io/) is pioneering high performance object storage, think of this as self-hosted AWS S3.
 

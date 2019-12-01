@@ -1,9 +1,5 @@
 # Minio and Velero
 
-[MinIO](https://min.io/) is pioneering high performance object storage, think of this as self-hosted AWS S3.
-
-[Velero](https://velero.io/) is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes.
-
 ## MinIO
 
 > Note: Review repository for any @CHANGEME comments
