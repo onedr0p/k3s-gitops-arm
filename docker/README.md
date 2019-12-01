@@ -57,3 +57,21 @@ docker build -f Dockerfile \
 docker push onedr0p/velero:1.2.0-arm
 docker push onedr0p/velero:latest-arm
 ```
+
+## Velero AWS Plug-in
+
+```bash
+cd velero-plugin-for-aws
+
+docker build -f Dockerfile \
+    --build-arg ALPINE_BUILD_IMAGE="arm32v7/golang:1.12-alpine" \
+    --build-arg ALPINE_IMAGE="arm32v7/alpine:3.10" \
+    --build-arg ARCH="arm" \
+    --build-arg ARCH_VERSION="7" \
+    --build-arg VELERO_AWS_PLUGIN_VERSION="v1.0.0" \
+    -t onedr0p/velero-plugin-for-aws:1.0.0-arm \
+    -t onedr0p/velero-plugin-for-aws:latest-arm .
+
+docker push onedr0p/velero-plugin-for-aws:1.0.0-arm
+docker push onedr0p/velero-plugin-for-aws:latest-arm
+```
