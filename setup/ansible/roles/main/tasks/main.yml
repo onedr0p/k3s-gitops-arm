@@ -18,6 +18,7 @@
       - iputils-ping
       - jq
       - less
+      - neofetch
       - net-tools
       - nfs-common
       - nmap
@@ -42,6 +43,63 @@
   register: apt_install_common
   retries: 5
   until: apt_install_common is success
+
+#
+# User
+#
+
+- name: Remove motd
+  command: update-rc.d motd remove
+
+- name: Quite the login prompt
+  file:
+    dest: "/home/{{ ansible_user }}/.hushlogin"
+    state: touch
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
+    mode: 0775
+
+- name: Create config directory
+  file:
+    path: "/home/{{ ansible_user }}/.config"
+    state: directory
+    recurse: yes
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
+    mode: 0775
+
+- name: Create neofetch directory
+  file:
+    path: "/home/{{ ansible_user }}/.config/neofetch"
+    state: directory
+    recurse: yes
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
+    mode: 0775
+
+- name: Add custom neofetch config
+  template:
+    src: "templates/neofetch.conf.j2"
+    dest: "/home/{{ ansible_user }}/.config/neofetch/config.conf"
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
+    mode: 0775
+
+- name: Add small neofetch raspberry pi logo
+  template:
+    src: "templates/rpi-small.j2"
+    dest: "/home/{{ ansible_user }}/.config/neofetch/rpi-small"
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
+    mode: 0775
+
+- name: Enable neofetch on login
+  copy:
+    content: "neofetch --source /home/{{ ansible_user }}/.config/neofetch/rpi-small"
+    dest: "/home/{{ ansible_user }}/.bash_profile"
+    group: "{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
+    mode: 0775
 
 #
 # Filesystem
@@ -84,12 +142,6 @@
 # Docker
 #
 
-# k3s uses Containerd
-- name: Disable Docker
-  systemd:
-    name: docker
-    enabled: no
-
 # - name: Add Docker configuration file
 #   template:
 #     src: daemon.json.j2
@@ -100,6 +152,12 @@
 #     path: /etc/docker/daemon.json
 #     regexp: "'"
 #     replace: "\""
+
+# k3s uses Containerd
+- name: Disable Docker
+  systemd:
+    name: docker
+    enabled: no
 
 #
 # unattended-upgrades
