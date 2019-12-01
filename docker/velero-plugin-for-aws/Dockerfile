@@ -26,7 +26,7 @@ WORKDIR /go/src/github.com/vmware-tanzu/velero-plugin-for-aws
 RUN apk add --no-cache curl ca-certificates git
 RUN git clone https://github.com/vmware-tanzu/velero-plugin-for-aws.git .
 RUN git checkout ${VELERO_AWS_PLUGIN_VERSION}
-RUN go build -o velero-plugin-for-aws ./velero-plugin-for-aws
+RUN go build -o /go/bin/velero-plugin-for-aws ./velero-plugin-for-aws
 
 #
 # Deploy
@@ -35,13 +35,12 @@ RUN go build -o velero-plugin-for-aws ./velero-plugin-for-aws
 # hadolint ignore=DL3006
 FROM ${ALPINE_IMAGE}
 
-WORKDIR /plugins
-
 # hadolint ignore=DL3018
 RUN apk add --no-cache bash ca-certificates
+RUN mkdir /plugins
 
 # hadolint ignore=DL3022
-COPY --from=build /go/src/github.com/vmware-tanzu/velero-plugin-for-aws/velero-plugin-for-aws /plugins/velero-plugin-for-aws
+COPY --from=build /go/bin/velero-plugin-for-aws /plugins/velero-plugin-for-aws
 RUN chmod +x /plugins/velero-plugin-for-aws
 
 ENTRYPOINT ["/bin/bash", "-c", "cp /plugins/* /target/."]
