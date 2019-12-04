@@ -40,7 +40,7 @@ k3sMasterNode() {
     k3sup install --ip "${K3S_MASTER}" \
         --k3s-version "${K3S_VERSION}" \
         --user "${USER}" \
-        --k3s-extra-args "--no-deploy servicelb --no-deploy traefik"
+        --k3s-extra-args "--no-deploy servicelb --no-deploy traefik --docker --default-local-storage-path /k3s-local-storage"
     mkdir -p ~/.kube
     mv ./kubeconfig ~/.kube/config
     sleep 10
@@ -52,8 +52,8 @@ ks3WorkerNodes() {
         k3sup join --ip "${worker}" \
             --server-ip "${K3S_MASTER}" \
             --k3s-version "${K3S_VERSION}" \
-            --user "${USER}"
-            # --k3s-extra-args "--docker"
+            --user "${USER}" \
+            --k3s-extra-args "--docker"
             ## Does not work :(
             #--k3s-extra-args "--node-label role.node.kubernetes.io/worker=worker"
 

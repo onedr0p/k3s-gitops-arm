@@ -1,12 +1,22 @@
 # Ansible
 
-Current tasks of Ansible:
+Current roles of Ansible, adjust as you see fit.
 
-- Upgrade all packages
-- Install some common packages (e.g. htop, jq, dnsutils)
-- Install neofetch and add some customizations
-- Install [azlux/log2ram](https://github.com/azlux/log2ram)
-- And finally reboots the RPis
+> Note: This is strictly for my set up and likely won't work 100% for you.
+
+```bash
+roles
+│   # Configure Docker
+├── docker
+│   # Install log2ram
+├── log2ram
+│   # Upgrade all packages, install packages
+├── packages
+│   # Wipe the USB Thumb drive and format with ext4 filesystem
+├── usbdrive
+│   # Install and configure Neofetch
+└── user
+```
 
 > All these commands are run from your computer, not the RPi.
 
@@ -21,7 +31,7 @@ cp setup/ansible/vars.example.yml setup/ansible/vars.yml
 
 ## 1. Ensure RPis are online
 
-> Note: prefix with watch command to view realtime
+> Note: Prefix with watch command to view realtime
 
 ```bash
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \

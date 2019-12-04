@@ -1,0 +1,90 @@
+---
+
+# # Enable this if you run into issues updating
+# - name: Reset dpkg
+#   command: dpkg --configure -a
+
+- name: Upgrade system
+  apt:
+    upgrade: dist
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_upgrade
+  retries: 5
+  until: apt_upgrade is success
+
+- name: Upgrade all packages to the latest version
+  apt:
+    name: "*"
+    state: latest
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_update
+  retries: 5
+  until: apt_update is success
+
+- name: Install Common Packages
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - dnsutils
+      - git
+      - gnupg2
+      - hdparm
+      - htop
+      - iotop
+      - iperf3
+      - iputils-ping
+      - jq
+      - less
+      - neofetch
+      - net-tools
+      - nfs-common
+      - nmap
+      - psmisc
+      - python3
+      - python3-pip
+      - rsync
+      - software-properties-common
+      - sqlite3
+      - tcpdump
+      - traceroute
+      - tree
+      - unattended-upgrades
+      - unzip
+      - wget
+      - zip
+    install_recommends: no
+    update_cache: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_install_common
+  retries: 5
+  until: apt_install_common is success
+
+- name: Remove unneeded apt stuff
+  apt:
+    autoremove: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+
+- name: Copy unattended-upgrades configuration files in place
+  template:
+    src: "templates/{{ item }}.j2"
+    dest: "/etc/apt/apt.conf.d/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - 10periodic
+    - 50unattended-upgrades
+
+# Upgrades may screw up DNS, reboot and wait for the RPis to come back
+- name: Reboot the servers and wait for them to come back up
+  reboot:

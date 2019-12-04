@@ -13,7 +13,7 @@ k3sup --help
 k3sup install --ip 192.168.42.23 \
     --k3s-version v1.0.0 \
     --user devin \
-    --k3s-extra-args '--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server'
+    --k3s-extra-args '--no-deploy servicelb --no-deploy traefik --docker --default-local-storage-path /k3s-local-storage'
 
 # Make kubeconfig accessable globally
 mkdir ~/.kube
@@ -23,17 +23,20 @@ mv ./kubeconfig ~/.kube/config
 k3sup join --ip 192.168.42.24 \
     --server-ip 192.168.42.23 \
     --k3s-version v1.0.0 \
-    --user devin
+    --user devin \
+    --k3s-extra-args '--docker'
 
 k3sup join --ip 192.168.42.25 \
     --server-ip 192.168.42.23 \
     --k3s-version v1.0.0 \
-    --user devin
+    --user devin \
+    --k3s-extra-args '--docker'
 
 k3sup join --ip 192.168.42.26 \
     --server-ip 192.168.42.23 \
     --k3s-version v1.0.0 \
-    --user devin
+    --user devin \
+    --k3s-extra-args '--docker'
 
 # You should be able to see all your nodes
 kubectl get nodes
