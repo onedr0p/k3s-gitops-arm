@@ -7,6 +7,9 @@
 # Ensure you have the right IPs and hostnames in the right section
 #
 
+#
+# @CHANGEME - Update USER to your RPi SSH user
+#
 USER="devin"
 K3S_VERSION="v1.0.0"
 TILLER_VERSION="v2.14.3-arm"
