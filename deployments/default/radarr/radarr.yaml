@@ -41,7 +41,7 @@ spec:
         accessMode: ReadWriteMany
       movies:
         enabled: true
-        existingClaim: nfs-media-pv
+        existingClaim: nfs-media-pvc
         subPath: Library
         accessMode: ReadWriteMany
     resources:

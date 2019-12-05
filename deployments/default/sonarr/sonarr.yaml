@@ -42,7 +42,7 @@ spec:
         accessMode: ReadWriteMany
       tv:
         enabled: true
-        existingClaim: nfs-media-pv
+        existingClaim: nfs-media-pvc
         subPath: Library
         accessMode: ReadWriteMany
     resources:
