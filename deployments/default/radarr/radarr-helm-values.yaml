@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: radarr-helm-values
+  namespace: default
+spec:
+  encryptedData:
+    values.yaml: AgBeavT6RKGoE0o3SYH+urkm97TMuEySIVwdHhY2TW5KNK2JWjDP6GNwFyhjhy9ijLH1sRNvksBlNL+VpuatgLgTF4rNrqZNUgkGYszOXu1mXqjwjxb/g2y+xKwUesYaZERGFHzpXlBIh9L1VXj4YGyDltkcwU2nU2G5Z2CfQdRW/6EDeUdN30SzXEgROfU6LL97K7jGc358VJH4XmkqfTP6RktyhtLSm4QgSHWEaQsmD0P/X9OJONzkS1ffOzm4o0csQ22jL04qZUqrEvqbRX8wz3eceAsVB9hCliUwFNvH1vQvfqCU2Ozu2m7oB/MZYif9+4aHnAgONJip2x+8f2eSN8dhIc5PnyiN5kVLx41yhqdgyJ9QXQ4H3BM5/lDN8qZ8CdfZdIJ5MxXbt0CemAepsM3qcQgwjHX9AchyeftTgys4HIYQz80I7N7uL8viww41aSYcSHOCEzMIbw3uPveHR4vKzBiKoXoaQU6RLjxQt8v+cpq0aqq2gF/AgUjuRCDcjqfRHSQANKD7sjMVrvDleg3P2DLF9zfCBzQA9BXwAOoiZA7Fv3Odn52pkSqQN+aRcejb6GCTYvbuUqvcsBjOdWM5d/P7JkLj65jNiyebuJIvd5ewu13V0j7OxScG+syZEf5LSLUuYGmTq4vwGyYcbACMs5W/8/J26SEEQF78WM0yxoIEhF9o2VwCNCNxuE5qOoOL73SGB5NOHe7tTISkkaEeqV47sA+fMShn/tS+m0GjjEnrlwy+yvrttkV24rjGxVM9HY77Ng6HRkKpoUZXOdTYZPaWRcMKMdM6NUrajlrfDqm1okzDYxH0AEc16Qa/RoUCRSPDU1Z8ayW7Hnzt9ZmHtP7O+909vt/U/T7VniBJRPtXly+xEdhOYNwsVRaXewcJiX5l0j/aNJ1AhHTKojAdcQGMZatfgp4I3MlRWNuhO53OU0PVDG5XYUKqwJogb5nIIVvPI5k3fLMbhPe1Md+Dlk7iseqzG5jQjaJNgBEqR8CfbPbu5np6qSRQ5y/i
+  template:
+    metadata:
+      creationTimestamp: null
+      name: radarr-helm-values
+      namespace: default
+status: {}
+

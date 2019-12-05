@@ -55,6 +55,7 @@ kseal() {
 
 kseal "${REPO_ROOT}/deployments/default/minio/minio-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/velero/velero/velero-helm-values.txt"
+kseal "${REPO_ROOT}/deployments/default/radarr/radarr-helm-values.txt"
 
 #
 # Generic Secrets
@@ -72,21 +73,21 @@ kubectl create secret generic cloudflare-ddns \
 kubeseal --format=yaml --cert="$PUB_CERT" \
     > "$REPO_ROOT"/deployments/default/cloudflare-ddns/cloudflare-ddns-values.yaml
 
-# # NginX Basic Auth - default Namespace
-# kubectl create secret generic nginx-basic-auth \
-#   --from-literal=auth="$NGINX_BASIC_AUTH" \
-#   --namespace default --dry-run -o json \
-#   | \
-# kubeseal --format=yaml --cert="$PUB_CERT" \
-#     > "$REPO_ROOT"/deployments/kube-system/nginx/sealed-basic-auth-devin.yaml
+# NginX Basic Auth - default Namespace
+kubectl create secret generic nginx-basic-auth \
+  --from-literal=auth="$NGINX_BASIC_AUTH" \
+  --namespace default --dry-run -o json \
+  | \
+kubeseal --format=yaml --cert="$PUB_CERT" \
+    > "$REPO_ROOT"/deployments/kube-system/nginx/nginx-basic-auth-default.yaml
 
-# # NginX Basic Auth - kube-system Namespace
-# kubectl create secret generic nginx-basic-auth \
-#   --from-literal=auth="$NGINX_BASIC_AUTH" \
-#   --namespace kube-system --dry-run -o json \
-#   | \
-# kubeseal --format=yaml --cert="$PUB_CERT" \
-#     > "$REPO_ROOT"/deployments/kube-system/nginx/sealed-basic-auth-kube-system.yaml
+# NginX Basic Auth - kube-system Namespace
+kubectl create secret generic nginx-basic-auth \
+  --from-literal=auth="$NGINX_BASIC_AUTH" \
+  --namespace kube-system --dry-run -o json \
+  | \
+kubeseal --format=yaml --cert="$PUB_CERT" \
+    > "$REPO_ROOT"/deployments/kube-system/nginx/nginx-basic-auth-kube-system.yaml
 
 
 

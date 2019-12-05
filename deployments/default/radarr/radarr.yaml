@@ -1,0 +1,62 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: radarr
+  namespace: default
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: 'glob:arm32v7-v3.*.*.*'
+spec:
+  releaseName: radarr
+  rollback:
+    enable: true
+  chart:
+    repository: https://billimek.com/billimek-charts/
+    name: radarr
+    version: 2.0.8
+  values:
+    image:
+      repository: linuxserver/radarr
+      tag: 'arm32v7-3.0.0.2227-ls37'
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+    timezone: "America/New_York"
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+    persistence:
+      config:
+        enabled: true
+        storageClass: "local-path"
+      downloads:
+        enabled: true
+        existingClaim: nfs-media-pvc
+        subPath: Downloads
+        accessMode: ReadWriteMany
+      movies:
+        enabled: true
+        existingClaim: nfs-media-pvc
+        subPath: Library/Movies
+        accessMode: ReadWriteMany
+    resources:
+      requests:
+        memory: 350Mi
+        cpu: 25m
+      limits:
+        memory: 500Mi
+    #
+    # @CHANGEME - Update the hostname to the node you want this deployed to
+    #
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+              - pik3s01
+  valueFileSecrets:
+  - name: "radarr-helm-values"

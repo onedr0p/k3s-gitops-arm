@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: nginx-basic-auth
+  namespace: default
+spec:
+  encryptedData:
+    auth: AgCqzLX3armHo7+JrZURRaRi/v+g4CTHkjC68uON6OjllZlaLrubi+BRrTuIZKjwDs2+jKpSMncYZg+LQjfKijwU8vG/SU2OjSz4F+fkAFt1nMcRwuf02k2nekzzER/J6bTKbYY7wKgXdwa6UisX3RB4p6YzlxD3IXTOewswd29H20bs1nvRzUMCMjzzZjzr+jkQdo36990LNjbxXdXPuuT7pzRMU8/mmwJFZG3F1lkNnetp1+DkfvW2kvf/nmBVFIo+/Ee5C1uROgfHxHAWHCmf7DVY7DRR3xaSRxQKrvHpKqNUjrXclolcmbC9LVfRjA99Ds3mfQZ7UHOqz0lKTxGX9r/51EN3yrqhmr/f4CABXXA/UsldQ6vwHr3SW7fTMzDEJb5trLPaoPZAsc45wiPnxITKkBLk/O91lM0X6+CngFWVwmNUnnE/g3sPSlEahht6rVeeVfaD3CqsdlKSEL/59ff9ngLmo+4BCXpSCwfXjg/x6C7M3XpevRKWqqgNIijNLlWSG0v+Dq1LguQOl2jOcZTZ1KXh86lLtGwWiR8S0EWjy0hf9odC5T8dQR0xk2lvRtZ3/NXrGt5vUZCQJ+NIsk622/EW+KJpBu8VNjHJvbLnUqillrJNpzOZNWXT3IbTeHt+QRBQrHE8jHn+kl4EzuIkqLEBPVEA91WYfth7OMoYkYJwzD3pOPdcGep6Uqvez0Ulu1KZJCypLs7B/iAEqo/Q
+  template:
+    metadata:
+      creationTimestamp: null
+      name: nginx-basic-auth
+      namespace: default
+status: {}
+
