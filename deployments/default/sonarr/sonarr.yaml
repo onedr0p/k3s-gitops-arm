@@ -2,23 +2,24 @@
 apiVersion: helm.fluxcd.io/v1
 kind: HelmRelease
 metadata:
-  name: radarr
+  name: sonarr
   namespace: default
   annotations:
-    fluxcd.io/automated: "false"
-    fluxcd.io/tag.chart-image: 'glob:arm32v7-v3.*.*.*'
+    fluxcd.io/automated: "true"
+    fluxcd.io/tag.chart-image: 'glob:3.*.*.*-ls*'
 spec:
-  releaseName: radarr
+  releaseName: sonarr
   rollback:
     enable: true
   chart:
     repository: https://billimek.com/billimek-charts/
-    name: radarr
-    version: 2.0.8
+    name: sonarr
+    version: 2.0.7
   values:
     image:
-      repository: linuxserver/radarr
-      tag: "arm32v7-3.0.0.2227-ls37"
+      repository: linuxserver/sonarr
+      tag: "3.0.3.661-ls155"
+      pullPolicy: Always
     timezone: "America/New_York"
     puid: 1000
     pgid: 100
@@ -39,7 +40,7 @@ spec:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
         accessMode: ReadWriteMany
-      movies:
+      tv:
         enabled: true
         existingClaim: nfs-media-library-pvc
         subPath: Library
@@ -63,4 +64,4 @@ spec:
               values:
               - pik3s01
   valueFileSecrets:
-  - name: "radarr-helm-values"
+  - name: "sonarr-helm-values"
