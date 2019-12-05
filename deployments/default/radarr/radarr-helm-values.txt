@@ -3,4 +3,4 @@ ingress:
   annotations:
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: nginx-basic-auth
-    nginx.ingress.kubernetes.io/auth-realm: "Hey fucko Authentication Required"
+    nginx.ingress.kubernetes.io/auth-realm: "Authentication Required"
