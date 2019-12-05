@@ -28,3 +28,11 @@
     fstype: ext4
     opts: rw,defaults
     state: mounted
+
+- name: Change owner and group of local storage directory
+  file:
+    path: /k3s-local-storage
+    group: "users"
+    owner: "{{ ansible_user }}"
+    recurse: yes
+    state: directory

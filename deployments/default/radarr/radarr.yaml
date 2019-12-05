@@ -32,13 +32,12 @@ spec:
         storageClass: "local-path"
       downloads:
         enabled: true
-        existingClaim: nfs-media-pvc
-        subPath: Downloads
+        existingClaim: nfs-media-downloads-pvc
         accessMode: ReadWriteMany
       movies:
         enabled: true
         existingClaim: nfs-media-pvc
-        subPath: Library/Movies
+        subPath: Movies
         accessMode: ReadWriteMany
     resources:
       requests:
