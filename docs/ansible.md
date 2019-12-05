@@ -80,3 +80,19 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
     all -i setup/ansible/inventory -m shell -a "/sbin/shutdown -h now"
 ```
+
+## Uninstall k3s
+
+```bash
+# master and workers
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
+      all -i setup/ansible/inventory -m shell -a "/usr/local/bin/k3s-killall.sh"
+
+# master
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
+      all -i setup/ansible/inventory -m shell -a "/usr/local/bin/k3s-uninstall.sh"
+
+# workers
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible -b \
+      all -i setup/ansible/inventory -m shell -a "/usr/local/bin/k3s-agent-uninstall.sh"
+```
