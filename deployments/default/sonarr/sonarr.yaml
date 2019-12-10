@@ -18,7 +18,7 @@ spec:
   values:
     image:
       repository: linuxserver/sonarr
-      tag: "3.0.3.661-ls155"
+      tag: 3.0.3.661-ls155
       pullPolicy: Always
     timezone: "America/New_York"
     puid: 1000

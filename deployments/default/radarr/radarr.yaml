@@ -6,7 +6,7 @@ metadata:
   namespace: default
   annotations:
     fluxcd.io/automated: "false"
-    fluxcd.io/tag.chart-image: 'glob:arm32v7-v3.*.*.*'
+    fluxcd.io/tag.chart-image: 'glob:3.*.*.*-ls*'
 spec:
   releaseName: radarr
   rollback:
@@ -18,7 +18,8 @@ spec:
   values:
     image:
       repository: linuxserver/radarr
-      tag: "arm32v7-3.0.0.2227-ls37"
+      tag: 3.0.0.2282-ls37
+      pullPolicy: Always
     timezone: "America/New_York"
     puid: 1000
     pgid: 100

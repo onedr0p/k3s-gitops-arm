@@ -1,0 +1,42 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: jackett
+  namespace: default
+  annotations:
+    fluxcd.io/automated: "false"
+    fluxcd.io/tag.chart-image: 'glob:v0.*.*-ls*'
+spec:
+  releaseName: jackett
+  rollback:
+    enable: true
+  chart:
+    repository: https://billimek.com/billimek-charts/
+    name: jackett
+    version: 1.0.0
+  values:
+    image:
+      repository: linuxserver/jackett
+      tag: v0.12.1136-ls48
+    uid: 1000
+    gid: 100
+    ingress:
+      enabled: true
+      annotations:
+        kubernetes.io/ingress.class: "nginx"
+    podAnnotations:
+      backup.velero.io/backup-volumes: config
+    persistence:
+      config:
+        enabled: true
+        size: 1Gi
+        storageClass: nfs-client
+    resources:
+      requests:
+        memory: 350Mi
+        cpu: 25m
+      limits:
+        memory: 1000Mi
+  valueFileSecrets:
+  - name: "jackett-helm-values"

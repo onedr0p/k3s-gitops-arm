@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: nzbhydra2-helm-values
+  namespace: default
+spec:
+  encryptedData:
+    values.yaml: AgATvgeOGo5oBw6V1EFF7s7weoVPVHAVhOi7bZsf4xpXe/Zyya9o0lVh09qFKa4ujImpBb9J+svMiFLOeWLxXyOvwjq3RNnomcaAi0fFtWWHVrQilmITRvXKZ8OfUmytOPL2L7ls1AmKhGNmugxFFRZl9PP5uC2AS9VxlL4nawSg87jbgBiCwrJW6K19n4kfgpFy4N9BeypNSplmaYmHzgs/UWvA8K59eITIPbjcB71Da+/NbL+yZGssecgLvN3EItAv1yXkQqXiP/Sw5QRsT8mmspWCDNAI7T4CK8WL2OuZKtmYKQGntS46s3v3mYO54wJXZvNmGGVOa3EVYZxx9RLItgCG2lJ5hPIETg+/MoO0p7oBz4HJ+HHr4YZtonQ69Pkrzgd8O+ill7GZlc3T6/QPIxgRbJ/OXDsqZkuHa/8y6z35W7gAFXQ+u3H62pDVebZCT21IT0bgytzGh/YflRrI7RXMQ8J9FjtCybM2S+0pIXdIt7mLj5akGQMLgEQkUyW3IAz2k1TijtMl1lyx4aPwjWsIa5zKXfhW1bei8l+PkG82AHI7CwBcQalqMgU55+X95AotKagixkFU0tg36UWpsmKbgmcN6HaJ0vWUj9V44oqERmEvC3u6aJ0KMDyC0lHbgoVKW8bkA6ng6htej7kLQ8zKZJGH5LyFKGIPnog4ZS84K2JqPa64+PPFAjnbPDC7/l4F3k8lmplat5mI6NandzSTwZPI1ZnZwk2gyul2evwCZVL5ui7Ditz7upD9Sg9M+xN0l+/ZcrpTTRALRPyuE/rL2uWEhMuYbrGypYIbNvJTyKalqJw7TbkLhDQJoTnq12EfvFV7Z9TJYRZxR998mzd6DVmBQ9XeRlSR7iIUkPVTmCCtwQ2YfYQh5FvuPvKP+yxwYfv1fMdKbe94hllStHZQkgHBo34lmmr3zBqv5Yq5t4fGBLY/iNG7fBSIt+qv83uQnzPP8aM46B7yuMihOwMWFI3QUG5FtwVKORwgMyujXxGVqpo9S5s=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: nzbhydra2-helm-values
+      namespace: default
+status: {}
+
