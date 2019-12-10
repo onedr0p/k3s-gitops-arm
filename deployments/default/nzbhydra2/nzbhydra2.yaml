@@ -19,8 +19,8 @@ spec:
     image:
       repository: linuxserver/hydra2
       tag: v2.10.2-ls46
-    uid: 1000
-    gid: 100
+    puid: 1000
+    pgid: 100
     ingress:
       enabled: true
       annotations:

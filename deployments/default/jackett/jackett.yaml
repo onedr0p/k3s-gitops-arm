@@ -19,8 +19,8 @@ spec:
     image:
       repository: linuxserver/jackett
       tag: v0.12.1136-ls48
-    uid: 1000
-    gid: 100
+    puid: 1000
+    pgid: 100
     ingress:
       enabled: true
       annotations:
