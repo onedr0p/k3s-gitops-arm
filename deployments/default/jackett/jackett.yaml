@@ -19,6 +19,7 @@ spec:
     image:
       repository: linuxserver/jackett
       tag: v0.12.1136-ls48
+    timezone: "America/New_York"
     puid: 1000
     pgid: 100
     ingress:
@@ -30,13 +31,24 @@ spec:
     persistence:
       config:
         enabled: true
-        size: 1Gi
-        storageClass: nfs-client
+        storageClass: "local-path"
     resources:
       requests:
         memory: 350Mi
         cpu: 25m
       limits:
         memory: 500Mi
+    #
+    # @CHANGEME - Update the hostname to the node you want this deployed to
+    #
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+              - pik3s02
   valueFileSecrets:
   - name: "jackett-helm-values"
