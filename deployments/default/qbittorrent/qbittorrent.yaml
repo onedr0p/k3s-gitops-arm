@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/qbittorrent
-      tag: 14.2.0.99201912051435-6796-912b076ubuntu18.04.1-ls56
+      tag: 4.3.0201912121002-6806-b6476f7ubuntu18.04.1-ls23
     uid: 1000
     gid: 100
     guiService:
@@ -38,10 +38,12 @@ spec:
     podAnnotations:
       backup.velero.io/backup-volumes: config
     persistence:
+      #
+      # A torrent client has to be "pinned" to a node because of port-forwarding rules, persist config on the node as well
+      #
       config:
         enabled: true
-        size: 1Gi
-        storageClass: nfs-client
+        storageClass: "local-path"
       data:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
@@ -52,5 +54,17 @@ spec:
         cpu: 25m
       limits:
         memory: 3000Mi
+    #
+    # @CHANGEME - Update the hostname to the node you want this deployed to
+    #
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+              - pik3s03
   valueFileSecrets:
   - name: "qbittorrent-helm-values"
