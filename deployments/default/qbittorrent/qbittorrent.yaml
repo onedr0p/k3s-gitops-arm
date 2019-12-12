@@ -7,7 +7,7 @@ metadata:
   annotations:
     fluxcd.io/ignore: "false"
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: 'regexp:^(4\.2\.[0-9-]+.*-ls.*)$'
+    fluxcd.io/tag.chart-image: 'regexp:^(14\.2\.[0-9-]+.*-ls.*)$'
 spec:
   releaseName: qbittorrent
   rollback:
@@ -19,7 +19,7 @@ spec:
   values:
     image:
       repository: linuxserver/qbittorrent
-      tag: 4.2.0201912040848-6798-2e8b17eubuntu18.04.1-ls17
+      tag: 14.2.0.99201912051435-6796-912b076ubuntu18.04.1-ls56
     uid: 1000
     gid: 100
     guiService:
