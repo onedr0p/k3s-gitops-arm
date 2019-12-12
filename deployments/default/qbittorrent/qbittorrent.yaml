@@ -7,7 +7,7 @@ metadata:
   annotations:
     fluxcd.io/ignore: "false"
     fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: 'regexp:^([0-9]+\.[0-9]+\.[0-9]+\..*-ls.*)$'
+    fluxcd.io/tag.chart-image: "glob:4.3.*-ls*"
 spec:
   releaseName: qbittorrent
   rollback:
