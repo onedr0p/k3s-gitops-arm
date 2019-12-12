@@ -31,8 +31,7 @@ spec:
     persistence:
       config:
         enabled: true
-        storageClass: "nfs-client"
-        size: 30Gi
+        storageClass: "local-path"
       downloads:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
@@ -43,5 +42,17 @@ spec:
         cpu: 25m
       limits:
         memory: 400Mi
+    #
+    # @CHANGEME - Update the hostname to the node you want this deployed to
+    #
+    affinity:
+      nodeAffinity:
+        requiredDuringSchedulingIgnoredDuringExecution:
+          nodeSelectorTerms:
+          - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+              - pik3s01
   valueFileSecrets:
   - name: "nzbget-helm-values"
