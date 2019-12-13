@@ -111,7 +111,7 @@ The path I have chosen above doesn't exactly fit everyones use-case so if you wo
 
 ## ARM Clown Fiesta
 
-Some of the Docker images I use don't have Docker images ready for ARM processors or multi-arch support. Below is a list of projects I maintain to provide Docker images for ARM32v7. Here you can checkout the source code and build the images yourself if you want.
+Some of the software I use don't have Docker images ready for ARM processors or multi-arch support. Below is a list of projects I maintain and a link to their issue. You can checkout the source code and build the images yourself if you want.
 
 - https://gitlab.com/onedr0p/flux-arm | Issue: [fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)
 - https://gitlab.com/onedr0p/helm-operator-arm | Issue: [fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)
