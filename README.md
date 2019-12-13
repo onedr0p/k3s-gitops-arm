@@ -109,6 +109,17 @@ The path I have chosen above doesn't exactly fit everyones use-case so if you wo
 
 * * *
 
+## ARM Clown Fiesta
+
+Some of the Docker images I use don't have Docker images ready for ARM processors or multi-arch support. Below is a list of projects I maintain to provide Docker images for ARM32v7. Here you can checkout the source code and build the images yourself if you want.
+
+- https://gitlab.com/onedr0p/flux-arm | Issue: [fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)
+- https://gitlab.com/onedr0p/helm-operator-arm | Issue: [fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)
+- https://gitlab.com/onedr0p/velero-arm | Issue: [vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)
+- https://gitlab.com/onedr0p/velero-plugin-for-aws-arm | Issue: [vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)
+
+* * *
+
 ## Opinionated RPi hardware
 
 - [Samsung 128GB EVO Plus Class 10 Micro SDXC](https://smile.amazon.com/gp/product/B06XFHQGB9/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1)
