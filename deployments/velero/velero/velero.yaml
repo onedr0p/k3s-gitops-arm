@@ -5,9 +5,7 @@ metadata:
   name: velero
   namespace: velero
   annotations:
-    fluxcd.io/ignore: false
-    fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: semver:~1
+    fluxcd.io/automated: "false"
 spec:
   releaseName: velero
   chart:
