@@ -5,9 +5,7 @@ metadata:
   name: qbittorrent
   namespace: default
   annotations:
-    fluxcd.io/ignore: "false"
-    fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: 'regexp:^(14\.2\.[0-9-]+.*-ls.*)$'
+    fluxcd.io/automated: "false"
 spec:
   releaseName: qbittorrent
   rollback:

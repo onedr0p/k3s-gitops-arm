@@ -6,7 +6,6 @@ metadata:
   namespace: default
   annotations:
     fluxcd.io/automated: "false"
-    fluxcd.io/tag.chart-image: 'glob:v0.*.*-ls*'
 spec:
   releaseName: jackett
   rollback:

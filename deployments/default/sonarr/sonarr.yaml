@@ -5,8 +5,7 @@ metadata:
   name: sonarr
   namespace: default
   annotations:
-    fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: 'glob:3.*.*.*-ls*'
+    fluxcd.io/automated: "false"
 spec:
   releaseName: sonarr
   rollback:

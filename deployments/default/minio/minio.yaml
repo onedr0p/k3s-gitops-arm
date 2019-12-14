@@ -5,9 +5,7 @@ metadata:
   name: minio
   namespace: default
   annotations:
-    fluxcd.io/ignore: false
-    fluxcd.io/automated: "true"
-    fluxcd.io/tag.chart-image: glob:RELEASE.*
+    fluxcd.io/automated: "false"
 spec:
   releaseName: minio
   chart:
