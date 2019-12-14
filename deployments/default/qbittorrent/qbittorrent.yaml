@@ -13,7 +13,7 @@ spec:
   chart:
     repository: https://billimek.com/billimek-charts/
     name: qbittorrent
-    version: 1.0.0
+    version: 1.0.1
   values:
     image:
       repository: linuxserver/qbittorrent
@@ -46,6 +46,15 @@ spec:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
         subPath: qbittorrent
+    probes:
+      liveness:
+        initialDelaySeconds: 120
+        failureThreshold: 5
+        timeoutSeconds: 10
+      readiness:
+        initialDelaySeconds: 120
+        failureThreshold: 5
+        timeoutSeconds: 10        
     resources:
       requests:
         memory: 250Mi

@@ -13,7 +13,7 @@ spec:
   chart:
     repository: https://billimek.com/billimek-charts/
     name: radarr
-    version: 2.0.8
+    version: 2.0.9
   values:
     image:
       repository: linuxserver/radarr
@@ -44,6 +44,15 @@ spec:
         existingClaim: nfs-media-pvc
         subPath: Library
         accessMode: ReadWriteMany
+    probes:
+      liveness:
+        initialDelaySeconds: 120
+        failureThreshold: 5
+        timeoutSeconds: 10
+      readiness:
+        initialDelaySeconds: 120
+        failureThreshold: 5
+        timeoutSeconds: 10
     resources:
       requests:
         memory: 350Mi

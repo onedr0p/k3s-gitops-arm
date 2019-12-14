@@ -13,7 +13,7 @@ spec:
   chart:
     repository: https://billimek.com/billimek-charts/
     name: nzbget
-    version: 2.0.9
+    version: 2.1.0
   values:
     image:
       repository: linuxserver/nzbget
@@ -35,6 +35,15 @@ spec:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
         subPath: nzbget
+    probes:
+      liveness:
+        initialDelaySeconds: 120
+        failureThreshold: 5
+        timeoutSeconds: 10
+      readiness:
+        initialDelaySeconds: 120
+        failureThreshold: 5
+        timeoutSeconds: 10        
     resources:
       requests:
         memory: 300Mi
