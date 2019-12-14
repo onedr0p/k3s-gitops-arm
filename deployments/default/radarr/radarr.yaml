@@ -44,15 +44,6 @@ spec:
         existingClaim: nfs-media-pvc
         subPath: Library
         accessMode: ReadWriteMany
-    probes:
-      liveness:
-        initialDelaySeconds: 120
-        failureThreshold: 5
-        timeoutSeconds: 10
-      readiness:
-        initialDelaySeconds: 120
-        failureThreshold: 5
-        timeoutSeconds: 10
     resources:
       requests:
         memory: 350Mi

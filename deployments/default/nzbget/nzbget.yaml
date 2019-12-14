@@ -34,16 +34,7 @@ spec:
       downloads:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
-        subPath: nzbget
-    probes:
-      liveness:
-        initialDelaySeconds: 120
-        failureThreshold: 5
-        timeoutSeconds: 10
-      readiness:
-        initialDelaySeconds: 120
-        failureThreshold: 5
-        timeoutSeconds: 10        
+        subPath: nzbget   
     resources:
       requests:
         memory: 300Mi

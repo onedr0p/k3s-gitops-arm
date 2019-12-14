@@ -45,16 +45,7 @@ spec:
       data:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
-        subPath: qbittorrent
-    probes:
-      liveness:
-        initialDelaySeconds: 120
-        failureThreshold: 5
-        timeoutSeconds: 10
-      readiness:
-        initialDelaySeconds: 120
-        failureThreshold: 5
-        timeoutSeconds: 10        
+        subPath: qbittorrent        
     resources:
       requests:
         memory: 250Mi
