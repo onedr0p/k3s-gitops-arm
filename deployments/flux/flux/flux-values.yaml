@@ -5,8 +5,8 @@ git:
   branch: master
   path: deployments
 image:
-  repository: onedr0p/flux-arm
-  tag: 1.16.0
+  repository: onedr0p/flux
+  tag: v1.16.0
   pullPolicy: Always
 registry:
   rps: 1

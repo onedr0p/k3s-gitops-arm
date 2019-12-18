@@ -14,7 +14,7 @@ spec:
     version: 2.3.2
   values:
     image:
-      repository: onedr0p/velero-arm
+      repository: onedr0p/velero
       tag: v1.2.0
     resources:
       requests:
