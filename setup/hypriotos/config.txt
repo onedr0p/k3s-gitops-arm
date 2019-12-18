@@ -17,3 +17,6 @@ gpu_mem=16
 # Increase CPU clock speed by 250mhz
 over_voltage=2
 arm_freq=1750
+
+# Enable arm64
+arm_64bit=1
