@@ -115,11 +115,11 @@ The projects in the table below I have compiled multi-arch ARM (arm, arm64) Dock
 
 |Project|Repository|DockerHub|Issue requesting ARM images|
 |---|---|---|---|
-|Flux|https://gitlab.com/onedr0p/docker-flux|https://hub.docker.com/r/onedr0p/flux|[fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)|
-|Helm Operator|https://gitlab.com/onedr0p/docker-helm-operator|https://hub.docker.com/r/onedr0p/helm-operator|[fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)|
-|Velero|https://gitlab.com/onedr0p/docker-velero|https://hub.docker.com/r/onedr0p/velero|[vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)|
-|Velero Plugin for AWS|https://gitlab.com/onedr0p/docker-velero-plugin-for-aws|https://hub.docker.com/r/onedr0p/velero-plugin-for-aws|[vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)|
-|Kured|https://gitlab.com/onedr0p/docker-kured|https://hub.docker.com/r/onedr0p/kured|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
+|Flux|https://gitlab.com/onedr0p/flux|https://hub.docker.com/r/onedr0p/flux|[fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)|
+|Helm Operator|https://gitlab.com/onedr0p/helm-operator|https://hub.docker.com/r/onedr0p/helm-operator|[fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)|
+|Velero|https://gitlab.com/onedr0p/velero|https://hub.docker.com/r/onedr0p/velero|[vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)|
+|Velero Plugin for AWS|https://gitlab.com/onedr0p/velero-plugin-for-aws|https://hub.docker.com/r/onedr0p/velero-plugin-for-aws|[vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)|
+|Kured|https://gitlab.com/onedr0p/kured|https://hub.docker.com/r/onedr0p/kured|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
 
 * * *
 
