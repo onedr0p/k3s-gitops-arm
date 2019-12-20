@@ -111,12 +111,15 @@ The path I have chosen above doesn't exactly fit everyones use-case so if you wo
 
 ## ARM Clown Fiesta
 
-Some of the software I use don't have Docker images ready for ARM processors or multi-arch support. Below is a list of projects I maintain and a link to their issue. You can checkout the source code and build the images yourself if you want.
+The projects in the table below I have compiled multi-arch ARM (arm, arm64) Docker images for.
 
-- https://gitlab.com/onedr0p/flux-arm | Issue: [fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)
-- https://gitlab.com/onedr0p/helm-operator-arm | Issue: [fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)
-- https://gitlab.com/onedr0p/velero-arm | Issue: [vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)
-- https://gitlab.com/onedr0p/velero-plugin-for-aws-arm | Issue: [vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)
+|Project|Repository|DockerHub|Issue requesting ARM images|
+|---|---|---|---|
+|Flux|https://gitlab.com/onedr0p/flux|https://hub.docker.com/r/onedr0p/flux|[fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)|
+|Helm Operator|https://gitlab.com/onedr0p/helm-operator|https://hub.docker.com/r/onedr0p/helm-operator|[fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)|
+|Velero|https://gitlab.com/onedr0p/velero|https://hub.docker.com/r/onedr0p/velero|[vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)|
+|Velero Plugin for AWS|https://gitlab.com/onedr0p/velero-plugin-for-aws|https://hub.docker.com/r/onedr0p/velero-plugin-for-aws|[vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)|
+|Kured|https://gitlab.com/onedr0p/kured|https://hub.docker.com/r/onedr0p/kured|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
 
 * * *
 
