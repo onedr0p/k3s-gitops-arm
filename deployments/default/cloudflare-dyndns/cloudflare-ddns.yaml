@@ -1,0 +1,27 @@
+---
+apiVersion: helm.fluxcd.io/v1
+kind: HelmRelease
+metadata:
+  name: cloudflare-dyndns
+  namespace: default
+  annotations:
+    fluxcd.io/automated: "false"
+spec:
+  releaseName: cloudflare-dyndns
+  chart:
+    repository: https://billimek.com/billimek-charts/
+    name: cloudflare-dyndns
+    version: 1.0.0
+  values:
+    image:
+      repository: hotio/cloudflare-ddns
+      tag: stable-47b759b
+    resources:
+      requests:
+        cpu: 100m
+        memory: 64Mi
+      limits:
+        cpu: 500m
+        memory: 128Mi
+  valueFileSecrets:
+  - name: "cloudflare-dyndns-helm-values"

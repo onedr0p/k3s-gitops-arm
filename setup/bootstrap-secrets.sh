@@ -53,30 +53,19 @@ kseal() {
 # Helm Secrets
 #
 
-kseal "${REPO_ROOT}/deployments/default/minio/minio-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/velero/velero/velero-helm-values.txt"
+kseal "${REPO_ROOT}/deployments/default/minio/minio-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/default/radarr/radarr-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/default/sonarr/sonarr-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/default/qbittorrent/qbittorrent-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/default/nzbget/nzbget-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/default/nzbhydra2/nzbhydra2-helm-values.txt"
 kseal "${REPO_ROOT}/deployments/default/jackett/jackett-helm-values.txt"
+kseal "${REPO_ROOT}/deployments/default/cloudflare-dyndns/cloudflare-dyndns-helm-values.txt"
 
 #
 # Generic Secrets
 #
-
-# Cloudflare DDNS
-kubectl create secret generic cloudflare-ddns \
-  --from-literal=api-key="$CF_APIKEY" \
-  --from-literal=user="$CF_USER" \
-  --from-literal=zones="$CF_ZONES" \
-  --from-literal=hosts="$CF_HOSTS" \
-  --from-literal=record-types="$CF_RECORDTYPES" \
-  --namespace default --dry-run -o json \
-  | \
-kubeseal --format=yaml --cert="$PUB_CERT" \
-    > "$REPO_ROOT"/deployments/default/cloudflare-ddns/cloudflare-ddns-values.yaml
 
 # NginX Basic Auth - default Namespace
 kubectl create secret generic nginx-basic-auth \

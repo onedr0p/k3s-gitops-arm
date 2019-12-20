@@ -1,0 +1,16 @@
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: cloudflare-dyndns-helm-values
+  namespace: default
+spec:
+  encryptedData:
+    values.yaml: AgB+QQF2rMgrOHsujnNXwWTemcWYCitroty/8mvzxcuN0SNdkSwmKc2QMcIrsQl1D1+7f+vyIY+JusDsMlWeKsBRZv7N7I41TmVnPjrvKwgVsg7/9x27zJNKXktESiA2BSCR03k+rpyZ9Y6F3gtq36xDMePb8OIIRVegtrmxtkYkofcR/K6c15swJA/UBkQWp8bvKmGdRW0Ugp8XPFS2sncI1yGSEy4WCOO4lZCJK2ZVAWUuCJ/FM9GNTxaIg1q8epgHCoqdAp76G77CSEPZpGCG0ah+r75NO+9e4QM+vUUC089h6RLo93rzoyr7Z6ezFhwdd097m7deNiD5uTZAC+drFNDmUGHiLTdV39wA6nTUoUgA/0ibQNOO97wZueFRNWYCZRTn0ZycE7uWGyKaofZhwTnMcjncc4achYVA2PQLG+7wUJMglCBjxKKHwqaiW9j1xCUK3IOV7TpTQz2MiU+0KO9WqmIq85FIyyjM4d7g+/GRmuCKAbyeECw0slE7Qu3oKvfPuzGy7losZUzJw2cSjRfjsGZY8MjJCw7B1UXcYnWhQbeGWuONkMSBbvPHFO83+gDxoLbui217A/q6Zc0e4htJ7/r21tgRpPewWcZQrZfX4G2ZvO+5jypaHbLhUpS7K589iPQFJQD29epGHv3pd0j5ghtDtPwRTMSNC1nhIGTn6g77uibRjjfhkMXO1lOFUhsJBQo+FnhzzScNUNDvMJXRF2gNbgdvbnMnergPK1MmyJ3UkS+A2bH4ny6NTdbBZyRpML6iT2hHuayvbxCCeLVyD+fZWSOjALlM82TfqRLztkVzmIZnWCznb93tRViR6SjwZCODmAE9kSZMZXNt73DU9LfOyabxEjMic4X88gm7n8CcGvU80mS4Siluz5MfPON0KcgnO8I=
+  template:
+    metadata:
+      creationTimestamp: null
+      name: cloudflare-dyndns-helm-values
+      namespace: default
+status: {}
+
