@@ -7,7 +7,7 @@ init: ## Install test dependencies
 
 lint: ## Lint files
 	docker run --rm -it -v "$(PWD):/data" stefancrain/yamllint . || true
-	docker run --rm -it -v "$(PWD):/data" stefancrain/ansiblelint -v *.yml || true
+	docker run --rm -it -v "$(PWD):/data" stefancrain/ansiblelint -x 403,303 -v *.yml || true
 
 help: ## Dislay this help
 	@IFS=$$'\n'; for line in `grep -h -E '^[a-zA-Z_#-]+:?.*?## .*$$' $(MAKEFILE_LIST)`; do if [ "$${line:0:2}" = "##" ]; then \
