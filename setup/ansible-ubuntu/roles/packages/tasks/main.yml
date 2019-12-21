@@ -74,8 +74,8 @@
     force_apt_get: yes
 
 - name: Copy unattended-upgrades configuration files in place
-  template:
-    src: "templates/{{ item }}.j2"
+  copy:
+    src: "{{ item }}"
     dest: "/etc/apt/apt.conf.d/{{ item }}"
     owner: root
     group: root

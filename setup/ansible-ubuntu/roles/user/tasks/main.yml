@@ -29,16 +29,16 @@
     mode: 0775
 
 - name: Add custom neofetch config
-  template:
-    src: "templates/neofetch.conf.j2"
+  copy:
+    src: neofetch.conf
     dest: "/home/{{ ansible_user }}/.config/neofetch/config.conf"
     group: "users"
     owner: "{{ ansible_user }}"
     mode: 0775
 
 - name: Add small neofetch raspberry pi logo
-  template:
-    src: "templates/rpi-small.j2"
+  copy:
+    src: rpi-small
     dest: "/home/{{ ansible_user }}/.config/neofetch/rpi-small"
     group: "users"
     owner: "{{ ansible_user }}"

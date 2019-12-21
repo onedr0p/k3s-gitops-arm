@@ -10,7 +10,7 @@
   #
   # @CHANGEME - Review each role to make sure it's doing what you want to do
   #
-  tasks:
+  tasks:   
     - include_role:
         name: boot
       tags: ['boot']
@@ -29,6 +29,9 @@
     - include_role:
         name: docker
       tags: ['docker']
+    - include_role:
+        name: userland
+      tags: ['userland']
 
     - name: Rebooting hosts
       reboot:

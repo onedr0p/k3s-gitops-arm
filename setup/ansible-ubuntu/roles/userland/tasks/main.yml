@@ -1,0 +1,58 @@
+---
+
+- name: Install packages to build userland
+  apt:
+    name:
+      - pkg-config
+      - build-essential
+      - cmake
+    install_recommends: no
+    update_cache: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_install_common
+  retries: 5
+  until: apt_install_common is success
+
+- name: Clone userland
+  git:
+    repo: 'https://github.com/raspberrypi/userland.git'
+    dest: /tmp/userland
+    version: 42ec119e03eb8dffc7c83e2ac0e665e333abbef6
+
+- name: Copy aarch64.patch
+  copy:
+    src: aarch64.patch
+    dest: /tmp/userland/aarch64.patch
+
+- name: Apply aarch64.patch
+  command: git apply aarch64.patch
+  args:
+    chdir: "/tmp/userland"
+
+- name: Build userland
+  command: ./buildme --aarch64
+  args:
+    chdir: "/tmp/userland"
+
+- name: Setup shared library paths
+  command: echo /opt/vc/lib | sudo tee /etc/ld.so.conf.d/00-vmcs.conf
+
+- name: Exec ldconfig
+  command: ldconfig
+
+- name: Remove packages that were require to build userland
+  apt:
+    name:
+      - pkg-config
+      - build-essential
+      - cmake
+    state: absent
+
+- name: Clean up apt
+  apt:
+    autoremove: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
