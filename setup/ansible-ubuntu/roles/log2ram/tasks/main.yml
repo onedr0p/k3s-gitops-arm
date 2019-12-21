@@ -20,7 +20,8 @@
   command: /bin/sh ./install.sh
   args:
     chdir: "/opt/log2ram"
-  when: true
+  register: log2ram
+  changed_when: '"Reboot to activate log2ram" in log2ram.stdout'
 
 - name: Copy log2ram.conf
   template:

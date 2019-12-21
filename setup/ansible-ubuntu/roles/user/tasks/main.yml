@@ -1,7 +1,8 @@
 ---
-- name: Remove motd
-  command: update-rc.d motd remove
-  when: true
+- name: remove the motd banner
+  net_banner:
+    banner: motd
+    state: absent
 
 - name: account $HOME
   shell: "echo $HOME"
