@@ -63,17 +63,21 @@ Software requirements for this tutorial:
 
 ## Let's get started!
 
-### 1. Flash SDCard with HypriotOS
+### 1. Flash SDCard with HypriotOS or Ubuntu
 
 [HypriotOS](https://blog.hypriot.com/) is a small Operating System for the RPi, and with the help of [cloud-config](https://cloudinit.readthedocs.io/en/latest/topics/examples.html) it really makes getting your RPis online quickly and securely.
 
 > See [hypriotos.md](docs/hypriotos.md) and review the files in the [setup/hypriotos](setup/hypriotos) folder.
+> or
+> See [ubuntu.md](docs/ubuntu.md) and review the files in the [setup/ubuntu](setup/ubuntu) folder.
 
 ### 2. Provision RPis with Ansible
 
 [Ansible](https://www.ansible.com) is a great automation tool and here I am using it to provision the RPis.
 
-> See [ansible.md](docs/ansible.md) and review the files in the [setup/ansible](setup/ansible) folder.
+> See [ansible-hypriotos.md](docs/ansible-hypriotos.md) and review the files in the [setup/ansible-hypriotos](setup/ansible-hypriotos) folder.
+> or
+> See [ansible-ubuntu.md](docs/ansible-ubuntu.md) and review the files in the [setup/ansible-ubuntu](setup/ansible-ubuntu) folder.
 
 ### 3. Install k3s on your RPis using k3sup
 

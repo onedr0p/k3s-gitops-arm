@@ -1,0 +1,11 @@
+---
+
+ansible_user: pi
+
+log2ram_version: v1.4
+log2ram_size: 128M
+
+docker_version: 5:19.03.3~3-0~ubuntu-disco
+
+docker_dns:
+  - 1.1.1.1

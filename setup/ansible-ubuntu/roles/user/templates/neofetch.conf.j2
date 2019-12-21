@@ -1,0 +1,13 @@
+# See this wiki page for more info:
+# https://github.com/dylanaraps/neofetch/wiki/Customizing-Info
+print_info() {
+    prin
+    info title
+    info "Uptime" uptime
+    info "CPU Usage" cpu_usage
+    prin "CPU Temp" "$(vcgencmd measure_temp|awk -F "=" '{print $2}')"
+    info "Memory Usage" memory
+    info "Disk" disk
+    info "Local IP" local_ip
+    info "Shell" shell
+}

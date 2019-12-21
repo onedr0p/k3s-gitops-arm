@@ -1,0 +1,11 @@
+[k3s_master]
+192.168.42.23 hostname=pik3s00
+
+[k3s_worker]
+192.168.42.24 hostname=pik3s01
+192.168.42.25 hostname=pik3s02
+192.168.42.26 hostname=pik3s03
+
+[k3s_cluster:children]
+k3s_master
+k3s_worker

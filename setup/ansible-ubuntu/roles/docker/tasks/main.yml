@@ -1,0 +1,47 @@
+---
+
+- name: Add Docker repo
+  apt_repository:
+    repo: deb [arch=arm64] https://download.docker.com/linux/ubuntu disco stable
+    state: present
+
+- name: Add Docker signing key
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+
+- name: Install Docker
+  apt:
+    name: "docker-ce={{ docker_version }}"
+    install_recommends: no
+    update_cache: yes
+    # Need the force_apt_get until
+    # https://github.com/ansible/ansible/issues/56832
+    force_apt_get: yes
+  register: apt_install_common
+  retries: 5
+  until: apt_install_common is success
+
+- name: Add Docker configuration file
+  template:
+    src: daemon.json.j2
+    dest: /etc/docker/daemon.json
+
+- name: Replace single quotes with double quotes in daemon.json
+  replace:
+    path: /etc/docker/daemon.json
+    regexp: "'"
+    replace: "\""
+
+# See: https://github.com/kubernetes/kubernetes/issues/71305
+- name: Use iptables-legacy instead of nftables.
+  alternatives:
+    name: iptables
+    path: /usr/sbin/iptables-legacy
+
+- name: Ensure user is added to the docker group
+  user:
+    name: "{{ item }}"
+    group: docker
+    append: true
+  with_items: "{{ ansible_user }}"

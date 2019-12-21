@@ -1,7 +1,9 @@
-setup/ansible/inventory
-setup/ansible/vars.yml
+setup/ansible-hypriotos/inventory
+setup/ansible-hypriotos/vars.yml
+setup/ansible-ubuntu/inventory
+setup/ansible-ubuntu/vars.yml
 setup/hypriotos/user-data-*
+setup/ubtnutu/user-data-*
 setup/.env
 test/*
-custom-error-pages/*
 .DS_Store

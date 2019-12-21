@@ -1,0 +1,8 @@
+{
+    "exec-opts": {{(docker_exec_opts | from_yaml) | default('["native.cgroupdriver=cgroupfs"]')}},
+    "dns": {{(docker_dns | from_yaml) | default('[]')}},
+    "dns-search": {{(docker_dns_search | from_yaml) | default('[]')}},
+    "storage-driver": "{{docker_storage_driver | default('overlay2')}}",
+    "storage-opts": {{(docker_storage_opts | from_yaml) | default('["overlay2.override_kernel_check=true"]')}},
+    "data-root": "{{docker_data_root | default('/var/lib/docker')}}"
+}
