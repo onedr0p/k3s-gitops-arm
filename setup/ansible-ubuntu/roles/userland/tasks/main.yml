@@ -46,6 +46,7 @@
   blockinfile:
     path: /etc/udev/rules.d/99-custom-permissions.rules
     marker: "# {mark} ANSIBLE ALLOW USERLAND"
+    create: yes
     block: |
       SUBSYSTEM=="vchiq",GROUP="users",MODE="0660"
       SUBSYSTEM=="vcio",GROUP="users",MODE="0660"
