@@ -42,6 +42,22 @@
 - name: Exec ldconfig
   command: ldconfig
 
+- name: Allow users to run userland commands without sudo
+  blockinfile:
+    path: /etc/udev/rules.d/99-custom-permissions.rules
+    marker: "# {mark} ANSIBLE ALLOW USERLAND"
+    block: |
+      SUBSYSTEM=="vchiq",GROUP="users",MODE="0660"
+      SUBSYSTEM=="vcio",GROUP="users",MODE="0660"
+      SUBSYSTEM=="argon-h264mem",GROUP="users",MODE="0660"
+      SUBSYSTEM=="argon-hevcmem",GROUP="users",MODE="0660"
+      SUBSYSTEM=="argon-intcmem",GROUP="users",MODE="0660"
+      SUBSYSTEM=="argon-vp9mem",GROUP="users",MODE="0660"
+      SUBSYSTEM=="rpivid-h264mem",GROUP="users",MODE="0660"
+      SUBSYSTEM=="rpivid-hevcmem",GROUP="users",MODE="0660"
+      SUBSYSTEM=="rpivid-intcmem",GROUP="users",MODE="0660"
+      SUBSYSTEM=="rpivid-vp9mem",GROUP="users",MODE="0660"
+
 - name: Remove packages that were require to build userland
   apt:
     name:
