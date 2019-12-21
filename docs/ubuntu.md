@@ -19,7 +19,8 @@ curl -L \
     "http://cdimage.ubuntu.com/releases/eoan/release/ubuntu-19.10.1-preinstalled-server-arm64+raspi3.img.xz" \
     -o ~/Downloads/ubuntu-19.10.1-preinstalled-server-arm64+raspi3.img.xz
 
-unzip ~/Downloads/ubuntu-19.10.1-preinstalled-server-arm64+raspi3.img.xz -d ~/Downloads/
+cd ~/Downloads
+unxz -T 0 ~/Downloads/ubuntu-19.10.1-preinstalled-server-arm64+raspi3.img.xz
 ```
 
 ## Configure
