@@ -30,17 +30,21 @@
   command: git apply aarch64.patch
   args:
     chdir: "/tmp/userland"
+  when: true
 
 - name: Build userland
   command: ./buildme --aarch64
   args:
     chdir: "/tmp/userland"
+  when: true
 
 - name: Setup shared library paths
   command: echo /opt/vc/lib | sudo tee /etc/ld.so.conf.d/00-vmcs.conf
+  when: true
 
 - name: Exec ldconfig
   command: ldconfig
+  when: true
 
 - name: Remove packages that were require to build userland
   apt:

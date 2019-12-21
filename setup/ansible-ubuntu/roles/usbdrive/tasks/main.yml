@@ -8,6 +8,7 @@
 
 - name: Wipe /dev/sda
   command: wipefs -af /dev/sda
+  when: true
 
 - name: Create an EXT4 filesystem on /dev/sda
   filesystem:

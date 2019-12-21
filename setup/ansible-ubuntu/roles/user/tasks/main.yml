@@ -1,6 +1,7 @@
 ---
 - name: Remove motd
   command: update-rc.d motd remove
+  when: true
 
 - name: account $HOME
   shell: "echo $HOME"
