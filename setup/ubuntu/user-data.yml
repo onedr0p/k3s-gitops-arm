@@ -1,0 +1,47 @@
+#cloud-config
+
+hostname: pik3s10
+apt_preserve_sources_list: true
+manage_etc_hosts: true
+
+locale: "en_US.UTF-8"
+timezone: "America/New_York"
+
+package_update: true
+package_upgrade: true
+packages:
+  - ntp
+  - libnss-mdns
+
+users:
+  - name: devin
+    primary-group: users
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    groups: users
+    ssh_import_id: None
+    ## To enable SSH password log in
+    ## mkpasswd --method=SHA-512 --rounds=4096
+    # passwd: ""
+    # lock_passwd: false
+    # ssh_pwauth: yes
+    lock_passwd: true
+    ssh_pwauth: no
+    ssh_authorized_keys:
+      - "ssh-rsa ..."
+
+write_files:
+  - content: |
+      network:
+        version: 2
+        ethernets:
+          eth0:
+            addresses:
+              - 192.168.1.210/24
+            gateway4: 192.168.1.1
+            nameservers:
+              addresses: [192.168.1.15]
+    path: /etc/netplan/50-cloud-init.yaml
+
+power_state:
+  mode: reboot

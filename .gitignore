@@ -4,3 +4,4 @@ setup/hypriotos/user-data-*
 setup/.env
 test/*
 custom-error-pages/*
+.DS_Store
