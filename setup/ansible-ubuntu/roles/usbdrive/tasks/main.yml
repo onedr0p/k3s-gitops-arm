@@ -4,7 +4,7 @@
     path: /k3s-local-storage
     src: /dev/sda
     state: absent
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Wipe /dev/sda
   command: wipefs -af /dev/sda
@@ -34,5 +34,5 @@
     path: /k3s-local-storage
     group: "users"
     owner: "{{ ansible_user }}"
-    recurse: yes
+    recurse: true
     state: directory
