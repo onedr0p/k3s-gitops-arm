@@ -33,11 +33,9 @@ Software requirements for this tutorial:
 │   # Initial setup of the cluster
 ├── ./setup
 │   │   # Ansible playbook to run after the RPis have been flashed
-│   ├── ./ansible
-│   │   # Flash the SDCard with HypriotOS
-│   └─ ./hypriotos
-│   # Build flux, helm-operator, and velero for arm devices
-├── ./docker
+│   ├── ./ansible-ubuntu
+│   │   # Flash the SDCard with Ubuntu
+│   └── ./ubuntu
 │   # Documentation
 └── ./docs
 ```
