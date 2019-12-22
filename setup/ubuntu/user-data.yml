@@ -9,9 +9,6 @@ timezone: "America/New_York"
 
 package_update: true
 package_upgrade: true
-packages:
-  - ntp
-  - libnss-mdns
 
 users:
   - name: devin
@@ -26,7 +23,7 @@ users:
     # lock_passwd: false
     # ssh_pwauth: yes
     lock_passwd: true
-    ssh_pwauth: no
+    ssh_pwauth: false
     ssh_authorized_keys:
       - "ssh-rsa ..."
 

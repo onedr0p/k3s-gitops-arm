@@ -3,7 +3,7 @@
 - name: Enable required cgroup features and disable IPv6
   lineinfile:
     path: /boot/firmware/nobtcmd.txt
-    backrefs: True
+    backrefs: true
     regexp: '^(.*fixrtc)$'
     line: '\1 ipv6.disable=1 cgroup_memory=1 cgroup_enable=memory'
     state: present
