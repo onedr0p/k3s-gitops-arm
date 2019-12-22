@@ -31,10 +31,10 @@ kubectl create clusterrolebinding tiller-cluster-rule \
     --clusterrole=cluster-admin \
     --serviceaccount=kube-system:tiller
 
-helm init --tiller-image=jessestuart/tiller:v2.14.3-arm --service-account tiller
+helm init --tiller-image=jessestuart/tiller:v2.15.0 --service-account tiller
 
 # Upgrade Tiller
-helm init --upgrade --tiller-image=jessestuart/tiller:v2.15.0-arm --service-account tiller
+helm init --upgrade --tiller-image=jessestuart/tiller:v2.15.0 --service-account tiller
 
 # View Tiller logs
 kubectl -n kube-system describe deployment.apps/tiller-deploy

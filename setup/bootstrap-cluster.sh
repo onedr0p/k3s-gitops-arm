@@ -12,7 +12,7 @@
 #
 USER="devin"
 K3S_VERSION="v1.0.0"
-TILLER_VERSION="v2.14.3-arm"
+TILLER_VERSION="v2.15.0"
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
 ANSIBLE_INVENTORY="${REPO_ROOT}"/setup/ansible/inventory
