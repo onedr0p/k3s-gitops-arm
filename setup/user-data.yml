@@ -1,16 +1,25 @@
 ---
 # cloud-config
 
+#
+# @CHANGEME - Update hostname
+#
 hostname: pik3s10
 apt_preserve_sources_list: true
 manage_etc_hosts: true
 
+#
+# @CHANGEME - Update locale and timezone
+#
 locale: "en_US.UTF-8"
 timezone: "America/New_York"
 
 package_update: true
 package_upgrade: true
 
+#
+# @CHANGEME - Update user config
+#
 users:
   - name: devin
     primary-group: users
@@ -28,6 +37,9 @@ users:
     ssh_authorized_keys:
       - "ssh-rsa ..."
 
+#
+# @CHANGEME - Update network config
+#
 write_files:
   - content: |
       network:
