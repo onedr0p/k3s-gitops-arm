@@ -14,7 +14,7 @@ registry:
 memcached:
   enabled: true
 prometheus:
-  enabled: true
+  enabled: false
 syncGarbageCollection:
   enabled: true
   dry: false
