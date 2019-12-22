@@ -18,9 +18,6 @@
         name: user
       tags: ['user']
     - include_role:
-        name: usbdrive
-      tags: ['usbdrive']
-    - include_role:
         name: docker
       tags: ['docker']
     - include_role:

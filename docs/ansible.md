@@ -1,4 +1,4 @@
-# Ansible for Ubuntu
+# Ansible
 
 > All these commands are run from your computer, not the RPi.
 
@@ -13,7 +13,7 @@ cp setup/ansible/vars.example.yml setup/ansible/vars.yml
 
 ## 1. Ensure RPis are online
 
-> Note: Prefix with watch command to view realtime
+> **Note**: Prefix with watch command to view realtime
 
 ```bash
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
@@ -23,7 +23,7 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
 
 ## 2. Run playbook
 
-> Note: Run this when all RPis are online
+> **Note**: Run this when all RPis are online
 
 ```bash
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible-playbook \
@@ -31,9 +31,21 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible-playbook \
     setup/ansible/playbook.yml
 ```
 
+## 3. Provision USB drive
+
+> **Note**: Run this when all RPis are online
+>
+> **Important**: Running this requires a USB drive inserted into each Pi, this playbook will format the ENTIRE flash storage
+
+```bash
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible-playbook \
+    -i setup/ansible/inventory \
+    setup/ansible/playbook-usbdrive.yml
+```
+
 ## Check Temp of all RPis
 
-> Note: This should be below 70.0'C for good performance
+> **Note**: This should be below 70.0'C for good performance
 
 ```bash
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
@@ -42,7 +54,7 @@ env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
 
 ## Check overclock value of all RPis
 
-> Note: This should be 175000
+> **Note**: This should be 175000
 
 ```bash
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \

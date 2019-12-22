@@ -2,7 +2,7 @@
 
 Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state. I would like to give a shout-out to [k8s-gitops](https://github.com/billimek/k8s-gitops), the big brother of this repo, created by [@billimek](https://github.com/billimek).
 
-> Note: A lot of files in this project have **@CHANGEME** comments, these are things that are specific to my set up that you may need to change.
+> **Note**: A lot of files in this project have **@CHANGEME** comments, these are things that are specific to my set up that you may need to change.
 
 * * *
 
@@ -16,7 +16,7 @@ Hardware:
 
 Software:
 
-> Note: I use the fish shell for a lot of my commands. Some will work in Bash but others will not, see [here](docs/fish-shell.md) for more information.
+> **Note**: I use the fish shell for a lot of my commands. Some will work in Bash but others will not, see [here](docs/fish-shell.md) for more information.
 
 - [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/)

@@ -2,13 +2,13 @@
 
 ## MinIO
 
-> Note: Review repository for any @CHANGEME comments
+> **Note**: Review repository for any @CHANGEME comments
 
 Review [deployments/default/minio/minio.yaml](../deployments/default/minio/minio.yaml)
 
 ### Minio secrets
 
-> Note: Install pwgen to generate MINIO_ACCESS_KEY and MINIO_SECRET_KEY, also make sure you have DOMAIN populated
+> **Note**: Install pwgen to generate MINIO_ACCESS_KEY and MINIO_SECRET_KEY, also make sure you have DOMAIN populated
 
 Provide and generate `MINIO_ACCESS_KEY` and `MINIO_SECRET_KEY` in [setup/.env](../setup)
 
@@ -21,7 +21,7 @@ cd setup
 
 ## Velero
 
-> Note: Review repository for any @CHANGEME comments
+> **Note**: Review repository for any @CHANGEME comments
 
 ### Install the Velero CLI
 
@@ -48,7 +48,7 @@ kubectl apply -f deployments/velero/namespace.yaml
 
 ### Deploy Velero
 
-> Note: Flux should deploy this automatically
+> **Note**: Flux should deploy this automatically
 
 ### Install the AWS Plugin
 

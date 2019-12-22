@@ -1,0 +1,16 @@
+---
+
+- hosts: all
+  become: true
+  gather_facts: true
+
+  vars_files:
+    - vars.yml
+
+  #
+  # @CHANGEME - Review each role to make sure it's doing what you want to do
+  #
+  tasks:
+    - include_role:
+        name: usbdrive
+      tags: ['usbdrive']

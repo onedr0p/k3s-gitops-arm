@@ -4,7 +4,7 @@ As an example I am using the domains `awesomewebsite.net` and `radwebsite.io` fo
 
 ## Install HAProxy on a separate device
 
-> Note: These instructions are for Debian based distros
+> **Note**: These instructions are for Debian based distros
 
 ```bash
 sudo add-apt-repository ppa:vbernat/haproxy-2.0
@@ -14,7 +14,7 @@ sudo apt-get install haproxy
 
 ## Obtain Origin CA certificate from Cloudflare
 
-> Note: You need to create an Origin CA cert for each domain
+> **Note**: You need to create an Origin CA cert for each domain
 
 See [this article](https://support.cloudflare.com/hc/en-us/articles/115000479507-Managing-Cloudflare-Origin-CA-certificates) for how to obtain an Origin CA cert from Cloudflare.
 
@@ -22,7 +22,7 @@ Save the `pem` and `key` files in the `/etc/haproxy` directory as `<domain.tld>.
 
 ## Merge the .crt and .key file into one file per domain
 
-> Note: You need to do this for each domain
+> **Note**: You need to do this for each domain
 
 ```bash
 sudo cat awesomewebsite.net.pem awesomewebsite.net.key > /etc/haproxy/awesomewebsite.net-haproxy.pem
