@@ -1,8 +1,8 @@
-## Kubernetes
+# Helm, Tiller and Flux
 
 > All these commands are run from your computer, not the RPi.
 
-### Label worker nodes
+## Label worker nodes
 
 ```bash
 # List Nodes
@@ -12,7 +12,16 @@ kubectl get nodes
 kubectl label node <node-name> node-role.kubernetes.io/worker=worker
 ```
 
-### Tiller
+## Install Helm2 or Helm3
+
+```bash
+# Helm v2 (For use with Tiller)
+brew install helm@2
+# Helm v3 (Tiller component deprecated)
+brew install helm
+```
+
+## Tiller
 
 ```bash
 # Install Tiller
@@ -37,7 +46,7 @@ kubectl -n kube-system delete deployment tiller-deploy ; \
 kubectl -n kube-system delete service tiller-deploy
 ```
 
-### Flux and Helm Operator
+## Flux and Helm Operator
 
 ```bash
 # Add Flux Charts
