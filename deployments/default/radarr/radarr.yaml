@@ -17,7 +17,7 @@ spec:
   values:
     image:
       repository: linuxserver/radarr
-      tag: 3.0.0.2282-ls37
+      tag: 3.0.0.2341-ls37
       pullPolicy: Always
     timezone: "America/New_York"
     puid: 1000
