@@ -1,18 +1,10 @@
 ---
-- name: remove the motd banner
-  net_banner:
-    banner: motd
-    state: absent
-
-- name: account $HOME
-  shell: "echo $HOME"
-  register: account_home
-  changed_when: false
-  check_mode: false
+- name: Remove motd
+  command: update-rc.d motd remove
 
 - name: Quite the login prompt
   file:
-    dest: "{{ account_home }}/.hushlogin"
+    dest: "/home/{{ ansible_user }}/.hushlogin"
     state: touch
     group: "users"
     owner: "{{ ansible_user }}"
@@ -20,7 +12,7 @@
 
 - name: Create config directory
   file:
-    path: "{{ account_home }}/.config"
+    path: "/home/{{ ansible_user }}/.config"
     state: directory
     recurse: true
     group: "users"
@@ -29,7 +21,7 @@
 
 - name: Create neofetch directory
   file:
-    path: "{{ account_home }}/.config/neofetch"
+    path: "/home/{{ ansible_user }}/.config/neofetch"
     state: directory
     recurse: true
     group: "users"
@@ -39,7 +31,7 @@
 - name: Add custom neofetch config
   copy:
     src: neofetch.conf
-    dest: "{{ account_home }}/.config/neofetch/config.conf"
+    dest: "/home/{{ ansible_user }}/.config/neofetch/config.conf"
     group: "users"
     owner: "{{ ansible_user }}"
     mode: 0775
@@ -47,15 +39,15 @@
 - name: Add small neofetch raspberry pi logo
   copy:
     src: rpi-small
-    dest: "{{ account_home }}/.config/neofetch/rpi-small"
+    dest: "/home/{{ ansible_user }}/.config/neofetch/rpi-small"
     group: "users"
     owner: "{{ ansible_user }}"
     mode: 0775
 
 - name: Enable neofetch on login
   copy:
-    content: "neofetch --source {{ account_home }}/.config/neofetch/rpi-small"
-    dest: "{{ account_home }}/.bash_profile"
+    content: "neofetch --source /home/{{ ansible_user }}/.config/neofetch/rpi-small"
+    dest: "/home/{{ ansible_user }}/.bash_profile"
     group: "users"
     owner: "{{ ansible_user }}"
     mode: 0775

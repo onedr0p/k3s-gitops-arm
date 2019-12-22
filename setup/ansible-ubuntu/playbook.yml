@@ -12,17 +12,11 @@
   #
   tasks:
     - include_role:
-        name: boot
-      tags: ['boot']
-    - include_role:
-        name: packages
-      tags: ['packages']
+        name: system
+      tags: ['system']
     - include_role:
         name: user
       tags: ['user']
-    - include_role:
-        name: log2ram
-      tags: ['log2ram']
     - include_role:
         name: usbdrive
       tags: ['usbdrive']

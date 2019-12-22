@@ -33,15 +33,15 @@
     regexp: "'"
     replace: "\""
 
-# See: https://github.com/kubernetes/kubernetes/issues/71305
-- name: Use iptables-legacy instead of nftables.
-  alternatives:
-    name: iptables
-    path: /usr/sbin/iptables-legacy
-
 - name: Ensure user is added to the docker group
   user:
     name: "{{ item }}"
     group: docker
     append: true
   with_items: "{{ ansible_user }}"
+
+- name: Start and enable Docker
+  systemd:
+    name: docker
+    state: started
+    enabled: true
