@@ -59,7 +59,7 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 ### 1. Flash SDCard with Ubuntu
 
-> See [ubuntu.md](docs/ubuntu.md) and review the files in the [setup/ubuntu](setup/ubuntu) folder.
+> See [ubuntu.md](docs/ubuntu.md)
 
 ### 2. Provision RPis with Ansible
 
