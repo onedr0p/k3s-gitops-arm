@@ -6,14 +6,15 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 * * *
 
-## Hardware and software
+## Prerequisites
 
-Hardware requirements for this tutorial:
+Hardware:
 
 - 3x RPi4 (recommended 4GB RAM) and at least 32GB SD Cards
+- 3x USB 3.1 256GB Flash drives (used for k3s local storage on each node, any size is fine)
 - A NFS server for storing persistent data
 
-Software requirements for this tutorial:
+Software:
 
 > Note: I use the fish shell for a lot of my commands. Some will work in Bash but others will not, see [here](docs/fish-shell.md) for more information.
 
@@ -111,11 +112,11 @@ The projects in the table below I have compiled multi-arch ARM (arm, arm64) Dock
 
 |Project|Repository|DockerHub|Issue requesting ARM images|
 |---|---|---|---|
-|Flux|https://gitlab.com/onedr0p/flux|https://hub.docker.com/r/onedr0p/flux|[fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)|
-|Helm Operator|https://gitlab.com/onedr0p/helm-operator|https://hub.docker.com/r/onedr0p/helm-operator|[fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)|
-|Velero|https://gitlab.com/onedr0p/velero|https://hub.docker.com/r/onedr0p/velero|[vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)|
-|Velero Plugin for AWS|https://gitlab.com/onedr0p/velero-plugin-for-aws|https://hub.docker.com/r/onedr0p/velero-plugin-for-aws|[vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)|
-|Kured|https://gitlab.com/onedr0p/kured|https://hub.docker.com/r/onedr0p/kured|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
+|Flux|[onedr0p/flux](https://gitlab.com/onedr0p/flux)|[onedr0p/flux](https://hub.docker.com/r/onedr0p/flux)|[fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)|
+|Helm Operator|[onedr0p/helm-operator](https://gitlab.com/onedr0p/helm-operator)|[onedr0p/helm-operator](https://hub.docker.com/r/onedr0p/helm-operator)|[fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)|
+|Velero|[onedr0p/velero](https://gitlab.com/onedr0p/velero)|[onedr0p/velero](https://hub.docker.com/r/onedr0p/velero)|[vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)|
+|Velero Plugin for AWS|[onedr0p/velero-plugin-for-aws](https://gitlab.com/onedr0p/velero-plugin-for-aws)|[onedr0p/velero-plugin-for-aws](https://hub.docker.com/r/onedr0p/velero-plugin-for-aws)|[vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)|
+|Kured|[onedr0p/kured](https://gitlab.com/onedr0p/kured)|[onedr0p/kured](https://hub.docker.com/r/onedr0p/kured)|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
 
 * * *
 
