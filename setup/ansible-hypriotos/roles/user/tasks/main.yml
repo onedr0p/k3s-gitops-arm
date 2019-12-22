@@ -4,6 +4,11 @@
     banner: motd
     state: absent
 
+- name: account $HOME
+  shell: "echo $HOME"
+  register: account_home
+  changed_when: false
+  check_mode: false
 
 - name: Quite the login prompt
   file:
