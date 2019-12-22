@@ -28,16 +28,11 @@ Software requirements for this tutorial:
 
 ```bash
 .
-│   # Flux will only scan and deploy from this directory
-├── ./deployments
-│   # Initial setup of the cluster
-├── ./setup
-│   │   # Ansible playbook to run after the RPis have been flashed
-│   ├── ./ansible-ubuntu
-│   │   # Flash the SDCard with Ubuntu
-│   └── ./ubuntu
-│   # Documentation
-└── ./docs
+├── ./deployments    # Flux will only scan and deploy from this directory
+├── ./setup          # Setup of the cluster
+│   └── ./ansible    # Ansible playbook to run after the RPis have been flashed
+├── ./hack           # Helper scripts
+└── ./docs           # Documentation
 ```
 
 * * *
@@ -69,7 +64,7 @@ Software requirements for this tutorial:
 
 [Ansible](https://www.ansible.com) is a great automation tool and here I am using it to provision the RPis.
 
-> See [ansible-ubuntu.md](docs/ansible-ubuntu.md) and review the files in the [setup/ansible-ubuntu](setup/ansible-ubuntu) folder.
+> See [ansible.md](docs/ansible.md) and review the files in the [setup/ansible](setup/ansible) folder.
 
 ### 3. Install k3s on your RPis using k3sup
 

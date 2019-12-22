@@ -15,7 +15,7 @@ K3S_VERSION="v1.0.0"
 TILLER_VERSION="v2.14.3-arm"
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
-ANSIBLE_INVENTORY="${REPO_ROOT}"/setup/ansible-ubuntu/inventory
+ANSIBLE_INVENTORY="${REPO_ROOT}"/setup/ansible/inventory
 
 need() {
     which "$1" &>/dev/null || die "Binary '$1' is missing but required"
@@ -103,7 +103,7 @@ installFlux() {
     FLUX_KEY=$(kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2)
 
     message "Adding the key to github automatically"
-    "${REPO_ROOT}"/setup/add-repo-key.sh "${FLUX_KEY}"
+    "${REPO_ROOT}"/hack/add-repo-key.sh "${FLUX_KEY}"
     sleep 5
 }
 

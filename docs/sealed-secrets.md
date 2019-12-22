@@ -15,9 +15,16 @@ cd setup
 kubeseal --controller-name sealed-secrets --fetch-cert > ./pub-cert.pem
 ```
 
-## Start adding secrets and deploying your apps
+## Fill in the secrets environment file
 
 ```bash
 cd setup
-./bootstrap-secrets.sh
+cp .env.secrets.sample .env.secrets
+```
+
+## Generate secrets
+
+```bash
+cd setup
+./generate-secrets.sh
 ```
