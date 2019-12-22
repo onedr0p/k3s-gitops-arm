@@ -112,6 +112,7 @@ The projects in the table below I have compiled multi-arch ARM (arm, arm64) Dock
 |Velero|[onedr0p/velero](https://gitlab.com/onedr0p/velero)|[onedr0p/velero](https://hub.docker.com/r/onedr0p/velero)|[vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)|
 |Velero Plugin for AWS|[onedr0p/velero-plugin-for-aws](https://gitlab.com/onedr0p/velero-plugin-for-aws)|[onedr0p/velero-plugin-for-aws](https://hub.docker.com/r/onedr0p/velero-plugin-for-aws)|[vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)|
 |Kured|[onedr0p/kured](https://gitlab.com/onedr0p/kured)|[onedr0p/kured](https://hub.docker.com/r/onedr0p/kured)|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
+|Sealed Secrets|[onedr0p/sealed-secrets](https://gitlab.com/onedr0p/sealed-secrets)|[onedr0p/sealed-secrets](https://hub.docker.com/r/onedr0p/sealed-secrets)|[bitnami-labs/sealed-secrets#173](https://github.com/bitnami-labs/sealed-secrets/issues/173)|
 
 * * *
 
