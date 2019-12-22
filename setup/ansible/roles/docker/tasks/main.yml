@@ -1,14 +1,17 @@
 ---
 
-- name: Add Docker repo
-  apt_repository:
-    repo: deb [arch=arm64] https://download.docker.com/linux/ubuntu disco stable
-    state: present
-
 - name: Add Docker signing key
   apt_key:
     url: https://download.docker.com/linux/debian/gpg
     state: present
+
+- name: Add Docker apt repo
+  apt_repository:
+    repo: deb [arch=arm64] https://download.docker.com/linux/ubuntu disco stable
+    state: present
+  register: apt_apt_repository
+  retries: 5
+  until: apt_apt_repository is success
 
 - name: Install Docker
   apt:

@@ -11,14 +11,19 @@ cp setup/ansible/inventory.example setup/ansible/inventory
 cp setup/ansible/vars.example.yml setup/ansible/vars.yml
 ```
 
-## 1. Ensure RPis are online
+## 1. Check RPis are ready to run accept Ansible
 
 > **Note**: Prefix with watch command to view realtime
 
 ```bash
+# Check they are connectable
 env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
     -i setup/ansible/inventory \
     k3s_cluster -m ping
+
+# Check that sudo is not blocked, if this return value is not 0 wait until it is
+env ANSIBLE_CONFIG=setup/ansible/ansible.cfg ansible \
+    all -i setup/ansible/inventory -m shell -a "test /var/lib/dpkg/lock-frontend && echo \$?"
 ```
 
 ## 2. Run playbook

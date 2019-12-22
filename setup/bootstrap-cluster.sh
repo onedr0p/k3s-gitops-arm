@@ -11,7 +11,7 @@
 # @CHANGEME - Update USER to your RPi SSH user
 #
 USER="devin"
-K3S_VERSION="v1.0.0"
+K3S_VERSION="v1.0.1"
 TILLER_VERSION="v2.15.0"
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
