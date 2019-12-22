@@ -8,13 +8,13 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 ## Prerequisites
 
-Hardware:
+### Hardware
 
 - 3x RPi4 (recommended 4GB RAM) and at least 32GB SD Cards
 - 3x USB 3.1 256GB Flash drives (used for k3s local storage on each node, any size is fine)
 - A NFS server for storing persistent data
 
-Software:
+### Software
 
 > **Note**: I use the fish shell for a lot of my commands. Some will work in Bash but others will not, see [here](docs/fish-shell.md) for more information.
 
