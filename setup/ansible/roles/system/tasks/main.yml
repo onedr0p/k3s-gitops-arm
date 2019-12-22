@@ -92,9 +92,9 @@
     name: iptables
     path: /usr/sbin/iptables-legacy
 
-- name: Start and enable ntp service
+- name: Start and enable timesyncd
   systemd:
-    name: ntp
+    name: systemd-timesyncd
     state: started
     enabled: true
 

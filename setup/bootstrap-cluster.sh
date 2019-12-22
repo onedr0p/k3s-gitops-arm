@@ -98,19 +98,22 @@ installFlux() {
         FLUX_READY="$?"
         sleep 5
     done
+    sleep 5
+}
 
+addDeployKey() {
     # grab output the key
     FLUX_KEY=$(kubectl -n flux logs deployment/flux | grep identity.pub | cut -d '"' -f2)
 
     message "Adding the key to github automatically"
     "${REPO_ROOT}"/hack/add-repo-key.sh "${FLUX_KEY}"
-    sleep 5
 }
 
 k3sMasterNode
 ks3WorkerNodes
-installHelm
-installFlux
+# installHelm
+# installFlux
+# addDeployKey
 
 sleep 5
 message "All done!"
