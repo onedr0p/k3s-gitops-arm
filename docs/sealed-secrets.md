@@ -3,9 +3,13 @@
 ## Install kubeseal locally
 
 ```bash
+# Linux
 wget https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.9.5/kubeseal-linux-amd64 -O kubeseal
 sudo install -m 755 kubeseal /usr/local/bin/kubeseal
 rm -rf kubeseal
+
+# MacOS
+brew install kubeseal
 ```
 
 ## Create sealed-secrets public certificate
