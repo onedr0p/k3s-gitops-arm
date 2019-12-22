@@ -14,7 +14,7 @@
     marker: "# {mark} ANSIBLE DISABLE WIFI"
     block: |
       dtoverlay=pi3-disable-wifi
-  
+
 - name: Disable Bluetooth
   blockinfile:
     path: /boot/firmware/syscfg.txt

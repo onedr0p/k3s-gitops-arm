@@ -1,8 +1,8 @@
 ---
 
 - hosts: all
-  become: yes
-  gather_facts: yes
+  become: true
+  gather_facts: true
 
   vars_files:
     - vars.yml

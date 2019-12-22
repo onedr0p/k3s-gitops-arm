@@ -15,7 +15,7 @@ K3S_VERSION="v1.0.0"
 TILLER_VERSION="v2.14.3-arm"
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
-ANSIBLE_INVENTORY="${REPO_ROOT}"/setup/ansible/inventory
+ANSIBLE_INVENTORY="${REPO_ROOT}"/setup/ansible-ubuntu/inventory
 
 need() {
     which "$1" &>/dev/null || die "Binary '$1' is missing but required"

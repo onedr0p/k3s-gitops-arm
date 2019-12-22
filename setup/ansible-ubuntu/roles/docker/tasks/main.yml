@@ -13,11 +13,11 @@
 - name: Install Docker
   apt:
     name: "docker-ce={{ docker_version }}"
-    install_recommends: no
-    update_cache: yes
+    install_recommends: false
+    update_cache: true
     # Need the force_apt_get until
     # https://github.com/ansible/ansible/issues/56832
-    force_apt_get: yes
+    force_apt_get: true
   register: apt_install_common
   retries: 5
   until: apt_install_common is success

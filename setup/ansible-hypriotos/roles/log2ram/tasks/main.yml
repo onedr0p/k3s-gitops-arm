@@ -3,16 +3,16 @@
   systemd:
     name: log2ram
     state: stopped
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Cloning log2ram from GitHub
   git:
     repo: https://github.com/azlux/log2ram.git
     dest: /opt/log2ram
-    version: "{{log2ram_version}}"
+    version: "{{ log2ram_version }}"
 
 - name: Changing perms of "/opt/log2ram/install.sh"
-  file: 
+  file:
     dest: /opt/log2ram/install.sh
     mode: a+x
 
@@ -20,6 +20,8 @@
   command: /bin/sh ./install.sh
   args:
     chdir: "/opt/log2ram"
+  register: log2ram
+  changed_when: '"Reboot to activate log2ram" in log2ram.stdout'
 
 - name: Copy log2ram.conf
   template:
