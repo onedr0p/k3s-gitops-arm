@@ -55,5 +55,5 @@ kubectl apply -f deployments/velero/namespace.yaml
 > All these commands are run from your computer, not the RPi.
 
 ```bash
-velero plugin add onedr0p/velero-plugin-for-aws:1.0.0-arm
+velero plugin add onedr0p/velero-plugin-for-aws:v1.0.0
 ```
