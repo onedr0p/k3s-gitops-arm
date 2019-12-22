@@ -1,4 +1,5 @@
-#cloud-config
+---
+# cloud-config
 
 #
 # @CHANGEME - Update hostname
@@ -9,9 +10,9 @@ manage_etc_hosts: true
 
 resize_rootfs: true
 growpart:
-    mode: auto
-    devices: ["/"]
-    ignore_growroot_disabled: false
+  mode: auto
+  devices: ["/"]
+  ignore_growroot_disabled: false
 
 #
 # @CHANGEME - Update locale and timezome
@@ -42,7 +43,7 @@ users:
     # lock_passwd: false
     # ssh_pwauth: yes
     lock_passwd: true
-    ssh_pwauth: no
+    ssh_pwauth: false
     ssh_authorized_keys:
       - "ssh-rsa ..."
 
@@ -60,4 +61,4 @@ write_files:
     path: /etc/dhcpcd.conf
 
 runcmd:
-  - [ systemctl, restart, avahi-daemon ]
+  - [systemctl, restart, avahi-daemon]
