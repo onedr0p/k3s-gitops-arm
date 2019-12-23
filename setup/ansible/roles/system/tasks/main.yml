@@ -92,14 +92,27 @@
     name: iptables
     path: /usr/sbin/iptables-legacy
 
-- name: Start and enable timesyncd
+- name: Enable SSH password authentication
+  lineinfile:
+    path: /etc/ssh/sshd_config
+    regexp: '^PasswordAuthentication no$'
+    line: 'PasswordAuthentication yes'
+    state: present
+
+- name: Restart systemd-timesyncd service
   systemd:
     name: systemd-timesyncd
-    state: started
     enabled: true
+    state: restarted
+
+- name: Enable systemd-timesyncd service and assure it is started
+  systemd:
+    name: systemd-timesyncd
+    enabled: true
+    state: started
 
 # Allowed to fail inorder to be idempotent
-- name: Stop log2ram
+- name: Stop log2ram service
   systemd:
     name: log2ram
     state: stopped

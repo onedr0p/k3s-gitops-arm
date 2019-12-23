@@ -31,7 +31,7 @@ users:
     ## mkpasswd --method=SHA-512 --rounds=4096
     # passwd: ""
     # lock_passwd: false
-    # ssh_pwauth: yes
+    # ssh_pwauth: true
     lock_passwd: true
     ssh_pwauth: false
     ssh_authorized_keys:
