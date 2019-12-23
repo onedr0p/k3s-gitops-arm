@@ -1,17 +1,27 @@
 ---
 
-- name: Add Docker signing key
+- name: Add Docker GPG apt Key
   apt_key:
     url: https://download.docker.com/linux/debian/gpg
     state: present
 
-- name: Add Docker apt repo
+- name: Add Docker Repository
   apt_repository:
     repo: deb [arch=arm64] https://download.docker.com/linux/ubuntu disco stable
     state: present
   register: apt_apt_repository
   retries: 5
   until: apt_apt_repository is success
+  when: deploy_target != 'vagrant'
+
+- name: Add Docker Repository
+  apt_repository:
+    repo: deb https://download.docker.com/linux/ubuntu disco stable
+    state: present
+  register: apt_apt_repository
+  retries: 5
+  until: apt_apt_repository is success
+  when: deploy_target == 'vagrant'
 
 - name: Install Docker
   apt:

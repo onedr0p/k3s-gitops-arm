@@ -1,0 +1,15 @@
+[k3s_master]
+192.168.88.200 hostname=pik3s00
+
+[k3s_worker]
+192.168.88.201 hostname=pik3s01
+
+[k3s_cluster:children]
+k3s_master
+k3s_worker
+
+[k3s_cluster:vars]
+ansible_ssh_user=vagrant
+ansible_ssh_private_key_file=~/.vagrant.d/insecure_private_key
+ansible_python_interpreter=auto
+deploy_target=vagrant
