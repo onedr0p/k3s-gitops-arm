@@ -45,7 +45,7 @@ spec:
       data:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
-        subPath: qbittorrent        
+        subPath: qbittorrent
     resources:
       requests:
         memory: 250Mi

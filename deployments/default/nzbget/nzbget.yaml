@@ -34,7 +34,7 @@ spec:
       downloads:
         enabled: true
         existingClaim: nfs-media-downloads-pvc
-        subPath: nzbget   
+        subPath: nzbget
     resources:
       requests:
         memory: 300Mi

@@ -55,7 +55,7 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 * * *
 
-## Let's get started!
+## Let's get started
 
 ### 1. Flash SDCard with Ubuntu
 

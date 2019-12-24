@@ -46,37 +46,20 @@ repos:
     hooks:
       - id: sign-commit
 
-  - repo: https://github.com/willthames/ansible-lint.git
-    rev: v4.2.0
-    hooks:
-      - id: ansible-lint
-        files: \.(yaml|yml)$
-        args: [
-          "--exclude=roles",
-          "--exclude=basic/roles"
-        ]
-
-  - repo: https://github.com/igorshubovych/markdownlint-cli
-    rev: v0.20.0
-    hooks:
-      - id: markdownlint
-        language_version: system
-
   - repo: https://github.com/Lucas-C/pre-commit-hooks
     rev: v1.1.7
     hooks:
       - id: forbid-crlf
-      - id: forbid-tabs
+      # TODO: tabs in aarch64.patch make this fail, exclude not available
+      # - id: forbid-tabs
 
-  # - repo: https://github.com/jumanjihouse/pre-commit-hooks
-  #   rev: 1.11.2
-  #   hooks:
-  #     # - id: require-ascii
-  #     - id: script-must-have-extension
-  #       types: [shell, executable]
-
-  #     # - id: shellcheck
-  #     # - id: shfmt
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 1.11.2
+    hooks:
+      - id: script-must-have-extension
+        types: [shell, executable]
+      # TODO: Shellcheck is mad
+      # - id: shellcheck
 
 
   # - repo: git://github.com/detailyang/pre-commit-shell
@@ -85,8 +68,22 @@ repos:
   #     - id: shell-lint
   #       args: [--format=json]
 
-  # picks up pngs
-  # - repo: https://github.com/syntaqx/git-hooks
-  #   rev: v0.0.16
-  #   hooks:
-  #     - id: forbid-binary
+  - repo: https://github.com/ansible/ansible-lint.git
+    rev: v4.2.0
+    hooks:
+      - id: ansible-lint
+        files: \.(yaml|yml)$
+        entry: ansible-lint
+        verbose: true
+
+# TODO : needs config https://github.com/willthames/ansible-review#configuration
+#  - repo: https://github.com/willthames/ansible-review
+#     rev: 0.14.0rc2
+#     hooks:
+#       - id: ansible-review
+
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.20.0
+    hooks:
+      - id: markdownlint
+        language_version: system
