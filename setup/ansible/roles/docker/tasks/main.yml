@@ -13,7 +13,7 @@
   retries: 5
   until: apt_apt_repository is success
 
-- name: Install Docker
+- name: Install Docker {{ docker_version }}
   apt:
     name: "docker-ce={{ docker_version }}"
     install_recommends: false
@@ -41,7 +41,9 @@
     name: "{{ item }}"
     group: docker
     append: true
-  with_items: "{{ ansible_user }}"
+  with_items:
+   - "{{ ansible_user }}"
+   - pi
 
 - name: Start and enable Docker
   systemd:
