@@ -92,13 +92,6 @@
     name: iptables
     path: /usr/sbin/iptables-legacy
 
-- name: Enable SSH password authentication
-  lineinfile:
-    path: /etc/ssh/sshd_config
-    regexp: '^PasswordAuthentication no$'
-    line: 'PasswordAuthentication yes'
-    state: present
-
 - name: Restart systemd-timesyncd service
   systemd:
     name: systemd-timesyncd
