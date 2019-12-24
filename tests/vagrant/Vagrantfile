@@ -6,7 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 # Use config.yml values for some configuration.
 require 'yaml'
 unless File.exist?("../../setup/ansible/vars.yml")
-  raise 'Configuration file not found! Please copy example.config.yml to config.yml and try again.'
+  raise 'Configuration file not found! Please copy vars.example.yml to vars.yml and try again.'
 end
 vconfig = YAML.load_file("../../setup/ansible/vars.yml")
 
