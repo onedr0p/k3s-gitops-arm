@@ -3,3 +3,4 @@ setup/ansible/vars.yml
 setup/user-data-*
 setup/.secrets.env
 .DS_Store
+tests/vagrant/.vagrant
