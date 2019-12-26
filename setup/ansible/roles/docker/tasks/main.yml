@@ -53,7 +53,6 @@
     append: true
   with_items:
    - "{{ ansible_user }}"
-   - pi
 
 - name: Start and enable Docker
   systemd:
