@@ -71,3 +71,4 @@ index 1c966b8..757986c 100644
 
  //#define EXTRACT_BYTE(x, n)	((unsigned long long)((uint8_t *)&x)[n])
  // xxx work around a compiler bug...
+
