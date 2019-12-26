@@ -92,14 +92,20 @@
     name: iptables
     path: /usr/sbin/iptables-legacy
 
-- name: Start and enable timesyncd
+- name: Restart systemd-timesyncd service
   systemd:
     name: systemd-timesyncd
-    state: started
     enabled: true
+    state: restarted
+
+- name: Enable systemd-timesyncd service and assure it is started
+  systemd:
+    name: systemd-timesyncd
+    enabled: true
+    state: started
 
 # Allowed to fail inorder to be idempotent
-- name: Stop log2ram
+- name: Stop log2ram service
   systemd:
     name: log2ram
     state: stopped
@@ -149,6 +155,7 @@
     regexp: '^(.*fixrtc)$'
     line: '\1 ipv6.disable=1 cgroup_memory=1 cgroup_enable=memory'
     state: present
+  when: deploy_target != 'vagrant'
 
 - name: Disable WiFi
   blockinfile:
@@ -156,6 +163,7 @@
     marker: "# {mark} ANSIBLE DISABLE WIFI"
     block: |
       dtoverlay=pi3-disable-wifi
+  when: deploy_target != 'vagrant'
 
 - name: Disable Bluetooth
   blockinfile:
@@ -163,6 +171,7 @@
     marker: "# {mark} ANSIBLE DISABLE BLUETOOTH"
     block: |
       dtoverlay=pi3-disable-bt
+  when: deploy_target != 'vagrant'
 
 - name: Disable HDMI
   blockinfile:
@@ -170,6 +179,7 @@
     marker: "# {mark} ANSIBLE DISABLE HDMI"
     block: |
       hdmi_blanking=2
+  when: deploy_target != 'vagrant'
 
 - name: Disable Audio
   blockinfile:
@@ -177,6 +187,7 @@
     marker: "# {mark} ANSIBLE DISABLE AUDIO"
     block: |
       dtparam=audio=off
+  when: deploy_target != 'vagrant'
 
 - name: Disable Uart
   blockinfile:
@@ -184,6 +195,7 @@
     marker: "# {mark} ANSIBLE DISABLE UART"
     block: |
       enable_uart=0
+  when: deploy_target != 'vagrant'
 
 - name: Trottle GPU
   blockinfile:
@@ -191,6 +203,7 @@
     marker: "# {mark} ANSIBLE THROTTLE GPU"
     block: |
       gpu_mem=16
+  when: deploy_target != 'vagrant'
 
 - name: Overclock CPU
   blockinfile:
@@ -199,3 +212,4 @@
     block: |
       over_voltage=2
       arm_freq=1750
+  when: deploy_target != 'vagrant'

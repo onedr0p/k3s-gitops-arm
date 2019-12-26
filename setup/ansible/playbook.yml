@@ -22,10 +22,11 @@
       tags: ['docker']
     - include_role:
         name: userland
+      when: deploy_target != 'vagrant'
       tags: ['userland']
 
     - name: Rebooting hosts
       reboot:
         msg: "Pis are being rebooted"
-        reboot_timeout: 5
+        reboot_timeout: 60
       ignore_errors: true

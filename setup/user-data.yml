@@ -5,7 +5,6 @@
 # @CHANGEME - Update hostname
 #
 hostname: pik3s10
-apt_preserve_sources_list: true
 manage_etc_hosts: true
 
 #
@@ -14,8 +13,17 @@ manage_etc_hosts: true
 locale: "en_US.UTF-8"
 timezone: "America/New_York"
 
-package_update: true
-package_upgrade: true
+apt_preserve_sources_list: true
+apt_update: true
+apt_upgrade: true
+
+packages:
+ - apt-transport-https
+ - ca-certificates
+ - software-properties-common
+ - python3
+ - python3-pip
+ - gnupg2
 
 #
 # @CHANGEME - Update user config
@@ -31,7 +39,7 @@ users:
     ## mkpasswd --method=SHA-512 --rounds=4096
     # passwd: ""
     # lock_passwd: false
-    # ssh_pwauth: yes
+    # ssh_pwauth: true
     lock_passwd: true
     ssh_pwauth: false
     ssh_authorized_keys:
@@ -41,7 +49,9 @@ users:
 # @CHANGEME - Update network config
 #
 write_files:
-  - content: |
+  - path: /etc/netplan/50-cloud-init.yaml
+    permissions: '0644'
+    content: |
       network:
         version: 2
         ethernets:
@@ -51,7 +61,8 @@ write_files:
             gateway4: 192.168.1.1
             nameservers:
               addresses: [192.168.1.15]
-    path: /etc/netplan/50-cloud-init.yaml
 
-power_state:
-  mode: reboot
+runcmd:
+  - [sudo, netplan, apply]
+  - [sudo, sed ,-i, 's/PasswordAuthentication no/PasswordAuthentication yes/g', /etc/ssh/sshd_config]
+  - [sudo, systemctl, restart, sshd]
