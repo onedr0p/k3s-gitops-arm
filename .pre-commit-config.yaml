@@ -1,5 +1,4 @@
 repos:
-
   - repo: git://github.com/pre-commit/pre-commit-hooks
     rev: v2.2.3
     hooks:
@@ -12,11 +11,9 @@ repos:
 
       - id: check-case-conflict
 
-      - id: check-docstring-first
       - id: check-executables-have-shebangs
       - id: check-case-conflict
       - id: forbid-new-submodules
-      # - id: end-of-file-fixer
       - id: mixed-line-ending
       - id: trailing-whitespace
         args: [--markdown-linebreak-ext=md]
@@ -61,29 +58,28 @@ repos:
       # TODO: Shellcheck is mad
       # - id: shellcheck
 
-
-  # - repo: git://github.com/detailyang/pre-commit-shell
-  #   rev: v1.0.6
-  #   hooks:
-  #     - id: shell-lint
-  #       args: [--format=json]
-
   - repo: https://github.com/ansible/ansible-lint.git
     rev: v4.2.0
     hooks:
       - id: ansible-lint
         files: \.(yaml|yml)$
         entry: ansible-lint
-        verbose: true
-
-# TODO : needs config https://github.com/willthames/ansible-review#configuration
-#  - repo: https://github.com/willthames/ansible-review
-#     rev: 0.14.0rc2
-#     hooks:
-#       - id: ansible-review
 
   - repo: https://github.com/igorshubovych/markdownlint-cli
     rev: v0.20.0
     hooks:
       - id: markdownlint
         language_version: system
+
+# TODO : shell-lint is so mad
+# 	- repo: git://github.com/detailyang/pre-commit-shell
+# 		rev: v1.0.6
+# 		hooks:
+# 			- id: shell-lint
+# 				args: [--format=json]
+
+# TODO : needs config https://github.com/willthames/ansible-review#configuration
+# 	- repo: https://github.com/willthames/ansible-review
+# 		rev: 0.14.0rc2
+# 		hooks:
+# 			- id: ansible-review
