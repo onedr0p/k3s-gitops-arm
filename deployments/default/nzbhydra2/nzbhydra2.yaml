@@ -39,7 +39,7 @@ spec:
       readiness:
         initialDelaySeconds: 300
         failureThreshold: 5
-        timeoutSeconds: 10        
+        timeoutSeconds: 10
     resources:
       requests:
         memory: 500Mi

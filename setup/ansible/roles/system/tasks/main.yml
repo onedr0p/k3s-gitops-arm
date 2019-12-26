@@ -134,6 +134,20 @@
     src: log2ram.conf.j2
     dest: /etc/log2ram.conf
 
+- name: Create a firmware folder if it does not exist
+  file:
+    path: /boot/firmware
+    state: directory
+    mode: '0755'
+
+- name: Create the config files if they do not exist
+  file:
+    path: "{{ item }}"
+    state: touch
+  with_items:
+    - /boot/firmware/nobtcmd.txt
+    - /boot/firmware/syscfg.txt
+
 - name: Enable required cgroup features and disable IPv6
   lineinfile:
     path: /boot/firmware/nobtcmd.txt

@@ -23,7 +23,7 @@
   until: apt_apt_repository is success
   when: deploy_target == 'vagrant'
 
-- name: Install Docker
+- name: Install Docker {{ docker_version }}
   apt:
     name: "docker-ce={{ docker_version }}"
     install_recommends: false
@@ -51,7 +51,8 @@
     name: "{{ item }}"
     group: docker
     append: true
-  with_items: "{{ ansible_user }}"
+  with_items:
+   - "{{ ansible_user }}"
 
 - name: Start and enable Docker
   systemd:
