@@ -40,7 +40,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           ansible.compatibility_mode = "2.0"
           ansible.playbook = "../../setup/ansible/playbook.yml"
           ansible.inventory_path = "inventory"
-          ansible.limit = "all"
+          ansible.limit = "k3s_cluster"
         end
       end
     end
