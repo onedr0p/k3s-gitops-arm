@@ -1,7 +1,7 @@
 ---
-- name: check if neofetch exists
+- name: check if neofetch config directory exists
   stat:
-    path: "/home/{{ ansible_user }}/.config/neofetch/rpi-small"
+    path: "/home/{{ ansible_user }}/.config/neofetch"
   register: stat_result
 
 - name: Remove motd
