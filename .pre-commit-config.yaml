@@ -42,6 +42,14 @@ repos:
     hooks:
       - id: sign-commit
 
+  - repo: https://github.com/Lucas-C/pre-commit-hooks
+    rev: v1.1.7
+    hooks:
+      - id: forbid-crlf
+        exclude:  (Makefile)|\.(patch)$
+      - id: forbid-tabs
+        exclude: (Makefile)|\.(patch)$
+
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 1.11.2
     hooks:
@@ -64,14 +72,14 @@ repos:
         language_version: system
 
 # TODO : shell-lint is so mad
-# 	- repo: git://github.com/detailyang/pre-commit-shell
-# 		rev: v1.0.6
-# 		hooks:
-# 			- id: shell-lint
-# 				args: [--format=json]
+#   - repo: git://github.com/detailyang/pre-commit-shell
+#     rev: v1.0.6
+#     hooks:
+#       - id: shell-lint
+#         args: [--format=json]
 
 # TODO : needs config https://github.com/willthames/ansible-review#configuration
-# 	- repo: https://github.com/willthames/ansible-review
-# 		rev: 0.14.0rc2
-# 		hooks:
-# 			- id: ansible-review
+#   - repo: https://github.com/willthames/ansible-review
+#     rev: 0.14.0rc2
+#     hooks:
+#       - id: ansible-review
