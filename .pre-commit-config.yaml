@@ -15,8 +15,7 @@ repos:
       - id: check-case-conflict
       - id: forbid-new-submodules
       - id: mixed-line-ending
-      - id: trailing-whitespace
-        args: [--markdown-linebreak-ext=md]
+        args: [--fix=no]
 
       - id: detect-aws-credentials
         args: ['--allow-missing-credentials']
@@ -42,13 +41,6 @@ repos:
     rev: v1.1.1
     hooks:
       - id: sign-commit
-
-  - repo: https://github.com/Lucas-C/pre-commit-hooks
-    rev: v1.1.7
-    hooks:
-      - id: forbid-crlf
-      # TODO: tabs in aarch64.patch make this fail, exclude not available
-      # - id: forbid-tabs
 
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 1.11.2
