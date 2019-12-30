@@ -36,29 +36,20 @@
       - gnupg2
       - hdparm
       - htop
-      - iotop
-      - iperf3
       - iputils-ping
-      - jq
-      - less
       - libnss-mdns
       - neofetch
       - net-tools
       - nfs-common
       - nmap
-      - ntp
       - psmisc
       - python3
       - python3-pip
       - rsync
       - software-properties-common
-      - tcpdump
       - traceroute
-      - tree
       - unattended-upgrades
-      - unzip
       - wget
-      - zip
     install_recommends: false
     update_cache: true
     # Need the force_apt_get until
