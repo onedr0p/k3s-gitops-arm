@@ -4,8 +4,8 @@ repos:
     hooks:
       - id: check-added-large-files
       - id: check-merge-conflict
-      - id: no-commit-to-branch
-        args: [--branch, master]
+      # - id: no-commit-to-branch
+      #   args: [--branch, master]
 
       - id: check-vcs-permalinks
 
