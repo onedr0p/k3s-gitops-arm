@@ -67,22 +67,6 @@ ks3WorkerNodes() {
     done
 }
 
-installHelm() {
-    message "Installing helm (tiller)"
-    kubectl -n kube-system create sa tiller
-    kubectl create clusterrolebinding tiller-cluster-rule \
-        --clusterrole=cluster-admin \
-        --serviceaccount=kube-system:tiller
-    helm init --upgrade --wait --tiller-image=jessestuart/tiller:${TILLER_VERSION} --service-account tiller
-
-    HELM_SUCCESS="$?"
-    if [ "${HELM_SUCCESS}" != 0 ]; then
-        echo "Helm init failed - no bueno!"
-        exit 1
-    fi
-    sleep 5
-}
-
 installFlux() {
     message "Installing flux"
     helm repo add fluxcd https://charts.fluxcd.io
@@ -110,7 +94,6 @@ addDeployKey() {
 
 k3sMasterNode
 ks3WorkerNodes
-installHelm
 installFlux
 addDeployKey
 
