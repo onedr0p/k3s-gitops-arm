@@ -12,38 +12,11 @@ kubectl get nodes
 kubectl label node <node-name> node-role.kubernetes.io/worker=worker
 ```
 
-## Install Helm2 or Helm3
+## Install Helm
 
 ```bash
-# Helm v2 (For use with Tiller)
-brew install helm@2
 # Helm v3 (Tiller component deprecated)
 brew install helm
-```
-
-## Tiller
-
-```bash
-# Install Tiller
-kubectl -n kube-system create sa tiller
-
-kubectl create clusterrolebinding tiller-cluster-rule \
-    --clusterrole=cluster-admin \
-    --serviceaccount=kube-system:tiller
-
-helm init --tiller-image=jessestuart/tiller:v2.15.0 --service-account tiller
-
-# Upgrade Tiller
-helm init --upgrade --tiller-image=jessestuart/tiller:v2.15.0 --service-account tiller
-
-# View Tiller logs
-kubectl -n kube-system describe deployment.apps/tiller-deploy
-kubectl -n kube-system logs tiller-deploy-([a-z\-]+)
-kubectl -n kube-system describe pod/tiller-deploy-([a-z\-]+)
-
-# Delete Tiller Deployment
-kubectl -n kube-system delete deployment tiller-deploy ; \
-kubectl -n kube-system delete service tiller-deploy
 ```
 
 ## Flux and Helm Operator
