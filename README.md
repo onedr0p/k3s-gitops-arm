@@ -51,7 +51,6 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 |192.168.42.23|k3s master (pik3s00)|
 |192.168.42.24|k3s worker (pik3s01)|
 |192.168.42.25|k3s worker (pik3s02)|
-|192.168.42.26|k3s worker (pik3s03)|
 
 * * *
 
@@ -73,25 +72,31 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 > For manual deployment see [k3sup.md](docs/k3sup.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
-### 4. Tiller, Helm and Flux
+### 4. Helm 
 
-[Helm](https://v2.helm.sh/) is a package manager for Kubernetes and Tiller is the service that actually communicates with the Kubernetes API that manage our Helm packages. [Flux](https://docs.fluxcd.io/en/stable/) is the [GitOps](https://www.weave.works/technologies/gitops/) tool I've chosen to have this Git Repository manage my clusters state.
+[Helm](https://v3.helm.sh/) is a package manager for Kubernetes.
 
-> For manual deployment see [tiller-helm-flux.md](docs/tiller-helm-flux.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
+> For manual deployment see [helm-flux.md](docs/helm-flux.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
-### 5. Sealed Secrets
+### 5. Flux
+
+ [Flux](https://docs.fluxcd.io/en/stable/) is the [GitOps](https://www.weave.works/technologies/gitops/) tool I've chosen to have this Git Repository manage my clusters state.
+
+> For manual deployment see [helm-flux.md](docs/helm-flux.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
+
+### 6. Sealed Secrets
 
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
 > See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup](setup) folder.
 
-### 6. NginX
+### 7. NginX
 
 I opted to let a HAProxy server which lives outside of my cluster handle SSL termination and domain routing since I have multiple domains pointing to my Homes IP address. Since every domain doesn't exactly point to my k3s cluster I found this the easy way to have any number of domains I own point to different servers in my house. See [assets/_k3s.png](assets/_k3s.png) for my network topology. This setup is documented in [docs/haproxy-cloudflare.md](docs/haproxy-cloudflare.md) if anyone is interested.
 
 The path I have chosen above doesn't exactly fit everyones use-case so if you would like SSL terminated at NginX I would take a look at [this repo](https://github.com/billimek/k8s-gitops) and see how it's made possible with [cert-manager](https://cert-manager.io/docs/).
 
-### 7. Minio and Velero
+### 8. Minio and Velero
 
 [MinIO](https://min.io/) is pioneering high performance object storage, think of this as self-hosted AWS S3.
 
