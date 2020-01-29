@@ -1,6 +1,0 @@
-cloudflare:
-  user: "$CLOUDFLARE_USER"
-  token: "$CLOUDFLARE_APIKEY"
-  zones: "$CLOUDFLARE_ZONES"
-  hosts: "$CLOUDFLARE_HOSTS"
-  record_types: "$CLOUDFLARE_RECORDTYPES"
