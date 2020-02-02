@@ -1,6 +1,8 @@
 # k3s-gitops-arm
 
-![Discord](https://img.shields.io/discord/673534664354430999?label=discord)
+[Join](https://discord.gg/hk58BZV) Discord Community
+
+![Discord](https://img.shields.io/discord/673534664354430999?label=discord) 
 
 Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state. I would like to give a shout-out to [k8s-gitops](https://github.com/billimek/k8s-gitops), the big brother of this repo, created by [@billimek](https://github.com/billimek).
 
@@ -105,13 +107,6 @@ The path I have chosen above doesn't exactly fit everyones use-case so if you wo
 [Velero](https://velero.io/) is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes.
 
 > For manual deployment see [minio-velero.md](docs/minio-velero.md)
-
-* * *
-
-
-## Join the community
-
-If you would like to join in a conversation, join here. [discord.gg/hk58BZV](https://discord.gg/hk58BZV)
 
 * * *
 
