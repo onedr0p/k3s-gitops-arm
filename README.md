@@ -15,8 +15,8 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 ### Hardware
 
 - 3x Raspberry Pi 4 (recommended 4GB RAM model)
-- 3x SD Cards (recommended 32GB)
-- 3x USB 3.1 256GB Flash drives  (recommended for local storage)
+- 3x SD cards (recommended 32GB)
+- 3x USB 3.x flash drives (recommended for local storage)
 - A NFS server for storing persistent data (recommended for shared storage)
 
 ### Software
