@@ -1,8 +1,8 @@
 # k3s-gitops-arm
 
-[Join](https://discord.gg/hk58BZV) Discord Community
+![Kubernetes](https://i.imgur.com/p1RzXjQ.png)
 
-![Discord](https://img.shields.io/discord/673534664354430999?label=discord) 
+[![Discord](https://img.shields.io/badge/discord-chat-7289DA.svg?maxAge=60&style=flat-square)](https://discord.gg/hk58BZV)
 
 Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k3s)) cluster with RPis and utilize [GitOps](https://www.weave.works/technologies/gitops/) for managing cluster state. I would like to give a shout-out to [k8s-gitops](https://github.com/billimek/k8s-gitops), the big brother of this repo, created by [@billimek](https://github.com/billimek).
 
@@ -49,7 +49,6 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 |IP|Function|
 |---|---|
 |192.168.1.1|Router (USG)|
-|192.168.1.15|Dedicated RPi running PiHole|
 |192.168.1.170|NFS Server|
 |192.168.42.1/24|k3s cluster CIDR, VLAN 42|
 |192.168.42.23|k3s master (pik3s00)|
@@ -112,16 +111,14 @@ The path I have chosen above doesn't exactly fit everyones use-case so if you wo
 
 ## ARM Clown Fiesta
 
+See [raspbernetes/multi-arch-images](https://github.com/raspbernetes/multi-arch-images) for a great resource of multi-arch Docker images, some of which I use in this project.
+
 The projects in the table below I have compiled multi-arch ARM (arm, arm64) Docker images for.
 
 |Project|Repository|DockerHub|Issue requesting ARM images|
 |---|---|---|---|
-|Flux|[onedr0p/flux](https://gitlab.com/onedr0p/flux)|[onedr0p/flux](https://hub.docker.com/r/onedr0p/flux)|[fluxcd/flux#1761](https://github.com/fluxcd/flux/issues/1761)|
 |Helm Operator|[onedr0p/helm-operator](https://gitlab.com/onedr0p/helm-operator)|[onedr0p/helm-operator](https://hub.docker.com/r/onedr0p/helm-operator)|[fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)|
-|Velero|[onedr0p/velero](https://gitlab.com/onedr0p/velero)|[onedr0p/velero](https://hub.docker.com/r/onedr0p/velero)|[vmware-tanzu/velero#720](https://github.com/vmware-tanzu/velero/issues/720)|
-|Velero Plugin for AWS|[onedr0p/velero-plugin-for-aws](https://gitlab.com/onedr0p/velero-plugin-for-aws)|[onedr0p/velero-plugin-for-aws](https://hub.docker.com/r/onedr0p/velero-plugin-for-aws)|[vmware-tanzu/velero-plugin-for-aws#18](https://github.com/vmware-tanzu/velero-plugin-for-aws/issues/18)|
 |Kured|[onedr0p/kured](https://gitlab.com/onedr0p/kured)|[onedr0p/kured](https://hub.docker.com/r/onedr0p/kured)|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
-|Sealed Secrets|[onedr0p/sealed-secrets](https://gitlab.com/onedr0p/sealed-secrets)|[onedr0p/sealed-secrets](https://hub.docker.com/r/onedr0p/sealed-secrets)|[bitnami-labs/sealed-secrets#349](https://github.com/bitnami-labs/sealed-secrets/issues/349)|
 
 * * *
 
