@@ -30,7 +30,7 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 * * *
 
-## Directory layout description
+## Directory topology
 
 ```bash
 .
@@ -43,7 +43,7 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 
 * * *
 
-## My network topology
+## Network topology
 
 ![image](assets/_k3s.png)
 
