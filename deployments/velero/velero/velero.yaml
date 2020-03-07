@@ -9,13 +9,10 @@ metadata:
 spec:
   releaseName: velero
   chart:
-    repository: https://kubernetes-charts.storage.googleapis.com/
+    repository: https://vmware-tanzu.github.io/helm-charts
     name: velero
-    version: 2.7.4
+    version: 2.9.1
   values:
-    image:
-      repository: onedr0p/velero
-      tag: v1.2.0
     resources:
       requests:
         memory: 300Mi
