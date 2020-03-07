@@ -13,6 +13,13 @@ spec:
     name: velero
     version: 2.9.1
   values:
+    initContainers:
+    - name: velero-plugin-for-aws
+      image: xunholy/velero-aws-plugin:v1.0.0
+      imagePullPolicy: IfNotPresent
+      volumeMounts:
+      - mountPath: /target
+        name: plugins
     resources:
       requests:
         memory: 300Mi
