@@ -5,8 +5,8 @@ git:
   branch: master
   path: deployments
 image:
-  repository: onedr0p/flux
-  tag: v1.17.0
+  repository: xunholy/flux
+  tag: 1.18.0
   pullPolicy: Always
 registry:
   rps: 1
