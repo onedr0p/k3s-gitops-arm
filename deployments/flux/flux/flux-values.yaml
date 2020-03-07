@@ -1,5 +1,8 @@
 helmOperator:
   create: false
+#
+# @CHANGEME - Update url to your public repo URL
+#
 git:
   url: "git@github.com:onedr0p/homelab-gitops.git"
   branch: master
