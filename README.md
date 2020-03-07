@@ -52,9 +52,9 @@ Build a [Kubernetes](https://kubernetes.io/) ([k3s](https://github.com/rancher/k
 |192.168.1.1|Router (USG)|
 |192.168.1.170|NFS Server|
 |192.168.42.1/24|k3s cluster CIDR, VLAN 42|
-|192.168.42.23|k3s master (pik3s00)|
-|192.168.42.24|k3s worker (pik3s01)|
-|192.168.42.25|k3s worker (pik3s02)|
+|192.168.42.23|k3s master (k3s-master)|
+|192.168.42.24|k3s worker (k3s-worker-a)|
+|192.168.42.25|k3s worker (k3s-worker-b)|
 
 * * *
 
