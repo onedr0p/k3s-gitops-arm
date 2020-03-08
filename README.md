@@ -114,12 +114,13 @@ The path I have chosen above doesn't exactly fit everyones use-case so if you wo
 
 See [raspbernetes/multi-arch-images](https://github.com/raspbernetes/multi-arch-images) for a great resource of multi-arch Docker images, some of which I use in this project.
 
+https://hub.docker.com/u/raspbernetes
+
 The projects in the table below I have compiled multi-arch ARM (arm, arm64) Docker images for.
 
 |Project|Repository|DockerHub|Issue requesting ARM images|
 |---|---|---|---|
 |Helm Operator|[onedr0p/helm-operator](https://gitlab.com/onedr0p/helm-operator)|[onedr0p/helm-operator](https://hub.docker.com/r/onedr0p/helm-operator)|[fluxcd/helm-operator#147](https://github.com/fluxcd/helm-operator/issues/147)|
-|Kured|[onedr0p/kured](https://gitlab.com/onedr0p/kured)|[onedr0p/kured](https://hub.docker.com/r/onedr0p/kured)|[weaveworks/kured#23](https://github.com/weaveworks/kured/issues/23)|
 
 * * *
 
