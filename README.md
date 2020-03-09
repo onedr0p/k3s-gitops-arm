@@ -92,6 +92,18 @@ This repo uses a lot of multi-arch images provided by [raspbernetes/multi-arch-i
 
 > See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup](setup) folder.
 
-### 6. Cert Manager, NginX _/engine x/_ and MetalLB
+### 6. MetalLB
 
-TBD
+[MetalLB](https://metallb.universe.tf/) is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
+
+> Review the file [metallb.yaml](deployments/kube-system/metallb/metallb.yaml)
+
+### 6. Cert Manager
+
+[Cert-Manager](https://github.com/jetstack/cert-manager) will automatically provision and manage TLS certificates in Kubernetes. In this setup I am using Cloudflare as the DNS challenge.
+
+### 7. NGINX Ingress _/engine x/_
+
+[NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/) is an Ingress controller that uses ConfigMap to store the NGINX configuration.
+
+> Review the file [nginx.yaml](deployments/kube-system/nginx/nginx.yaml)
