@@ -8,9 +8,8 @@ git:
   branch: master
   path: deployments
 image:
-  repository: xunholy/flux
+  repository: raspbernetes/flux
   tag: 1.18.0
-  pullPolicy: Always
 registry:
   rps: 1
   burst: 1
