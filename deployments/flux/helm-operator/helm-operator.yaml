@@ -5,13 +5,14 @@ metadata:
   name: helm-operator
   namespace: flux
   annotations:
+    fluxcd.io/ignore: "false"
     fluxcd.io/automated: "false"
 spec:
   releaseName: helm-operator
   chart:
     repository: https://charts.fluxcd.io/
     name: helm-operator
-    version: 0.5.0
+    version: 0.7.0
   #
   # @CHANGEME - Update url to the path to flux-helm-operator-values.yaml in your repository
   #
