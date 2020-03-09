@@ -15,20 +15,20 @@ brew install kubeseal
 ## Create sealed-secrets public certificate
 
 ```bash
-cd setup
+cd secrets
 kubeseal --controller-name sealed-secrets --fetch-cert > ./pub-cert.pem
 ```
 
 ## Fill in the secrets environment file
 
 ```bash
-cd setup
+cd secrets
 cp .env.secrets.sample .env.secrets
 ```
 
 ## Generate secrets
 
 ```bash
-cd setup
+cd secrets
 ./generate-secrets.sh
 ```

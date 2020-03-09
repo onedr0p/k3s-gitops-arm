@@ -25,7 +25,7 @@ Update [cloud-config.example.yml](../setup/cloud-config.example.yml) as you see 
 
 ```bash
 flash \
-    --userdata setup/cloud-config.example \
+    --userdata setup/cloud-config.example.yml \
     ~/Downloads/ubuntu-19.10.1-preinstalled-server-arm64+raspi3.img
 ```
 

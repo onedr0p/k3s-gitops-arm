@@ -1,6 +1,7 @@
 ansible/inventory
 ansible/vars.yml
-setup/user-data-*
-setup/.secrets.env
-.DS_Store
+setup/cloud-config-*
+secrets/.secrets.env
 tests/vagrant/.vagrant
+
+.DS_Store

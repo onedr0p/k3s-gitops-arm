@@ -5,6 +5,7 @@ metadata:
   name: sonarr
   namespace: default
   annotations:
+    fluxcd.io/ignore: "false"
     fluxcd.io/automated: "false"
 spec:
   releaseName: sonarr
@@ -13,15 +14,14 @@ spec:
   chart:
     repository: https://billimek.com/billimek-charts/
     name: sonarr
-    version: 2.0.8
+    version: 3.0.2
   values:
     image:
       repository: linuxserver/sonarr
-      tag: 3.0.3.661-ls155
-      pullPolicy: Always
+      tag: 3.0.3.701-ls174
     timezone: "America/New_York"
     puid: 1000
-    pgid: 100
+    pgid: 1000
     ingress:
       enabled: true
       annotations:
@@ -36,20 +36,20 @@ spec:
         enabled: true
         storageClass: "local-path"
       downloads:
-        enabled: true
-        existingClaim: nfs-media-downloads-pvc
-        accessMode: ReadWriteMany
+        enabled: false
       tv:
-        enabled: true
-        existingClaim: nfs-media-pvc
-        subPath: Library
-        accessMode: ReadWriteMany
+        enabled: false
+      extraExistingClaimMounts:
+        - name: media
+          existingClaim: nfs-media-pvc
+          mountPath: /media
+          readOnly: false
     resources:
       requests:
         memory: 350Mi
         cpu: 25m
       limits:
-        memory: 500Mi
+        memory: 1000Mi
     #
     # @CHANGEME - Update the hostname to the node you want this deployed to
     #

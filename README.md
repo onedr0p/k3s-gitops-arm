@@ -39,7 +39,7 @@ This repo uses a lot of multi-arch images provided by [raspbernetes/multi-arch-i
 ├── ./ansible        # Ansible playbook to run after the RPis have been flashed
 ├── ./deployments    # Flux will only scan and deploy from this directory
 ├── ./setup          # Setup of the cluster
-├── ./hack           # Helper scripts
+├── ./secrets        # Scripts to generate secrets for Sealed Secrets
 └── ./docs           # Documentation
 ```
 
@@ -84,13 +84,13 @@ This repo uses a lot of multi-arch images provided by [raspbernetes/multi-arch-i
 
 [Flux](https://docs.fluxcd.io/en/stable/) is the [GitOps](https://www.weave.works/technologies/gitops/) tool I've chosen to have this Git Repository manage my clusters state.
 
-> For manual deployment see [helm-flux.md](docs/helm-flux.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
+> For manual deployment see [helm-flux.md](docs/flux-helm-operator.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
 ### 5. Sealed Secrets
 
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
-> See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup](setup) folder.
+> See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [secrets](secrets) folder.
 
 ### 6. MetalLB
 
