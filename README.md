@@ -92,11 +92,9 @@ This repo uses a lot of multi-arch images provided by [raspbernetes/multi-arch-i
 
 > See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [setup](setup) folder.
 
-### 6. NginX _/engine x/_ and MetalLB
+### 6. Cert Manager, NginX _/engine x/_ and MetalLB
 
-I opted to let a HAProxy server which lives outside of my cluster handle SSL termination and domain routing since I have multiple domains pointing to my Homes IP address. Since every domain doesn't exactly point to my k3s cluster I found this the easy way to have any number of domains I own point to different servers in my house. See [assets/_k3s.png](assets/_k3s.png) for my network topology. This setup is documented in [docs/haproxy-cloudflare.md](docs/haproxy-cloudflare.md) if anyone is interested.
-
-The path I have chosen above doesn't exactly fit everyones use-case so if you would like SSL terminated at NginX I would take a look at [this repo](https://github.com/billimek/k8s-gitops) and see how it's made possible with [cert-manager](https://cert-manager.io/docs/).
+TBD
 
 ### 7. Minio and Velero
 
