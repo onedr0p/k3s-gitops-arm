@@ -1,5 +1,5 @@
-setup/ansible/inventory
-setup/ansible/vars.yml
+ansible/inventory
+ansible/vars.yml
 setup/user-data-*
 setup/.secrets.env
 .DS_Store
