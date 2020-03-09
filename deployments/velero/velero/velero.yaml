@@ -5,6 +5,7 @@ metadata:
   name: velero
   namespace: velero
   annotations:
+    fluxcd.io/ignore: "false"
     fluxcd.io/automated: "false"
 spec:
   releaseName: velero
@@ -15,7 +16,7 @@ spec:
   values:
     initContainers:
     - name: velero-plugin-for-aws
-      image: xunholy/velero-aws-plugin:v1.0.0
+      image: raspbernetes/velero-aws-plugin:v1.0.0
       imagePullPolicy: IfNotPresent
       volumeMounts:
       - mountPath: /target
