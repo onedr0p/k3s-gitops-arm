@@ -106,4 +106,4 @@ This repo uses a lot of multi-arch images provided by [raspbernetes/multi-arch-i
 
 [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/) is an Ingress controller that uses ConfigMap to store the NGINX configuration.
 
-> Review the file [nginx.yaml](deployments/kube-system/nginx/nginx.yaml)
+> Review the file [nginx-ingress.yaml](deployments/kube-system/nginx-ingress/nginx-ingress.yaml)
