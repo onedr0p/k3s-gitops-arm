@@ -6,9 +6,8 @@ metadata:
   name: nginx-ingress
   namespace: kube-system
   annotations:
-    fluxcd.io/ignore: false
+    fluxcd.io/ignore: "false"
     fluxcd.io/automated: "false"
-    fluxcd.io/tag.chart-image: semver:~0.
 spec:
   releaseName: nginx-ingress
   rollback:
@@ -16,14 +15,13 @@ spec:
   chart:
     repository: https://kubernetes-charts.storage.googleapis.com/
     name: nginx-ingress
-    version: 1.27.0
+    version: 1.33.4
   values:
     controller:
       replicaCount: 2
       image:
         repository: quay.io/kubernetes-ingress-controller/nginx-ingress-controller-arm
-        tag: 0.26.1
-        imagePullPolicy: Always
+        tag: 0.30.0
       config:
         ssl-redirect: "false"
       #
