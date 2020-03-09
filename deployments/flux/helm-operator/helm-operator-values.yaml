@@ -3,9 +3,8 @@ git:
   ssh:
     secretName: flux-git-deploy
 image:
-  repository: onedr0p/helm-operator
-  tag: v1.0.0-rc8
-  pullPolicy: Always
+  repository: raspbernetes/helm-operator
+  tag: v1.0.0-rc9
 chartsSyncInterval: "5m"
 statusUpdateInterval: "5m"
 helm:
