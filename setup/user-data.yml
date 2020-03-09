@@ -4,7 +4,7 @@
 #
 # @CHANGEME - Update hostname
 #
-hostname: pik3s10
+hostname: k3s-master
 manage_etc_hosts: true
 
 #
@@ -57,10 +57,12 @@ write_files:
         ethernets:
           eth0:
             addresses:
-              - 192.168.1.210/24
-            gateway4: 192.168.1.1
+              - 192.168.42.23/24
+            gateway4: 192.168.42.1
             nameservers:
-              addresses: [192.168.1.15]
+              addresses:
+                - 1.1.1.1
+                - 8.8.8.8
 
 runcmd:
   - [sudo, netplan, apply]
