@@ -95,11 +95,3 @@ This repo uses a lot of multi-arch images provided by [raspbernetes/multi-arch-i
 ### 6. Cert Manager, NginX _/engine x/_ and MetalLB
 
 TBD
-
-### 7. Minio and Velero
-
-[MinIO](https://min.io/) is pioneering high performance object storage, think of this as self-hosted AWS S3.
-
-[Velero](https://velero.io/) is an open source tool to safely backup and restore, perform disaster recovery, and migrate Kubernetes cluster resources and persistent volumes.
-
-> For manual deployment see [minio-velero.md](docs/minio-velero.md)

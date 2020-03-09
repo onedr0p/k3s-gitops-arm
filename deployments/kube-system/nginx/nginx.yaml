@@ -24,7 +24,8 @@ spec:
       config:
         ssl-redirect: "false"
       #
-      # @CHANGEME - Update loadBalancerIP to the IP NginX will use, should match what you have in range for MetalLB
+      # @CHANGEME - Update loadBalancerIP to the IP NginX will use.
+      # It should match a IP Address you have in range for MetalLB
       #
       service:
         loadBalancerIP: 192.168.42.100
