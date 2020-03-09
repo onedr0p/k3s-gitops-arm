@@ -11,10 +11,10 @@
 # @CHANGEME - Update USER to your RPi SSH user
 #
 USER="devin"
-K3S_VERSION="v1.17.0+k3s.1"
+K3S_VERSION="v1.17.3+k3s1"
 
 REPO_ROOT=$(git rev-parse --show-toplevel)
-ANSIBLE_INVENTORY="${REPO_ROOT}"/setup/ansible/inventory
+ANSIBLE_INVENTORY="${REPO_ROOT}"/ansible/inventory
 
 need() {
     which "$1" &>/dev/null || die "Binary '$1' is missing but required"
@@ -42,7 +42,7 @@ k3sMasterNode() {
     k3sup install --ip "${K3S_MASTER}" \
         --k3s-version "${K3S_VERSION}" \
         --user "${USER}" \
-        --k3s-extra-args "--no-deploy servicelb --no-deploy traefik --default-local-storage-path /k3s-local-storage"
+        --k3s-extra-args "--no-deploy servicelb --no-deploy traefik --no-deploy metrics-server --default-local-storage-path /k3s-local-storage"
     mkdir -p ~/.kube
     mv ./kubeconfig ~/.kube/config
     sleep 10
