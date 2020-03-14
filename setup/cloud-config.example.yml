@@ -1,4 +1,4 @@
-#cloud-init
+#cloud-config
 
 #
 # @CHANGEME - Update hostname
