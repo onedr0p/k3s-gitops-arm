@@ -86,23 +86,25 @@ This repo uses a lot of multi-arch images provided by [raspbernetes/multi-arch-i
 
 > For manual deployment see [helm-flux.md](docs/flux-helm-operator.md), and for an automated script see [bootstrap-cluster.sh](setup/bootstrap-cluster.sh)
 
-### 5. Sealed Secrets
+## Additional Components
+
+### Sealed Secrets
 
 [Sealed Secrets](https://github.com/bitnami-labs/sealed-secrets) are a "one-way" encrypted Secret that can be created by anyone, but can only be decrypted by the controller running in the target cluster. The Sealed Secret is safe to share publicly, upload to git repositories, give to the NSA, etc. Once the Sealed Secret is safely uploaded to the target Kubernetes cluster, the sealed secrets controller will decrypt it and recover the original Secret.
 
 > See [sealed-secrets.md](docs/sealed-secrets.md) and review the files in the [secrets](secrets) folder.
 
-### 6. MetalLB
+### MetalLB
 
 [MetalLB](https://metallb.universe.tf/) is a load-balancer implementation for bare metal Kubernetes clusters, using standard routing protocols.
 
 > Review the file [metallb.yaml](deployments/kube-system/metallb/metallb.yaml)
 
-### 6. Cert Manager
+### Cert Manager
 
 [Cert-Manager](https://github.com/jetstack/cert-manager) will automatically provision and manage TLS certificates in Kubernetes. In this setup I am using Cloudflare as the DNS challenge.
 
-### 7. NGINX Ingress _/engine x/_
+### NGINX Ingress _/engine x/_
 
 [NGINX Ingress Controller](https://kubernetes.github.io/ingress-nginx/) is an Ingress controller that uses ConfigMap to store the NGINX configuration.
 
