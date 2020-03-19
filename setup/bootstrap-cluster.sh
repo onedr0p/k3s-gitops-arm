@@ -50,7 +50,7 @@ k3sMasterNode() {
 
 ks3WorkerNodes() {
     for worker in $K3S_WORKERS; do
-        message "Joining pi4 ${worker} to ${K3S_MASTER}"
+        message "Joining ${worker} to ${K3S_MASTER}"
         k3sup join --ip "${worker}" \
             --server-ip "${K3S_MASTER}" \
             --k3s-version "${K3S_VERSION}" \
@@ -68,6 +68,9 @@ ks3WorkerNodes() {
 
 installFlux() {
     message "Installing flux"
+
+    kubectl apply -f "${REPO_ROOT}"/deployments/flux/namespace.yaml
+
     helm repo add fluxcd https://charts.fluxcd.io
     helm repo update
     helm upgrade --install flux --values "${REPO_ROOT}"/deployments/flux/flux/flux-values.yaml --namespace flux fluxcd/flux

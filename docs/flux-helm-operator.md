@@ -22,6 +22,9 @@ brew install helm
 ## Flux and Helm Operator
 
 ```bash
+# Create Namespace
+kubectl apply -f deployments/flux/namespace.yaml
+
 # Add Flux Charts
 helm repo add fluxcd https://charts.fluxcd.io
 
