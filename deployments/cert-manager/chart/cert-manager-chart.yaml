@@ -14,15 +14,16 @@ spec:
   chart:
     repository: https://charts.jetstack.io/
     name: cert-manager
-    version: v0.13.1
+    version: v0.16.1
   values:
     webhook:
       enabled: true
     extraArgs:
     - --dns01-recursive-nameservers=1.1.1.1:53
     - --dns01-recursive-nameservers-only
-    prometheus:
-      enabled: true
-      servicemonitor:
-        enabled: true
-        namespace: cert-manager
+#     # Enabled once prometheus-operator is installed
+#     prometheus:
+#       enabled: true
+#       servicemonitor:
+#         enabled: true
+#         namespace: cert-manager
