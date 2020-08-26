@@ -6,11 +6,12 @@ helm:
   versions: "v3"
 image:
   repository: raspbernetes/helm-operator
-  tag: v1.0.0-rc9
-prometheus:
-  enabled: false
-  serviceMonitor:
-    create: false
-    namespace: flux
-    interval: 30s
-    scrapeTimeout: 10s
+  tag: v1.2.0
+# # Enabled once prometheus-operator is installed
+# prometheus:
+#   enabled: false
+#   serviceMonitor:
+#     create: false
+#     namespace: flux
+#     interval: 30s
+#     scrapeTimeout: 10s
