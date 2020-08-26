@@ -9,7 +9,7 @@ git:
   path: deployments
 image:
   repository: raspbernetes/flux
-  tag: 1.18.0
+  tag: 1.20.2
 registry:
   rps: 1
   burst: 1
@@ -18,10 +18,11 @@ memcached:
 syncGarbageCollection:
   enabled: true
   dry: false
-prometheus:
-  enabled: true
-  serviceMonitor:
-    create: false
-    interval: 30s
-    scrapeTimeout: 10s
-    namespace: flux
+# # Enabled once prometheus-operator is installed
+# prometheus:
+#   enabled: true
+#   serviceMonitor:
+#     create: false
+#     interval: 30s
+#     scrapeTimeout: 10s
+#     namespace: flux
