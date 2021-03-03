@@ -1,3 +1,7 @@
+# IMPORTANT NOTE
+
+This repository is really out of date, I have moved onto [Flux v2](https://toolkit.fluxcd.io/) and do not use Raspberry Pis anymore. This is now archived and I will leave it up for people to read.
+
 # k3s-gitops-arm
 
 ![Kubernetes](https://i.imgur.com/p1RzXjQ.png)
